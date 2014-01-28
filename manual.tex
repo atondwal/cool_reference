@@ -62,370 +62,13 @@
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \setcounter{secnumdepth}{5}
 
-\title{Type Checking}
-\author{}
-\date{}
+\title{The Cool Reference Manual\footnote{Cool and the Cool Reference Manual Copyright ©1995-2006 by Alex Aiken. All rights reserved. This version of the Cool Reference Manual has been modified by Wes Weimer. All of the good things herein should be credited to Alex Aiken. All mistakes should be attributed to Wes Weimer.}}
 
 \begin{document}
 \maketitle
+\tableofcontents
 
-\href{node1.html}{\includegraphics{next.png}} \includegraphics{up_g.png}
-\includegraphics{prev_g.png}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node1.html}{Contents} ~ \textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{The Cool Reference
-Manual\href{footnode.html\#foot266}{\textsuperscript{1}}}
-
-\subparagraph{Cool and the Cool Reference Manual Copyright ©1995-2006 by
-Alex Aiken. All rights reserved. This version of the Cool Reference
-Manual has been modified by Wes Weimer. All of the good things herein
-should be credited to Alex Aiken. All mistakes should be attributed to
-Wes Weimer.}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node1.html}{Contents}
-\item
-  \href{node2.html}{Introduction}
-\item
-  \href{node3.html}{Getting Started}
-\item
-  \href{node4.html}{Classes}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node5.html}{Features}
-  \item
-    \href{node6.html}{Inheritance}
-  \end{itemize}
-\item
-  \href{node7.html}{Types}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node8.html}{SELF\_TYPE}
-  \item
-    \href{node9.html}{Type Checking}
-  \end{itemize}
-\item
-  \href{node10.html}{Attributes}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node11.html}{Void}
-  \end{itemize}
-\item
-  \href{node12.html}{Methods}
-\item
-  \href{node13.html}{Expressions}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node14.html}{Constants}
-  \item
-    \href{node15.html}{Identifiers}
-  \item
-    \href{node16.html}{Assignment}
-  \item
-    \href{node17.html}{Dispatch}
-  \item
-    \href{node18.html}{Conditionals}
-  \item
-    \href{node19.html}{Loops}
-  \item
-    \href{node20.html}{Blocks}
-  \item
-    \href{node21.html}{Let}
-  \item
-    \href{node22.html}{Case}
-  \item
-    \href{node23.html}{New}
-  \item
-    \href{node24.html}{Isvoid}
-  \item
-    \href{node25.html}{Arithmetic and Comparison Operations}
-  \end{itemize}
-\item
-  \href{node26.html}{Basic Classes}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node27.html}{Object}
-  \item
-    \href{node28.html}{IO}
-  \item
-    \href{node29.html}{Int}
-  \item
-    \href{node30.html}{String}
-  \item
-    \href{node31.html}{Bool}
-  \end{itemize}
-\item
-  \href{node32.html}{Main Class}
-\item
-  \href{node33.html}{Lexical Structure}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node34.html}{Integers, Identifiers, and Special Notation}
-  \item
-    \href{node35.html}{Strings}
-  \item
-    \href{node36.html}{Comments}
-  \item
-    \href{node37.html}{Keywords}
-  \item
-    \href{node38.html}{White Space}
-  \end{itemize}
-\item
-  \href{node39.html}{Cool Syntax}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node40.html}{Precedence}
-  \end{itemize}
-\item
-  \href{node41.html}{Type Rules}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node42.html}{Type Environments}
-  \item
-    \href{node43.html}{Type Checking Rules}
-  \end{itemize}
-\item
-  \href{node44.html}{Operational Semantics}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node45.html}{Environment and the Store}
-  \item
-    \href{node46.html}{Syntax for Cool Objects}
-  \item
-    \href{node47.html}{Class definitions}
-  \item
-    \href{node48.html}{Operational Rules}
-  \end{itemize}
-\item
-  \href{node51.html}{Cool Assembly Language} \\
-\item
-  \href{node49.html}{Acknowledgements}
-\item
-  \href{node50.html}{About this document \ldots{}}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\begin{description}
-\item[\ldots{}
-Manual\href{cool-manual.html\#tex2html1}{\textsuperscript{1}}]
-Copyright ©1995-2000 by Alex Aiken. All rights reserved.
-
-\begin{verbatim}
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-\end{verbatim}
-\item[\ldots{} Nil.\href{node5.html\#tex2html2}{\textsuperscript{2}}]
-In this example, \texttt{Nil} is assumed to be a subtype of
-\texttt{List}.
-
-\begin{verbatim}
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-\end{verbatim}
-\item[\ldots{}
-inheritance.''\href{node6.html\#tex2html3}{\textsuperscript{3}}]
-Some object-oriented languages allow a class to inherit from multiple
-classes, which is equally aptly called ``multiple inheritance.''
-
-\begin{verbatim}
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-\end{verbatim}
-\item[\ldots{}
-object.\href{node27.html\#tex2html4}{\textsuperscript{4}}]
-A shallow copy of \includegraphics{img30.png} copies
-\includegraphics{img30.png} itself, but does not recursively copy
-objects that \includegraphics{img30.png} points to.
-
-\begin{verbatim}
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-\end{verbatim}
-\item[\ldots{}\texttt{void}.\href{node47.html\#tex2html6}{\textsuperscript{5}}]
-A tiny point: We are allowing \texttt{void} to be used as an expression
-here. There is no expression for \texttt{void} available to Cool
-programmers.
-
-\begin{verbatim}
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-\end{verbatim}
-\end{description}
-
-\href{node11.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node9.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node11.html}{Void} \textbf{Up:} \href{cool-manual.html}{The Cool
-Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node9.html}{Type Checking} ~ \textbf{\href{node1.html}{Contents}}
-\\ \\
-
-\section{\\ Attributes}
+\section{Attributes}
 
 An attribute definition has the form
 
@@ -447,25 +90,6 @@ order they appear in the source text.
 Attributes are local to the class in which they are defined or
 inherited. Inherited attributes cannot be redefined.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node11.html}{Void}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node12.html}{\includegraphics{next.png}}
-\href{node10.html}{\includegraphics{up.png}}
-\href{node10.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node12.html}{Methods} \textbf{Up:} \href{node10.html}{Attributes}
-\textbf{Previous:} \href{node10.html}{Attributes} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Void}
 
@@ -493,25 +117,7 @@ Variables of the basic classes \texttt{Int}, \texttt{Bool}, and
 \texttt{String} are initialized specially; see
 Section~\href{node26.html\#sec-basic}{8}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node12.html}{\includegraphics{next.png}}
-\href{node10.html}{\includegraphics{up.png}}
-\href{node10.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node12.html}{Methods} \textbf{Up:} \href{node10.html}{Attributes}
-\textbf{Previous:} \href{node10.html}{Attributes} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node13.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node11.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node13.html}{Expressions} \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node11.html}{Void} ~ \textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{\\ Methods}
+\section{Methods}
 
 A method definition has the form
 
@@ -559,70 +165,11 @@ a string to a number. Thus, if methods can be redefined arbitrarily,
 then subclasses may not simply extend the behavior of their parents, and
 much of the usefulness of inheritance, as well as type safety, is lost.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node13.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node11.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node13.html}{Expressions} \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node11.html}{Void} ~ \textbf{\href{node1.html}{Contents}}
-
-\href{node14.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node12.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node14.html}{Constants} \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node12.html}{Methods} ~ \textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{\\ Expressions}
+\section{Expressions}
 
 Expressions are the largest syntactic category in Cool. \\
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node14.html}{Constants}
-\item
-  \href{node15.html}{Identifiers}
-\item
-  \href{node16.html}{Assignment}
-\item
-  \href{node17.html}{Dispatch}
-\item
-  \href{node18.html}{Conditionals}
-\item
-  \href{node19.html}{Loops}
-\item
-  \href{node20.html}{Blocks}
-\item
-  \href{node21.html}{Let}
-\item
-  \href{node22.html}{Case}
-\item
-  \href{node23.html}{New}
-\item
-  \href{node24.html}{Isvoid}
-\item
-  \href{node25.html}{Arithmetic and Comparison Operations}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node15.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node13.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node15.html}{Identifiers} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node13.html}{Expressions} ~ \textbf{\href{node1.html}{Contents}}
-\\ \\
 
 \subsection{Constants}
 
@@ -637,17 +184,6 @@ Section~\href{node33.html\#lex-struct}{10}.
 The constants belong to the basic classes \texttt{Bool}, \texttt{Int},
 and \texttt{String}. The value of a constant is an object of the
 appropriate basic class.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node16.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node14.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node16.html}{Assignment} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node14.html}{Constants} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
 
 \subsection{Identifiers}
 
@@ -667,17 +203,6 @@ same name if there is no other declaration. The exception to this rule
 is the identifier \texttt{self}, which is implicitly bound in every
 class.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node17.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node15.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node17.html}{Dispatch} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node15.html}{Identifiers} ~ \textbf{\href{node1.html}{Contents}}
-\\ \\
-
 \subsection{Assignment}
 
 An assignment has the form
@@ -690,17 +215,6 @@ The static type of the expression must conform to the declared type of
 the identifier. The value is the value of the expression. The static
 type of an assignment is the static type of
 \texttt{\textless{}expr\textgreater{}}.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node18.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node16.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node18.html}{Conditionals} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node16.html}{Assignment} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
 
 \subsection{Dispatch}
 
@@ -763,25 +277,7 @@ the object that is the value of \texttt{e}. For this form of dispatch,
 the static type to the left of ``@'`must conform to the type specified
 to the right of ``@''.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node18.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node16.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node18.html}{Conditionals} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node16.html}{Assignment} ~ \textbf{\href{node1.html}{Contents}}
-
-\href{node19.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node17.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node19.html}{Loops} \textbf{Up:} \href{node13.html}{Expressions}
-\textbf{Previous:} \href{node17.html}{Dispatch} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{\\ Conditionals}
+\subsection{Conditionals}
 
 A conditional has the form
 
@@ -810,16 +306,6 @@ conditional. Then the static type of the conditional is
 \includegraphics{img24.png}. (think: Walk towards \texttt{Object} from
 each of \texttt{T} and \texttt{F} until the paths meet.)
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node20.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node18.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node20.html}{Blocks} \textbf{Up:} \href{node13.html}{Expressions}
-\textbf{Previous:} \href{node18.html}{Conditionals} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \subsection{Loops}
 
 A loop has the form
@@ -835,166 +321,6 @@ evaluated and the process repeats.
 
 The predicate must have static type \texttt{Bool}. The body may have any
 static type. The static type of a loop expression is \texttt{Object}.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node2.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{cool-manual.html}{\includegraphics{prev.png}} \\ \textbf{Next:}
-\href{node2.html}{Introduction} \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}} \\
-\\ \\
-
-\subsection{Contents}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node2.html}{Introduction}
-\item
-  \href{node3.html}{Getting Started}
-\item
-  \href{node4.html}{Classes}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node5.html}{Features}
-  \item
-    \href{node6.html}{Inheritance}
-  \end{itemize}
-\item
-  \href{node7.html}{Types}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node8.html}{SELF\_TYPE}
-  \item
-    \href{node9.html}{Type Checking}
-  \end{itemize}
-\item
-  \href{node10.html}{Attributes}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node11.html}{Void}
-  \end{itemize}
-\item
-  \href{node12.html}{Methods}
-\item
-  \href{node13.html}{Expressions}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node14.html}{Constants}
-  \item
-    \href{node15.html}{Identifiers}
-  \item
-    \href{node16.html}{Assignment}
-  \item
-    \href{node17.html}{Dispatch}
-  \item
-    \href{node18.html}{Conditionals}
-  \item
-    \href{node19.html}{Loops}
-  \item
-    \href{node20.html}{Blocks}
-  \item
-    \href{node21.html}{Let}
-  \item
-    \href{node22.html}{Case}
-  \item
-    \href{node23.html}{New}
-  \item
-    \href{node24.html}{Isvoid}
-  \item
-    \href{node25.html}{Arithmetic and Comparison Operations}
-  \end{itemize}
-\item
-  \href{node26.html}{Basic Classes}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node27.html}{Object}
-  \item
-    \href{node28.html}{IO}
-  \item
-    \href{node29.html}{Int}
-  \item
-    \href{node30.html}{String}
-  \item
-    \href{node31.html}{Bool}
-  \end{itemize}
-\item
-  \href{node32.html}{Main Class}
-\item
-  \href{node33.html}{Lexical Structure}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node34.html}{Integers, Identifiers, and Special Notation}
-  \item
-    \href{node35.html}{Strings}
-  \item
-    \href{node36.html}{Comments}
-  \item
-    \href{node37.html}{Keywords}
-  \item
-    \href{node38.html}{White Space}
-  \end{itemize}
-\item
-  \href{node39.html}{Cool Syntax}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node40.html}{Precedence}
-  \end{itemize}
-\item
-  \href{node41.html}{Type Rules}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node42.html}{Type Environments}
-  \item
-    \href{node43.html}{Type Checking Rules}
-  \end{itemize}
-\item
-  \href{node44.html}{Operational Semantics}
-
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
-  \item
-    \href{node45.html}{Environment and the Store}
-  \item
-    \href{node46.html}{Syntax for Cool Objects}
-  \item
-    \href{node47.html}{Class definitions}
-  \item
-    \href{node48.html}{Operational Rules}
-  \end{itemize}
-\item
-  \href{node51.html}{Cool Assembly Language} \\
-\item
-  \href{node49.html}{Acknowledgements}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node21.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node19.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node21.html}{Let} \textbf{Up:} \href{node13.html}{Expressions}
-\textbf{Previous:} \href{node19.html}{Loops} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Blocks}
 
@@ -1014,16 +340,6 @@ An occasional source of confusion in Cool is the use of semi-colons
 expressions (e.g., the block syntax above) and not as expression
 separators. Semi-colons also terminate other Cool constructs, see
 Section~\href{node39.html\#sec-gram}{11} for details.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node22.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node20.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node22.html}{Case} \textbf{Up:} \href{node13.html}{Expressions}
-\textbf{Previous:} \href{node20.html}{Blocks} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Let}
 
@@ -1064,26 +380,6 @@ body.
 
 The \texttt{\textless{}expr\textgreater{}} of a \texttt{let} extends as
 far (encompasses as many tokens) as the grammar allows.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node22.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node20.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node22.html}{Case} \textbf{Up:} \href{node13.html}{Expressions}
-\textbf{Previous:} \href{node20.html}{Blocks} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node23.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node21.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node23.html}{New} \textbf{Up:} \href{node13.html}{Expressions}
-\textbf{Previous:} \href{node21.html}{Let} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{Case}
 
 A case expression has the form
 
@@ -1142,24 +438,6 @@ In the branch the variable \includegraphics{img29.png} is bound to the
 value of \includegraphics{img27.png} but has the more specific static
 type \includegraphics{img28.png}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node23.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node21.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node23.html}{New} \textbf{Up:} \href{node13.html}{Expressions}
-\textbf{Previous:} \href{node21.html}{Let} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node24.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node22.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node24.html}{Isvoid} \textbf{Up:} \href{node13.html}{Expressions}
-\textbf{Previous:} \href{node22.html}{Case} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \subsection{New}
 
 A \texttt{new} expression has the form
@@ -1173,17 +451,7 @@ The value is a fresh object of the appropriate class. If the type is
 \texttt{self} in the current scope. The static type is
 \texttt{\textless{}type\textgreater{}}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node25.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node23.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node25.html}{Arithmetic and Comparison Operations} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node23.html}{New} ~ \textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{\\ Isvoid}
+\subsection{Isvoid}
 
 The expression
 
@@ -1193,16 +461,6 @@ isvoid expr
 
 evaluates to \texttt{true} if \texttt{expr} is \texttt{void} and
 evaluates to \texttt{false} if \texttt{expr} is not \texttt{void}.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node26.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node24.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node26.html}{Basic Classes} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node24.html}{Isvoid} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Arithmetic and Comparison Operations}
 
@@ -1283,54 +541,7 @@ Finally, there is one unary arithmetic and one unary logical operator.
   \texttt{Bool}.
 \end{itemize}
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node26.html}{\includegraphics{next.png}}
-\href{node13.html}{\includegraphics{up.png}}
-\href{node24.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node26.html}{Basic Classes} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node24.html}{Isvoid} ~ \textbf{\href{node1.html}{Contents}}
-
-\href{node27.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node25.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node27.html}{Object} \textbf{Up:} \href{cool-manual.html}{The Cool
-Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node25.html}{Arithmetic and Comparison Operations} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{\\ Basic Classes}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node27.html}{Object}
-\item
-  \href{node28.html}{IO}
-\item
-  \href{node29.html}{Int}
-\item
-  \href{node30.html}{String}
-\item
-  \href{node31.html}{Bool}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node28.html}{\includegraphics{next.png}}
-\href{node26.html}{\includegraphics{up.png}}
-\href{node26.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node28.html}{IO} \textbf{Up:} \href{node26.html}{Basic Classes}
-\textbf{Previous:} \href{node26.html}{Basic Classes} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\section{Basic Classes}
 
 \subsection{Object}
 
@@ -1353,15 +564,6 @@ The method \texttt{type\_name} returns a string with the name of the
 produces a \emph{shallow} copy of the
 object.\href{footnode.html\#foot715}{\textsuperscript{4}}
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node29.html}{\includegraphics{next.png}}
-\href{node26.html}{\includegraphics{up.png}}
-\href{node27.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node29.html}{Int} \textbf{Up:} \href{node26.html}{Basic Classes}
-\textbf{Previous:} \href{node27.html}{Object} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{IO}
 
@@ -1432,33 +634,12 @@ A class can make use of the methods in the \texttt{IO} class by
 inheriting from \texttt{IO}. It is an error to redefine the \texttt{IO}
 class.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node30.html}{\includegraphics{next.png}}
-\href{node26.html}{\includegraphics{up.png}}
-\href{node28.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node30.html}{String} \textbf{Up:} \href{node26.html}{Basic
-Classes} \textbf{Previous:} \href{node28.html}{IO} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{\\ Int}
+\subsection{Int}
 
 The \texttt{Int} class provides integers. There are no methods special
 to \texttt{Int}. The default initialization for variables of type
 \texttt{Int} is 0 (not \texttt{void}). It is an error to inherit from or
 redefine \texttt{Int}.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node3.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node1.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node3.html}{Getting Started} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node1.html}{Contents} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{Introduction}
 
@@ -1489,25 +670,6 @@ informal overview, the first half (through
 Section~\href{node32.html\#sec-main}{9}) suffices. The formal
 description begins with Section~\href{node33.html\#lex-struct}{10}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node3.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node1.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node3.html}{Getting Started} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node1.html}{Contents} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node31.html}{\includegraphics{next.png}}
-\href{node26.html}{\includegraphics{up.png}}
-\href{node29.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node31.html}{Bool} \textbf{Up:} \href{node26.html}{Basic Classes}
-\textbf{Previous:} \href{node29.html}{Int} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \subsection{String}
 
 The \texttt{String} class provides strings. The following methods are
@@ -1532,35 +694,15 @@ The default initialization for variables of type \texttt{String} is
 \texttt{""} (not \texttt{void}). It is an error to inherit from or
 redefine \texttt{String}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node32.html}{\includegraphics{next.png}}
-\href{node26.html}{\includegraphics{up.png}}
-\href{node30.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node32.html}{Main Class} \textbf{Up:} \href{node26.html}{Basic
-Classes} \textbf{Previous:} \href{node30.html}{String} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{\\ Bool}
+\subsection{Bool}
 
 The \texttt{Bool} class provides \texttt{true} and \texttt{false}. The
 default initialization for variables of type \texttt{Bool} is
 \texttt{false} (not \texttt{void}). It is an error to inherit from or
 redefine \texttt{Bool}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node33.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node31.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node33.html}{Lexical Structure} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node31.html}{Bool} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{\\ Main Class}
+\section{Main Class}
 
 Every program must have a class \texttt{Main}. Furthermore, the
 \texttt{Main} class must have a method \texttt{main} that takes no
@@ -1575,49 +717,10 @@ of Cool. There are four sections covering lexical structure
 (Section~\href{node41.html\#sec-typrules}{12}), and operational
 semantics (Section~\href{node44.html\#sec-opsem}{13}).
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node34.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node32.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node34.html}{Integers, Identifiers, and Special} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node32.html}{Main Class} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{\\ Lexical Structure}
+\section{Lexical Structure}
 
 The lexical units of Cool are integers, type identifiers, object
 identifiers, special notation, strings, keywords, and white space.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node34.html}{Integers, Identifiers, and Special Notation}
-\item
-  \href{node35.html}{Strings}
-\item
-  \href{node36.html}{Comments}
-\item
-  \href{node37.html}{Keywords}
-\item
-  \href{node38.html}{White Space}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node35.html}{\includegraphics{next.png}}
-\href{node33.html}{\includegraphics{up.png}}
-\href{node33.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node35.html}{Strings} \textbf{Up:} \href{node33.html}{Lexical
-Structure} \textbf{Previous:} \href{node33.html}{Lexical Structure} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Integers, Identifiers, and Special Notation}
 
@@ -1639,16 +742,6 @@ lexer as a type. Both \emph{are} case sensitive.
 
 The special syntactic symbols (e.g., parentheses, assignment operator,
 etc.) are given in Figure~\href{node39.html\#fig1}{1}.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node36.html}{\includegraphics{next.png}}
-\href{node33.html}{\includegraphics{up.png}}
-\href{node34.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node36.html}{Comments} \textbf{Up:} \href{node33.html}{Lexical
-Structure} \textbf{Previous:} \href{node34.html}{Integers, Identifiers,
-and Special} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Strings}
 
@@ -1718,16 +811,6 @@ zero inside the string.
 The single character with converted integer value zero (the NUL) is not
 allowed. Any other character may be included in a string.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node37.html}{\includegraphics{next.png}}
-\href{node33.html}{\includegraphics{up.png}}
-\href{node35.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node37.html}{Keywords} \textbf{Up:} \href{node33.html}{Lexical
-Structure} \textbf{Previous:} \href{node35.html}{Strings} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \subsection{Comments}
 
 There are two forms of comments in Cool. Any characters between two
@@ -1736,16 +819,6 @@ newline) are treated as comments. Comments may also be written by
 enclosing text in \includegraphics{img37.png}. The latter form of
 comment may be nested but may not contain EOF. Comments cannot cross
 file boundaries.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node38.html}{\includegraphics{next.png}}
-\href{node33.html}{\includegraphics{up.png}}
-\href{node36.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node38.html}{White Space} \textbf{Up:} \href{node33.html}{Lexical
-Structure} \textbf{Previous:} \href{node36.html}{Comments} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Keywords}
 
@@ -1759,16 +832,6 @@ To conform to the rules for other objects, the first letter of
 may be upper or lower case. Thus \textbf{FALse} is not a keyword but a
 \href{node34.html}{type identifier}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node39.html}{\includegraphics{next.png}}
-\href{node33.html}{\includegraphics{up.png}}
-\href{node37.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node39.html}{Cool Syntax} \textbf{Up:} \href{node33.html}{Lexical
-Structure} \textbf{Previous:} \href{node37.html}{Keywords} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \subsection{White Space}
 
 White space consists of any sequence of the characters: blank (ascii
@@ -1778,18 +841,7 @@ White space consists of any sequence of the characters: blank (ascii
 \includegraphics{img41.png} (tab, ascii 9), \includegraphics{img42.png}
 (vertical tab, ascii 11). \\
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node40.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node38.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node40.html}{Precedence} \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node38.html}{White Space} ~ \textbf{\href{node1.html}{Contents}}
-\\ \\
-
-\section{\\ Cool Syntax}
+\section{Cool Syntax}
 
 \begin{longtable}[c]{@{}l@{}}
 \hline\noalign{\medskip}
@@ -1812,28 +864,7 @@ grammar as a meta-symbol to show association of grammar symbols (e.g.
 \includegraphics{img49.png} means \includegraphics{img30.png} followed
 by one or more \includegraphics{img50.png} pairs).
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node40.html}{Precedence}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node4.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node2.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node4.html}{Classes} \textbf{Up:} \href{cool-manual.html}{The Cool
-Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node2.html}{Introduction} ~ \textbf{\href{node1.html}{Contents}}
-\\ \\
-
-\section{\\ Getting Started}
+\section{Getting Started}
 
 Cool source files have extension \texttt{.cl}. The programming projects
 will also define other file formats related to Cool but they are not
@@ -1918,24 +949,6 @@ use \texttt{coolc} or \texttt{spim}. In addition, we use a slightly
 different version of the Cool language specification, so comparing
 results against external tools may not be helpful.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node4.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node2.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node4.html}{Classes} \textbf{Up:} \href{cool-manual.html}{The Cool
-Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node2.html}{Introduction} ~ \textbf{\href{node1.html}{Contents}}
-
-\href{node41.html}{\includegraphics{next.png}}
-\href{node39.html}{\includegraphics{up.png}}
-\href{node39.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node41.html}{Type Rules} \textbf{Up:} \href{node39.html}{Cool
-Syntax} \textbf{Previous:} \href{node39.html}{Cool Syntax} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \subsection{Precedence}
 
 The precedence of infix binary and prefix unary operations, from highest
@@ -1957,18 +970,7 @@ All binary operations are left-associative, with the exception of
 assignment, which is right-associative, and the three comparison
 operations, which do not associate.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node42.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node40.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node42.html}{Type Environments} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node40.html}{Precedence} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{\\ Type Rules}
+\section{Type Rules}
 
 This section formally defines the type rules of Cool. The type rules
 define the type of every Cool expression in a given context. The context
@@ -1977,30 +979,7 @@ unbound identifier appearing in an expression. The type environment is
 described in Section~\href{node42.html\#sec-typenv}{12.1}.
 Section~\href{node43.html\#sec-typr}{12.2} gives the type rules.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node42.html}{Type Environments}
-\item
-  \href{node43.html}{Type Checking Rules}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node43.html}{\includegraphics{next.png}}
-\href{node41.html}{\includegraphics{up.png}}
-\href{node41.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node43.html}{Type Checking Rules} \textbf{Up:}
-\href{node41.html}{Type Rules} \textbf{Previous:}
-\href{node41.html}{Type Rules} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
-
-\subsection{\\ Type Environments}
+\subsection{Type Environments}
 
 To a first approximation, type checking in Cool can be thought of as a
 bottom-up algorithm: the type of an expression
@@ -2073,26 +1052,7 @@ where the notation \includegraphics{img67.png} is defined as follows:
 
 \includegraphics{img68.png}
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node43.html}{\includegraphics{next.png}}
-\href{node41.html}{\includegraphics{up.png}}
-\href{node41.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node43.html}{Type Checking Rules} \textbf{Up:}
-\href{node41.html}{Type Rules} \textbf{Previous:}
-\href{node41.html}{Type Rules} ~ \textbf{\href{node1.html}{Contents}}
-
-\href{node44.html}{\includegraphics{next.png}}
-\href{node41.html}{\includegraphics{up.png}}
-\href{node42.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node44.html}{Operational Semantics} \textbf{Up:}
-\href{node41.html}{Type Rules} \textbf{Previous:}
-\href{node42.html}{Type Environments} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{\\ Type Checking Rules}
+\subsection{Type Checking Rules}
 
 The general form a type checking rule is: \\
 
@@ -2263,7 +1223,7 @@ must conform to the declared return type.
 
 \includegraphics{img114.png}
 
-\subsection{\\ Other Semantic Checks}
+\subsection{Other Semantic Checks}
 
 There are a number of semantic checks applied to Cool programs that are
 not captured by formal typing rules. For example, a Cool program cannot
@@ -2276,27 +1236,7 @@ specified}. If a Cool program contains both an inheritance cycle and
 also a class htat inherits from \texttt{String}, the Cool compiler may
 report whichever error it prefers.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node44.html}{\includegraphics{next.png}}
-\href{node41.html}{\includegraphics{up.png}}
-\href{node42.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node44.html}{Operational Semantics} \textbf{Up:}
-\href{node41.html}{Type Rules} \textbf{Previous:}
-\href{node42.html}{Type Environments} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node45.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node43.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node45.html}{Environment and the Store} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node43.html}{Type Checking Rules} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{\\ Operational Semantics}
+\section{Operational Semantics}
 
 This section contains a mostly formal presentation of the operational
 semantics for the Cool language. The operational semantics define for
@@ -2311,33 +1251,6 @@ Keep in mind that a formal semantics is a specification only--it does
 not describe an implementation. The purpose of presenting the formal
 semantics is to make clear all the details of the behavior of Cool
 expressions. How this behavior is implemented is another matter.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node45.html}{Environment and the Store}
-\item
-  \href{node46.html}{Syntax for Cool Objects}
-\item
-  \href{node47.html}{Class definitions}
-\item
-  \href{node48.html}{Operational Rules}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node46.html}{\includegraphics{next.png}}
-\href{node44.html}{\includegraphics{up.png}}
-\href{node44.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node46.html}{Syntax for Cool Objects} \textbf{Up:}
-\href{node44.html}{Operational Semantics} \textbf{Previous:}
-\href{node44.html}{Operational Semantics} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Environment and the Store}
 
@@ -2441,27 +1354,7 @@ The example in this subsection oversimplifies Cool environments and
 stores a bit, because simple integers are not Cool values. Even integers
 are full-fledged objects in Cool.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node46.html}{\includegraphics{next.png}}
-\href{node44.html}{\includegraphics{up.png}}
-\href{node44.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node46.html}{Syntax for Cool Objects} \textbf{Up:}
-\href{node44.html}{Operational Semantics} \textbf{Previous:}
-\href{node44.html}{Operational Semantics} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node47.html}{\includegraphics{next.png}}
-\href{node44.html}{\includegraphics{up.png}}
-\href{node45.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node47.html}{Class definitions} \textbf{Up:}
-\href{node44.html}{Operational Semantics} \textbf{Previous:}
-\href{node45.html}{Environment and the Store} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{\\ Syntax for Cool Objects}
+\subsection{Syntax for Cool Objects}
 
 Every Cool value is an object. Objects contain a list of named
 attributes, a bit like records in C. In addition, each object belongs to
@@ -2490,27 +1383,7 @@ For \texttt{Int}s and \texttt{Bool}s, the meaning is obvious.
 \texttt{String}s contain two parts, the length and the actual sequence
 of ASCII characters.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node47.html}{\includegraphics{next.png}}
-\href{node44.html}{\includegraphics{up.png}}
-\href{node45.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node47.html}{Class definitions} \textbf{Up:}
-\href{node44.html}{Operational Semantics} \textbf{Previous:}
-\href{node45.html}{Environment and the Store} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node48.html}{\includegraphics{next.png}}
-\href{node44.html}{\includegraphics{up.png}}
-\href{node46.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node48.html}{Operational Rules} \textbf{Up:}
-\href{node44.html}{Operational Semantics} \textbf{Previous:}
-\href{node46.html}{Syntax for Cool Objects} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{\\ Class definitions}
+\subsection{Class definitions}
 
 In the rules presented in the next section, we need a way to refer to
 the definitions of attributes and methods for classes. Suppose we have
@@ -2584,26 +1457,6 @@ specifies that method \includegraphics{img151.png} when invoked from
 class \includegraphics{img141.png}, has formal parameters
 \includegraphics{img153.png}, and the body of the method is expression
 \includegraphics{img154.png}.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node48.html}{\includegraphics{next.png}}
-\href{node44.html}{\includegraphics{up.png}}
-\href{node46.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node48.html}{Operational Rules} \textbf{Up:}
-\href{node44.html}{Operational Semantics} \textbf{Previous:}
-\href{node46.html}{Syntax for Cool Objects} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node49.html}{\includegraphics{next.png}}
-\href{node44.html}{\includegraphics{up.png}}
-\href{node47.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node49.html}{Acknowledgements} \textbf{Up:}
-\href{node44.html}{Operational Semantics} \textbf{Previous:}
-\href{node47.html}{Class definitions} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Operational Rules}
 
@@ -2804,26 +1657,6 @@ for dispatches to primitive methods defined in the \texttt{Object},
 methods are given in
 Sections~\href{node29.html\#sec-int}{8.3}-\href{node31.html\#sec-bool}{8.5}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node49.html}{\includegraphics{next.png}}
-\href{node44.html}{\includegraphics{up.png}}
-\href{node47.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node49.html}{Acknowledgements} \textbf{Up:}
-\href{node44.html}{Operational Semantics} \textbf{Previous:}
-\href{node47.html}{Class definitions} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node50.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node48.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node50.html}{About this document \ldots{}} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node48.html}{Operational Rules} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \section{Acknowledgements}
 
 Cool is based on Sather164, which is itself based on the language
@@ -2839,16 +1672,6 @@ Darcy updated Cool to the current version.
 This version (used in Virginia CS 415) of Cool owes a great debt to
 George C. Necula and Bor-Yuh Evan Chang.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node5.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node3.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node5.html}{Features} \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node3.html}{Getting Started} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{Classes}
 
@@ -2866,60 +1689,12 @@ The notation \texttt{{[} ...{]}} denotes an optional construct. All
 class names are globally visible. Class names begin with an uppercase
 letter. Classes may not be redefined.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node5.html}{Features}
-\item
-  \href{node6.html}{Inheritance}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\includegraphics{next_g.png}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node49.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node49.html}{Acknowledgements} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \section{About this document \ldots{}}
 
 \textbf{The Cool Reference
 Manual\href{footnode.html\#foot266}{\textsuperscript{1}}}
 
-This document was generated using the
-\href{http://www.latex2html.org/}{\textbf{LaTeX}2\texttt{HTML}}
-translator Version 2002-2-1 (1.70)
-
-Copyright © 1993, 1994, 1995, 1996,
-\href{http://cbl.leeds.ac.uk/nikos/personal.html}{Nikos Drakos},
-Computer Based Learning Unit, University of Leeds. \\ Copyright © 1997,
-1998, 1999, \href{http://www.maths.mq.edu.au/~ross/}{Ross Moore},
-Mathematics Department, Macquarie University, Sydney.
-
-The command line arguments were: \\ \textbf{latex2html}
-\texttt{-noaddress cool-manual.tex}
-
-The translation was initiated by Bor-Yuh Evan Chang on 2004-03-03 \\
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node33.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node31.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node49.html}{Acknowledgements} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node48.html}{Operational Rules} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\section{\\ Cool Assembly Language}
+\section{Cool Assembly Language}
 
 Cool Assembly Language is a simplified RISC-style assembly language that
 is reminiscient of
@@ -3136,7 +1911,7 @@ Cool Int and String objects. The key difference is that the system calls
 work on raw values (i.e., machine-level ints and strings) and not on
 Cool Objects.
 
-\section{\\ Cool CPU Simulator}
+\section{Cool CPU Simulator}
 
 The normal Cool compiler executable (e.g., \texttt{cool.exe}) also
 serves as a Cool CPU Simulator that executes Cool Assembly Language
@@ -3181,7 +1956,7 @@ debugging. Addresses near 1000 hold program instructions or compile-time
 data (i.e., the code segment), addresses near 20,000 hold the heap, and
 addresses near two billion are on the stack.
 
-\section{\\ Debugging}
+\section{Debugging}
 
 Debugging assembly language programs is notoriously difficult! While
 writing your code generator, you will spend quite a bit of time running
@@ -3252,7 +2027,7 @@ difficult.
   of all registers and the current instruction.
 \end{itemize}
 
-\section{\\ Control Flow Graphs}
+\section{Control Flow Graphs}
 
 The Cool reference compiler also includes options to produce control
 flow graphic visualizations in the style of the \texttt{dotty} tool from
@@ -3282,7 +2057,7 @@ While you do not have to match the reference compiler exactly,
 inspecting its control-flow graphs can help you debug your own code to
 create control-flow graphs.
 
-\section{\\ Performance Model}
+\section{Performance Model}
 
 As discussed above, the Cool reference compiler also includes a
 reference machine simulator to interpret Cool Assembly Language
@@ -3489,16 +2264,6 @@ averaged over many input programs. Notably, you'll probably want to
 implement much more than the required dead code elimination
 optimization.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node6.html}{\includegraphics{next.png}}
-\href{node4.html}{\includegraphics{up.png}}
-\href{node4.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node6.html}{Inheritance} \textbf{Up:} \href{node4.html}{Classes}
-\textbf{Previous:} \href{node4.html}{Classes} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \subsection{Features}
 
 The body of a class definition consists of a list of feature
@@ -3587,25 +2352,7 @@ Attributes are discussed further in
 Section~\href{node10.html\#sec-attr}{5} and methods are discussed
 further in Section~\href{node12.html\#sec-method}{6}.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node6.html}{\includegraphics{next.png}}
-\href{node4.html}{\includegraphics{up.png}}
-\href{node4.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node6.html}{Inheritance} \textbf{Up:} \href{node4.html}{Classes}
-\textbf{Previous:} \href{node4.html}{Classes} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node7.html}{\includegraphics{next.png}}
-\href{node4.html}{\includegraphics{up.png}}
-\href{node5.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node7.html}{Types} \textbf{Up:} \href{node4.html}{Classes}
-\textbf{Previous:} \href{node5.html}{Features} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
-\subsection{\\ Inheritance}
+\subsection{Inheritance}
 
 If a class definition has the form
 
@@ -3643,25 +2390,6 @@ In addition to \texttt{Object}, Cool has four other \emph{basic
 classes}: \texttt{Int}, \texttt{String}, \texttt{Bool}, and \texttt{IO}.
 The basic classes are discussed in
 Section~\href{node26.html\#sec-basic}{8}.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node7.html}{\includegraphics{next.png}}
-\href{node4.html}{\includegraphics{up.png}}
-\href{node5.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node7.html}{Types} \textbf{Up:} \href{node4.html}{Classes}
-\textbf{Previous:} \href{node5.html}{Features} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node8.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node6.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node8.html}{SELF\_TYPE} \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node6.html}{Inheritance} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
 
 \section{Types}
 
@@ -3705,36 +2433,6 @@ and \includegraphics{img3.png} be types.
 Because \texttt{Object} is the root of the class hierarchy, it follows
 that \includegraphics{img7.png} for all types
 \includegraphics{img8.png}.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\textbf{Subsections}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  \href{node8.html}{SELF\_TYPE}
-\item
-  \href{node9.html}{Type Checking}
-\end{itemize}
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node8.html}{\includegraphics{next.png}}
-\href{cool-manual.html}{\includegraphics{up.png}}
-\href{node6.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node8.html}{SELF\_TYPE} \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node6.html}{Inheritance} ~ \textbf{\href{node1.html}{Contents}}
-
-\href{node9.html}{\includegraphics{next.png}}
-\href{node7.html}{\includegraphics{up.png}}
-\href{node7.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node9.html}{Type Checking} \textbf{Up:} \href{node7.html}{Types}
-\textbf{Previous:} \href{node7.html}{Types} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{SELF\_TYPE}
 
@@ -3785,24 +2483,6 @@ Finally, \texttt{SELF\_TYPE} may be used in the following places:
 type of a \texttt{let} variable, or as the declared type of an
 attribute. No other uses of \texttt{SELF\_TYPE} are permitted.
 
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node9.html}{\includegraphics{next.png}}
-\href{node7.html}{\includegraphics{up.png}}
-\href{node7.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node9.html}{Type Checking} \textbf{Up:} \href{node7.html}{Types}
-\textbf{Previous:} \href{node7.html}{Types} ~
-\textbf{\href{node1.html}{Contents}}
-
-\href{node10.html}{\includegraphics{next.png}}
-\href{node7.html}{\includegraphics{up.png}}
-\href{node8.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node10.html}{Attributes} \textbf{Up:} \href{node7.html}{Types}
-\textbf{Previous:} \href{node8.html}{SELF\_TYPE} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
-
 \subsection{Type Checking}
 
 The Cool type system guarantees at compile time that execution of a
@@ -3835,15 +2515,5 @@ accuracy is not possible. Such a type checker will never accept a
 program that contains type errors. However, the price paid is that the
 type checker will reject some programs that would actually execute
 without runtime errors.
-
-\begin{center}\rule{3in}{0.4pt}\end{center}
-
-\href{node10.html}{\includegraphics{next.png}}
-\href{node7.html}{\includegraphics{up.png}}
-\href{node8.html}{\includegraphics{prev.png}}
-\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
-\href{node10.html}{Attributes} \textbf{Up:} \href{node7.html}{Types}
-\textbf{Previous:} \href{node8.html}{SELF\_TYPE} ~
-\textbf{\href{node1.html}{Contents}}
 
 \end{document}
