@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Inheritance</TITLE>
+<META NAME="description" CONTENT="Inheritance">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="node4.html">
+<LINK REL="next" HREF="node7.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html177"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html173"
+  HREF="node4.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html169"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html175"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html178"
+  HREF="node7.html">Types</A>
+<B> Up:</B> <A NAME="tex2html174"
+  HREF="node4.html">Classes</A>
+<B> Previous:</B> <A NAME="tex2html170"
+  HREF="node5.html">Features</A>
+ &nbsp; <B>  <A NAME="tex2html176"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00042000000000000000"></A>
+<A NAME="sec-inherit"></A>
+<BR>
+Inheritance
+</H2>
+
+<P>
+If a class definition has the form
+<PRE>
+class C inherits P { ... };
+</PRE>
+then class <TT>C</TT> inherits the features of <TT>P</TT>.
+In this case <TT>P</TT> is the <EM>parent</EM> class of <TT>C</TT>
+and <TT>C</TT> is a <EM>child</EM> class of <TT>P</TT>.
+
+<P>
+The semantics of <TT>C inherits P</TT> is that <TT>C</TT> has all of the
+features defined in <TT>P</TT> in addition to its own features.
+In the case that a parent and child both define the same method
+name, then the definition given in the child class takes precedence.
+It is illegal to redefine attribute names.  Furthermore, for type safety,
+it is necessary to place some restrictions on how methods may be redefined
+(see Section&nbsp;<A HREF="node12.html#sec-method">6</A>).
+
+<P>
+There is a distinguished class <TT>Object</TT>.  If a class definition
+does not specify a parent class, then the class inherits from <TT>Object</TT> by default.  A class may inherit only from a single class;
+this is aptly called ``single inheritance.''<A NAME="tex2html3"
+  HREF="footnode.html#foot386"><SUP>3</SUP></A> The
+parent-child relation on classes defines a graph.  This graph may not
+contain cycles.  For example, if <TT>C</TT> inherits from <TT>P</TT>, then
+<TT>P</TT> must not inherit from <TT>C</TT>.  Furthermore, if <TT>C</TT>
+inherits from <TT>P</TT>, then <TT>P</TT> must have a class definition
+somewhere in the program.  Because Cool has single inheritance,
+it follows that if both of these restrictions are
+satisfied, then the inheritance graph forms a tree with <TT>Object</TT>
+as the root.
+
+<P>
+In addition to <TT>Object</TT>, Cool has four other <EM>basic classes</EM>:
+	<TT>Int</TT>, <TT>String</TT>, <TT>Bool</TT>, and <TT>IO</TT>.
+The basic classes are discussed in Section&nbsp;<A HREF="node26.html#sec-basic">8</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html177"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html173"
+  HREF="node4.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html169"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html175"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html178"
+  HREF="node7.html">Types</A>
+<B> Up:</B> <A NAME="tex2html174"
+  HREF="node4.html">Classes</A>
+<B> Previous:</B> <A NAME="tex2html170"
+  HREF="node5.html">Features</A>
+ &nbsp; <B>  <A NAME="tex2html176"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

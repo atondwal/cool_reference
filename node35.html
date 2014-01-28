@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Strings</TITLE>
+<META NAME="description" CONTENT="Strings">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node36.html">
+<LINK REL="previous" HREF="node34.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node36.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html542"
+  HREF="node36.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html538"
+  HREF="node33.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html532"
+  HREF="node34.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html540"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html543"
+  HREF="node36.html">Comments</A>
+<B> Up:</B> <A NAME="tex2html539"
+  HREF="node33.html">Lexical Structure</A>
+<B> Previous:</B> <A NAME="tex2html533"
+  HREF="node34.html">Integers, Identifiers, and Special</A>
+ &nbsp; <B>  <A NAME="tex2html541"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000112000000000000000">
+Strings</A>
+</H2>
+
+<P>
+Strings are enclosed in double quotes <TT>"..."</TT>.  Within a string, a
+sequence `\c' denotes the two characters `\' and `c', with the exception of
+the following: <BR>
+<BR><TABLE CELLPADDING=3>
+<TR><TD ALIGN="RIGHT"><!-- MATH
+ $\rm\backslash t$
+ -->
+<IMG
+ WIDTH="20" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img33.png"
+ ALT="$\rm\backslash t$"></TD>
+<TD ALIGN="LEFT">tab</TD>
+</TR>
+<TR><TD ALIGN="RIGHT"><!-- MATH
+ $\rm\backslash n$
+ -->
+<IMG
+ WIDTH="23" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img34.png"
+ ALT="$\rm\backslash n$"></TD>
+<TD ALIGN="LEFT">newline</TD>
+</TR>
+</TABLE> <BR>
+<BR>
+<P>
+The two-character sequences <tt>\n</tt> and <tt>\t</tt> are called
+<i>escape sequences</i>. 
+Other escape sequences like <tt>\r</tt> (carriage return) are not
+part of Cool. These two special escape sequences should not be interpreted
+or transformed by the lexer; they are handled by the IO module and the
+run-time system. 
+<p> 
+A newline character may not appear in a string:
+<PRE>
+"This is not
+OK"
+</PRE>
+A string may contain embedded double quotes, so long as they are
+escaped. The following is a valid Cool string: 
+<pre>
+"David St. Hubbins said, \"It's such a fine line between stupid, and clever.\""
+</pre>
+<p>
+Note that Cool's interpretation of <tt>\"</tt> may not be what you are
+expecting. The two-character sequence <tt>\"</tt> (which is not an escape
+sequence) does not become <tt>"</tt> in any sense. Instead, it stays
+<tt>\"</tt>. This is different from most other languages, but simplifies
+lexing and interpreting. Example:
+  <ul>
+  <li> <pre>
+  class Main inherits IO {
+    main() : Object { 
+      out_string("She said, \"Hello.\"\n") 
+    } ;
+  } ; </pre>
+  <li> Output: <tt>She said, \"Hello.\"</tt>
+  </ul>
+<P>
+A string may not contain EOF; strings cannot cross file boundaries.
+A string may not contain NUL, the character with ASCII value 0. 
+The lexer must reject source text that contains malformed strings. 
+<p>
+A string may contain the two-character sequence <tt>\0</tt> (backslash
+zero). However, that sequence does not have any special meaning -- it just
+yeilds a backslash followed by a zero inside the string.
+<p> 
+The single character with converted integer value zero (the NUL) is not
+allowed. Any other character may be included in a string.
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

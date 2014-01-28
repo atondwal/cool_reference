@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Syntax for Cool Objects</TITLE>
+<META NAME="description" CONTENT="Syntax for Cool Objects">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node47.html">
+<LINK REL="previous" HREF="node45.html">
+<LINK REL="up" HREF="node44.html">
+<LINK REL="next" HREF="node47.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html675"
+  HREF="node47.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html671"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html665"
+  HREF="node45.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html673"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html676"
+  HREF="node47.html">Class definitions</A>
+<B> Up:</B> <A NAME="tex2html672"
+  HREF="node44.html">Operational Semantics</A>
+<B> Previous:</B> <A NAME="tex2html666"
+  HREF="node45.html">Environment and the Store</A>
+ &nbsp; <B>  <A NAME="tex2html674"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000142000000000000000"></A>
+<A NAME="objectsyntax"></A>
+<BR>
+Syntax for Cool Objects
+</H2>
+Every Cool value is an object.
+ Objects contain a list of
+named attributes, a bit like records in C.  In addition, each object belongs to a class. We use
+the following syntax for values in Cool:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+v = X(a_1=l_1,a_2=l_2,\ldots,a_n=l_n)
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="268" HEIGHT="31" BORDER="0"
+ SRC="img140.png"
+ ALT="\begin{displaymath}
+v = X(a_1=l_1,a_2=l_2,\ldots,a_n=l_n)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Read the syntax as follows: The value <IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img59.png"
+ ALT="$ v$"> is a member of class <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img141.png"
+ ALT="$X$"> containing the attributes
+<!-- MATH
+ $a_1, \ldots, a_n$
+ -->
+<IMG
+ WIDTH="78" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img142.png"
+ ALT="$a_1, \ldots, a_n$"> whose locations are <!-- MATH
+ $l_1, \ldots, l_n$
+ -->
+<IMG
+ WIDTH="70" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img143.png"
+ ALT="$l_1, \ldots, l_n$">. Note that
+the attributes have an associated location. Intuitively this means
+that there is some space in memory reserved for each attribute. 
+The value <IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img59.png"
+ ALT="$ v$"> has <i>dynamic</i> type <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img141.png"
+ ALT="$X$">. 
+
+<P>
+For base objects of Cool (i.e., <TT>Int</TT>s, <TT>String</TT>s, and <TT>Bool</TT>s) we use a
+special case of the above syntax. Base objects have a class
+name, but their attributes are not like attributes of normal
+classes, because they cannot be modified. Therefore, we describe
+base objects using the following syntax:
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{l}
+	Int(5)\\
+	Bool(true)\\
+	String(4,\mbox {\tt "}Cool \mbox {\tt "})
+\end{array}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="134" HEIGHT="72" BORDER="0"
+ SRC="img144.png"
+ ALT="\begin{displaymath}
+\begin{array}{l}
+Int(5)\\
+Bool(true)\\
+String(4,\mbox {\tt ''}Cool \mbox {\tt ''})
+\end{array}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+For <TT>Int</TT>s and <TT>Bool</TT>s, the meaning is obvious. <TT>String</TT>s contain two
+parts, the length and the actual sequence of ASCII characters.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html675"
+  HREF="node47.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html671"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html665"
+  HREF="node45.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html673"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html676"
+  HREF="node47.html">Class definitions</A>
+<B> Up:</B> <A NAME="tex2html672"
+  HREF="node44.html">Operational Semantics</A>
+<B> Previous:</B> <A NAME="tex2html666"
+  HREF="node45.html">Environment and the Store</A>
+ &nbsp; <B>  <A NAME="tex2html674"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

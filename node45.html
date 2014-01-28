@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Environment and the Store</TITLE>
+<META NAME="description" CONTENT="Environment and the Store">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node46.html">
+<LINK REL="previous" HREF="node44.html">
+<LINK REL="up" HREF="node44.html">
+<LINK REL="next" HREF="node46.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html663"
+  HREF="node46.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html659"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html653"
+  HREF="node44.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html661"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html664"
+  HREF="node46.html">Syntax for Cool Objects</A>
+<B> Up:</B> <A NAME="tex2html660"
+  HREF="node44.html">Operational Semantics</A>
+<B> Previous:</B> <A NAME="tex2html654"
+  HREF="node44.html">Operational Semantics</A>
+ &nbsp; <B>  <A NAME="tex2html662"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000141000000000000000">
+Environment and the Store</A>
+</H2>
+
+<P>
+Before we can present a semantics for Cool we need a number
+of concepts and a considerable amount of notation.
+An <EM>environment</EM> is a mapping of variable identifiers to
+<EM>locations</EM>.  Intuitively, an environment tells us for a given
+identifier the address of the memory location where that identifier's
+value is stored.  For a given expression, the environment must
+assign a location to all identifiers to which the expression may refer.
+ For the expression, e.g., <IMG
+ WIDTH="42" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$a + b$">, we need an environment that maps
+<IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$a$"> to some location and <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img116.png"
+ ALT="$b$"> to some location. We'll use the following syntax
+to describe environments, which is very similar to the syntax of type
+assumptions used in Section&nbsp;<A HREF="node41.html#sec-typrules">12</A>.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+E = [ a:l_1, b:l_2]
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="124" HEIGHT="31" BORDER="0"
+ SRC="img117.png"
+ ALT="\begin{displaymath}
+E = [ a:l_1, b:l_2]
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+This environment maps <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$a$"> to location <IMG
+ WIDTH="17" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img118.png"
+ ALT="$l_1$">, and <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img116.png"
+ ALT="$b$"> to location
+<IMG
+ WIDTH="17" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img119.png"
+ ALT="$l_2$">.
+
+<P>
+The second component of the context for the evaluation of an
+expression is the <EM>store</EM> (memory). The store maps locations to values,
+where values in Cool are just objects.  Intuitively, a store
+tells us what value is stored in a given memory location.
+For the moment, assume all values are integers.
+A store is similar to an environment:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+S = [ l_1\rightarrow 55, l_2\rightarrow 77 ]
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="164" HEIGHT="31" BORDER="0"
+ SRC="img120.png"
+ ALT="\begin{displaymath}
+S = [ l_1\rightarrow 55, l_2\rightarrow 77 ]
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+This store maps location <IMG
+ WIDTH="17" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img118.png"
+ ALT="$l_1$"> to value <IMG
+ WIDTH="22" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img121.png"
+ ALT="$55$"> and location <IMG
+ WIDTH="17" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img119.png"
+ ALT="$l_2$">
+to value <IMG
+ WIDTH="22" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img122.png"
+ ALT="$77$">.
+
+<P>
+Given an environment and a store, the value of an
+identifier can be found by first looking up the location that the identifier maps
+to in the environment and then looking up the location in the store. 
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{rcl}
+	E(a) &=& l_1 \\
+	S(l_1) & = & 55
+\end{array}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="99" HEIGHT="50" BORDER="0"
+ SRC="img123.png"
+ ALT="\begin{displaymath}
+\begin{array}{rcl}
+E(a) &amp;=&amp; l_1 \\
+S(l_1) &amp; = &amp; 55
+\end{array}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Together, the environment and the store define the execution state at
+a particular step of the evaluation of a Cool expression. The double
+indirection from identifiers to locations to values allows us to model
+variables. Consider what happens if the value <IMG
+ WIDTH="22" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img124.png"
+ ALT="$99$"> is assigned
+variable <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$a$"> in the environment and store defined above. Assigning to a
+variable means changing the value to which it refers but not its
+location. To perform the assignment, we look up the location for
+<IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$a$"> in the environment <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img125.png"
+ ALT="$E$"> and then change the mapping for the
+obtained location to the new value, giving a new store <IMG
+ WIDTH="21" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img126.png"
+ ALT="$S'$">.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{rcl}
+	E(a) & = & l_1 \\
+	S'   & = & S[99/l_1]
+\end{array}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="140" HEIGHT="50" BORDER="0"
+ SRC="img127.png"
+ ALT="\begin{displaymath}
+\begin{array}{rcl}
+E(a) &amp; = &amp; l_1 \\
+S' &amp; = &amp; S[99/l_1]
+\end{array}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The syntax <IMG
+ WIDTH="49" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img128.png"
+ ALT="$S[v/l]$"> denotes a new store that is identical to
+the store <IMG
+ WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img129.png"
+ ALT="$S$">, except that <IMG
+ WIDTH="21" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img126.png"
+ ALT="$S'$"> maps location <IMG
+ WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img130.png"
+ ALT="$l$"> to value
+<IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img59.png"
+ ALT="$ v$">. For all locations <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img131.png"
+ ALT="$l'$"> where <IMG
+ WIDTH="43" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img132.png"
+ ALT="$l'\not=l$">, we still have
+<IMG
+ WIDTH="103" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img133.png"
+ ALT="$S'(l')=S(l')$">.
+
+<P>
+The store models the contents of memory of the computer during program execution.
+Assigning to a variable modifies the store.
+
+<P>
+There are also situations in which the environment is modified.
+Consider the following Cool fragment:
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV><PRE>
+  let c : Int &lt;- 33 in
+    c
+</PRE>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+When evaluating this expression, we must introduce the new
+identifier <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img134.png"
+ ALT="$c$"> into the environment before evaluating the body of
+the <TT>let</TT>. If the current environment and state are <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img125.png"
+ ALT="$E$"> and
+<IMG
+ WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img129.png"
+ ALT="$S$">, then we create a new environment <IMG
+ WIDTH="23" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img135.png"
+ ALT="$E'$"> and a new store <IMG
+ WIDTH="21" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img126.png"
+ ALT="$S'$">
+defined by:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{rcl}
+	l_c & = & newloc(S)\\
+	E' & = & E[l_c/c]\\
+	S' & = & S[33/l_c]
+\end{array}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="140" HEIGHT="72" BORDER="0"
+ SRC="img136.png"
+ ALT="\begin{displaymath}
+\begin{array}{rcl}
+l_c &amp; = &amp; newloc(S)\\
+E' &amp; = &amp; E[l_c/c]\\
+S' &amp; = &amp; S[33/l_c]
+\end{array}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The first step is to allocate a location for the variable <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img134.png"
+ ALT="$c$">.  The
+location should be fresh, meaning that the current store does not have
+a mapping for it. The function <IMG
+ WIDTH="71" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img137.png"
+ ALT="$newloc()$"> applied to a store gives us
+an unused location in that store. We then create a new environment
+<IMG
+ WIDTH="23" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img135.png"
+ ALT="$E'$">, which maps <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img134.png"
+ ALT="$c$"> to <IMG
+ WIDTH="16" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img138.png"
+ ALT="$l_c$"> but also contains all of the mappings of
+<IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img125.png"
+ ALT="$E$"> for identifiers other than <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img134.png"
+ ALT="$c$">. Note that if <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img134.png"
+ ALT="$c$"> already has a
+mapping in <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img125.png"
+ ALT="$E$">, the new environment <IMG
+ WIDTH="23" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img135.png"
+ ALT="$E'$"> hides this old mapping.  We
+must also update the store to map the new location to a value. In this
+case <IMG
+ WIDTH="16" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img138.png"
+ ALT="$l_c$"> maps to the value <IMG
+ WIDTH="22" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img139.png"
+ ALT="$33$">, which is the initial value for <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img134.png"
+ ALT="$c$">
+as defined by the let-expression.  
+
+<P>
+The example in this subsection oversimplifies Cool environments and
+stores a bit, because simple integers are not Cool values.
+Even integers are full-fledged objects in Cool.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html663"
+  HREF="node46.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html659"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html653"
+  HREF="node44.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html661"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html664"
+  HREF="node46.html">Syntax for Cool Objects</A>
+<B> Up:</B> <A NAME="tex2html660"
+  HREF="node44.html">Operational Semantics</A>
+<B> Previous:</B> <A NAME="tex2html654"
+  HREF="node44.html">Operational Semantics</A>
+ &nbsp; <B>  <A NAME="tex2html662"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

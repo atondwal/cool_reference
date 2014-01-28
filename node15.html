@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Identifiers</TITLE>
+<META NAME="description" CONTENT="Identifiers">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node16.html">
+<LINK REL="previous" HREF="node14.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node16.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html296"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html292"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html286"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html294"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html297"
+  HREF="node16.html">Assignment</A>
+<B> Up:</B> <A NAME="tex2html293"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html287"
+  HREF="node14.html">Constants</A>
+ &nbsp; <B>  <A NAME="tex2html295"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00082000000000000000">
+Identifiers</A>
+</H2>
+
+<P>
+The names of local variables, formal parameters of methods,  <TT>self</TT>,
+and class attributes are all expressions.  The identifier <TT>self</TT> may
+be referenced, but it is an error to assign to <TT>self</TT> or to bind
+<TT>self</TT> in a <TT>let</TT>, a <TT>case</TT>, or as a formal parameter.
+It is also illegal to have attributes named <TT>self</TT>.
+
+<P>
+Local variables and formal parameters have lexical scope.  Attributes
+are visible throughout a class in which they are declared or
+inherited, although they may be hidden by local declarations within
+expressions.  The binding of an identifier reference is the innermost
+scope that contains a declaration for that identifier, or to the
+attribute of the same name if there is no other declaration.  The
+exception to this rule is the identifier <TT>self</TT>, which is
+implicitly bound in every class.
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

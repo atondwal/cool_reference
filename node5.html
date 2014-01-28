@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Features</TITLE>
+<META NAME="description" CONTENT="Features">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node6.html">
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="node4.html">
+<LINK REL="next" HREF="node6.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html167"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html163"
+  HREF="node4.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html157"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html165"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html168"
+  HREF="node6.html">Inheritance</A>
+<B> Up:</B> <A NAME="tex2html164"
+  HREF="node4.html">Classes</A>
+<B> Previous:</B> <A NAME="tex2html158"
+  HREF="node4.html">Classes</A>
+ &nbsp; <B>  <A NAME="tex2html166"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00041000000000000000">
+Features</A>
+</H2>
+
+<P>
+The body of a class definition consists of a list of feature
+definitions.  A feature is either an <EM>attribute</EM> or a <EM>method</EM>.  An attribute of class <TT>A</TT> specifies a variable that is
+part of the state of objects of class <TT>A</TT>.  A method of class <TT>A</TT> is a procedure that may manipulate the variables and objects of class <TT>A</TT>.
+
+<P>
+One of the major themes of modern programming languages is <EM>information hiding</EM>, which is the idea that certain aspects of a data
+type's implementation should be abstract and hidden from users of the
+data type.  Cool supports information hiding through a simple
+mechanism: all attributes have scope local to the class, and all
+methods have global scope.  Thus, the only way to provide access to
+object state in Cool is through methods.
+
+<P>
+Feature names must begin with a lowercase letter.  No method name
+may be defined multiple times in a class, and no attribute name
+may be defined multiple times in a class, but a method and an attribute
+may have the same name.
+
+<P>
+A fragment from <TT>list.cl</TT> illustrates simple cases of both attributes
+and methods:
+
+<P>
+<PRE>
+class Cons inherits List {
+	xcar : Int;
+	xcdr : List;
+
+	isNil() : Bool { false };
+
+	init(hd : Int, tl : List) : Cons {
+	  {
+	    xcar &lt;- hd;
+	    xcdr &lt;- tl;
+	    self;
+	  }
+	}
+...
+};
+</PRE>
+In this example, the class <TT>Cons</TT> has two attributes <TT>xcar</TT> and
+<TT>xcdr</TT> and two methods <TT>isNil</TT> and <TT>init</TT>.  Note that the types
+of attributes, as well as the types of formal parameters and return types
+of methods, are explicitly declared by the programmer.  
+
+<P>
+Given object <TT>c</TT> of class <TT>Cons</TT> and object <TT>l</TT> of class <TT>List</TT>, we can set the <TT>xcar</TT> and <TT>xcdr</TT> fields by using the
+method <TT>init</TT>:
+
+<P>
+<PRE>
+c.init(1,l)
+</PRE>
+
+<P>
+This notation is <EM>object-oriented dispatch</EM>.  There may be many
+definitions of <TT>init</TT> methods in many different classes.  The
+dispatch looks up the class of the object <TT>c</TT> to decide which <TT>init</TT> method to invoke.  Because the class of <TT>c</TT> is <TT>Cons</TT>,
+the <TT>init</TT> method in the <TT>Cons</TT> class is invoked.  Within the
+invocation, the variables <TT>xcar</TT> and <TT>xcdr</TT> refer to <TT>c</TT>'s
+attributes.  The special variable <TT>self</TT> refers to the object on
+which the method was dispatched, which, in the example, is <TT>c</TT> itself.
+
+<P>
+There is a special form <TT>new C</TT> that generates a fresh object of
+class <TT>C</TT>.  An object can be thought of as a record that has a
+slot for each of the attributes of the class as well as
+pointers to the methods of the class.
+A typical dispatch for the <TT>init</TT> method is:
+<PRE>
+(new Cons).init(1,new Nil)
+</PRE>
+This example creates a new cons cell and initializes the ``car'' of
+the cons cell to be <TT>1</TT> and the ``cdr'' to be <TT>new
+Nil</TT>.<A NAME="tex2html2"
+  HREF="footnode.html#foot1771"><SUP>2</SUP></A> There is no mechanism in Cool for programmers to
+deallocate objects.  Cool has <EM>automatic memory management</EM>;
+objects that cannot be used by the program are deallocated by a
+runtime garbage collector.
+
+<P>
+Attributes are discussed further in Section&nbsp;<A HREF="node10.html#sec-attr">5</A>
+and methods are discussed further in Section&nbsp;<A HREF="node12.html#sec-method">6</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html167"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html163"
+  HREF="node4.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html157"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html165"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html168"
+  HREF="node6.html">Inheritance</A>
+<B> Up:</B> <A NAME="tex2html164"
+  HREF="node4.html">Classes</A>
+<B> Previous:</B> <A NAME="tex2html158"
+  HREF="node4.html">Classes</A>
+ &nbsp; <B>  <A NAME="tex2html166"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>SELF_TYPE</TITLE>
+<META NAME="description" CONTENT="SELF_TYPE">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node9.html">
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="up" HREF="node7.html">
+<LINK REL="next" HREF="node9.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html203"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html199"
+  HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html193"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html201"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html204"
+  HREF="node9.html">Type Checking</A>
+<B> Up:</B> <A NAME="tex2html200"
+  HREF="node7.html">Types</A>
+<B> Previous:</B> <A NAME="tex2html194"
+  HREF="node7.html">Types</A>
+ &nbsp; <B>  <A NAME="tex2html202"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00051000000000000000">
+SELF_TYPE</A>
+</H2>
+
+<P>
+The type <TT>SELF_TYPE</TT> is used to refer to the type of the <TT>self</TT>
+variable.  This is useful in classes that will be inherited by other
+classes, because it allows the programmer to avoid specifying
+a fixed final type at the time the class is written.  For example,
+the program
+<PRE>
+class Silly {
+   copy() : SELF_TYPE { self };
+};
+
+class Sally inherits Silly { };
+
+class Main {
+   x : Sally &lt;- (new Sally).copy();
+
+   main() : Sally { x };
+};
+</PRE>
+Because <TT>SELF_TYPE</TT> is used in the definition of the <TT>copy</TT> method,
+we know that the result of <TT>copy</TT> is  the same as the 
+type of the <TT>self</TT>
+parameter.  Thus, it follows that <TT>(new Sally).copy()</TT> has
+type <TT>Sally</TT>, which conforms to the declaration of attribute <TT>x</TT>.
+
+<P>
+Note that the meaning of <TT>SELF_TYPE</TT> is not fixed, but depends on the class
+in which it is used.  In general, <TT>SELF_TYPE</TT> may refer to the class <TT>C</TT>
+in which it appears, or any class that conforms to <TT>C</TT>.  When it is
+useful to make explicit what <!-- MATH
+ ${\tt SELF\_TYPE}$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img9.png"
+ ALT="${\tt SELF\_TYPE}$"> may refer to, we use the 
+name of the class <TT>C</TT> in which <TT>SELF_TYPE</TT> appears as an index <!-- MATH
+ ${\tt SELF\_TYPE}_{\tt C}$
+ -->
+<IMG
+ WIDTH="91" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="${\tt SELF\_TYPE}_{\tt C}$">.
+This subscript notation is not part of Cool syntax--it is used merely
+to make clear in what class a particular occurrence of <TT>SELF_TYPE</TT> appears.
+
+<P>
+From Definition&nbsp;<A HREF="node7.html#def-conforms">4.1</A>, it follows that
+<!-- MATH
+ ${\tt SELF\_TYPE}_{\tt X} \leq {\tt SELF\_TYPE}_{\tt X}$
+ -->
+<IMG
+ WIDTH="202" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="${\tt SELF\_TYPE}_{\tt X} \leq {\tt SELF\_TYPE}_{\tt X}$">.
+There is also a special conformance rule for <TT>SELF_TYPE</TT>:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\tt {\tt SELF\_TYPE}_C \leq P \;\mbox {\rm\ if\ }\; C \leq P
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="190" HEIGHT="29" BORDER="0"
+ SRC="img12.png"
+ ALT="\begin{displaymath}\tt {\tt SELF\_TYPE}_C \leq P \;\mbox {\rm\ if\ }\; C \leq P \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Finally, <TT>SELF_TYPE</TT> may be used in the following places: <TT>new <TT>SELF_TYPE</TT></TT>,
+as the return type of a method, as the declared type of a <TT>let</TT>
+variable, or as the declared type of an attribute. No other uses of
+<TT>SELF_TYPE</TT> are permitted.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html203"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html199"
+  HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html193"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html201"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html204"
+  HREF="node9.html">Type Checking</A>
+<B> Up:</B> <A NAME="tex2html200"
+  HREF="node7.html">Types</A>
+<B> Previous:</B> <A NAME="tex2html194"
+  HREF="node7.html">Types</A>
+ &nbsp; <B>  <A NAME="tex2html202"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

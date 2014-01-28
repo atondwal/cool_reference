@@ -1,0 +1,1048 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Type Checking Rules</TITLE>
+<META NAME="description" CONTENT="Type Checking Rules">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="previous" HREF="node42.html">
+<LINK REL="up" HREF="node41.html">
+<LINK REL="next" HREF="node44.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html635"
+  HREF="node44.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html631"
+  HREF="node41.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html627"
+  HREF="node42.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html633"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html636"
+  HREF="node44.html">Operational Semantics</A>
+<B> Up:</B> <A NAME="tex2html632"
+  HREF="node41.html">Type Rules</A>
+<B> Previous:</B> <A NAME="tex2html628"
+  HREF="node42.html">Type Environments</A>
+ &nbsp; <B>  <A NAME="tex2html634"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000132000000000000000"></A>
+<A NAME="sec-typr"></A>
+<BR>
+Type Checking Rules
+</H2>
+
+<P>
+The general form a type checking rule is:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\vdots}{O,M,C \vdash e : T}\eqno\mbox{}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="117" HEIGHT="64" BORDER="0"
+ SRC="img69.png"
+ ALT="\begin{displaymath}
+\frac{\vdots}{O,M,C \vdash e : T}\eqno\mbox{}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The rule should be read: In the type environment for objects <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img56.png"
+ ALT="$O$">,
+methods <IMG
+ WIDTH="23" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img55.png"
+ ALT="$M$">, and containing class <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ C$">, the expression <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img51.png"
+ ALT="$e$"> has type
+<IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ T$">.  The dots above the horizontal bar stand for other statements
+about the types of sub-expressions of <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img51.png"
+ ALT="$e$">.  These other statements are
+hypotheses of the rule; if the hypotheses are satisfied, then the
+statement below the bar is true.  In the conclusion, the ``<A href="http://en.wikipedia.org/wiki/Turnstile_%28symbol%29">turnstile</a>''
+(``<IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img70.png"
+ ALT="$\vdash$">'') separates context (<IMG
+ WIDTH="65" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img71.png"
+ ALT="$O,M,C$">) from statement (<IMG
+ WIDTH="40" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img72.png"
+ ALT="$e : T$">).
+
+<P>
+The rule for object identifiers is simply that if the environment
+assigns an identifier <IMG
+ WIDTH="22" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img73.png"
+ ALT="$ Id $"> type <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ T$">, then <IMG
+ WIDTH="22" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img73.png"
+ ALT="$ Id $"> has type <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ T$">.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{O(Id) = T}{O,M,C \vdash Id : T}\eqno\mbox{[Var]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="339" HEIGHT="47" BORDER="0"
+ SRC="img74.png"
+ ALT="\begin{displaymath}
+\frac{O(Id) = T}{O,M,C \vdash Id : T}\eqno\mbox{[Var]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+The rule for assignment to a variable is more complex:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	O(Id) = T \\
+	O,M,C \vdash e_1 : T' \\
+	T' \leq T
+	\end{array}}{O,M,C \vdash Id \leftarrow e_1 : T'}\eqno\mbox{[ASSIGN]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="363" HEIGHT="93" BORDER="0"
+ SRC="img75.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+O(Id) = T \\
+O,M,C \vdash e_1 : T'...
+...ray}}{O,M,C \vdash Id \leftarrow e_1 : T'}\eqno\mbox{[ASSIGN]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Note that this type rule--as well as others--use the conformance relation
+<IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$\leq$"> (see Section&nbsp;<A HREF="node6.html#sec-inherit">3.2</A>).
+The rule says that the assigned expression <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$e_1$"> must have a type <IMG
+ WIDTH="21" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img77.png"
+ ALT="$T'$"> that
+conforms to the type <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ T$"> of the identifier <IMG
+ WIDTH="22" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img73.png"
+ ALT="$ Id $"> in the type environment.
+The type of the whole expression is <IMG
+ WIDTH="21" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img77.png"
+ ALT="$T'$">.
+
+<P>
+The type rules for constants are all easy:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{}{O,M,C \vdash true : Bool}\eqno\mbox{[True]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="359" HEIGHT="42" BORDER="0"
+ SRC="img78.png"
+ ALT="\begin{displaymath}
+\frac{}{O,M,C \vdash true : Bool}\eqno\mbox{[True]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{}{O,M,C \vdash false : Bool}\eqno\mbox{[False]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="363" HEIGHT="42" BORDER="0"
+ SRC="img79.png"
+ ALT="\begin{displaymath}
+\frac{}{O,M,C \vdash false : Bool}\eqno\mbox{[False]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{i \mbox {\ is an integer constant}}{O,M,C \vdash i : Int}\eqno\mbox{[Int]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="364" HEIGHT="45" BORDER="0"
+ SRC="img80.png"
+ ALT="\begin{displaymath}
+\frac{i \mbox {\ is an integer constant}}{O,M,C \vdash i : Int}\eqno\mbox{[Int]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{s \mbox {\ is a string constant}}{O,M,C \vdash s : String}\eqno\mbox{[String]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="356" HEIGHT="45" BORDER="0"
+ SRC="img81.png"
+ ALT="\begin{displaymath}
+\frac{s \mbox {\ is a string constant}}{O,M,C \vdash s : String}\eqno\mbox{[String]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+There are two cases for <TT>new</TT>, one for <TT>new SELF_TYPE</TT> and
+one for any other form:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+T' = \left\{
+	\begin{array}{rl}
+		{\tt SELF\_TYPE}_C & \mbox {\rm if\ }T = {\tt SELF\_TYPE} \\
+		T & \mbox {\rm otherwise}
+	\end{array}
+     \right.}{O,M,C \vdash new\ T: T'}\eqno\mbox{[New]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="431" HEIGHT="76" BORDER="0"
+ SRC="img82.png"
+ ALT="\begin{displaymath}
+\frac{
+T' = \left\{
+\begin{array}{rl}
+{\tt SELF\_TYPE}_C &amp;...
+...\end{array} \right.}{O,M,C \vdash new\ T: T'}\eqno\mbox{[New]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Dispatch expressions are the most complex to type check.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_0 : T_0 \\
+O,M,C \vdash e_1 : T_1 \\
+\vdots \\
+O,M,C \vdash e_n : T_n \\
+T_0' = \left\{ 
+	\begin{array}{rl}
+		C & \mbox {\ if\ } T_0 = \mbox {\tt SELF\_TYPE}_C \\
+		T_0 & \mbox {otherwise}
+	\end{array}
+	\right. \\
+M(T_0',f) = (T_1',\ldots,T_n',T_{n+1}') \\
+T_i \leq T_i'\ \ \ 1 \leq i \leq n \\
+T_{n+1} = \left\{ 
+	\begin{array}{rl}
+		T_0 & \mbox {\ if\ } T_{n+1}' = \mbox {\tt SELF\_TYPE} \\
+		T_{n+1}' & \mbox {otherwise}
+	\end{array}
+	\right.
+\end{array}
+}{O,M,C \vdash e_0.f(e_1,\ldots,e_n) : T_{n+1}}\eqno\mbox{[Dispatch]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="475" HEIGHT="264" BORDER="0"
+ SRC="img83.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_0 : T_0 \\
+O,M,C \vd...
+... \vdash e_0.f(e_1,\ldots,e_n) : T_{n+1}}\eqno\mbox{[Dispatch]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_0 : T_0 \\
+O,M,C \vdash e_1 : T_1 \\
+\vdots \\
+O,M,C \vdash e_n : T_n \\
+T_0 \leq T \\
+M(T,f) = (T_1',\ldots,T_n',T_{n+1}') \\
+T_i \leq T_i'\ \ \ 1 \leq i \leq n \\
+T_{n+1} = \left\{ 
+	\begin{array}{rl}
+		T_0 & \mbox {\ if\ } T_{n+1}' = \mbox {\tt SELF\_TYPE} \\
+		T_{n+1}' & \mbox {otherwise}
+	\end{array}
+	\right.
+\end{array}
+}{O,M,C \vdash e_0@T.f(e_1,\ldots,e_n) : T_{n+1}}\eqno\mbox{[StaticDispatch]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="497" HEIGHT="238" BORDER="0"
+ SRC="img84.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_0 : T_0 \\
+O,M,C \vd...
+...e_0@T.f(e_1,\ldots,e_n) : T_{n+1}}\eqno\mbox{[StaticDispatch]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+To type check a dispatch, each of the subexpressions must
+first be type checked.  The type <IMG
+ WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img85.png"
+ ALT="$T_0$"> of <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img86.png"
+ ALT="$e_0$"> determines
+which declaration of the method <IMG
+ WIDTH="15" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$f$"> is used.  The argument types of the
+dispatch must conform to the declared argument types.  Note that the
+type of the result of the dispatch is either the declared return type
+or <IMG
+ WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img85.png"
+ ALT="$T_0$"> in the case that the declared return type is <!-- MATH
+ $\tt SELF\_TYPE$
+ -->
+<IMG
+ WIDTH="84" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$\tt SELF\_TYPE$">.
+The only difference in type checking a static dispatch is that the
+class <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ T$"> of the method <IMG
+ WIDTH="15" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$f$"> is given in the dispatch, and the type
+<IMG
+ WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img85.png"
+ ALT="$T_0$"> must conform to <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ T$">.
+
+<P>
+The type checking rules for <TT>if</TT> and <TT>{</TT>-<TT>}</TT>
+expressions are straightforward.  See Section&nbsp;<A HREF="node18.html#sec-cond">7.5</A> for
+the definition of the <IMG
+ WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$\sqcup$"> operation. 
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : Bool \\
+O,M,C \vdash e_2 : T_2 \\
+O,M,C \vdash e_3 : T_3
+\end{array}}{O,M,C \vdash \mbox {if } e_1 \mbox { then } e_2 \mbox { else } e_3 \mbox { fi} : T_2 \sqcup T_3}\eqno\mbox{[If]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="433" HEIGHT="93" BORDER="0"
+ SRC="img88.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : Bool \\
+O,M,C \v...
+...box { else } e_3 \mbox { fi} : T_2 \sqcup T_3}\eqno\mbox{[If]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : T_1 \\
+O,M,C \vdash e_2 : T_2 \\
+\vdots \\
+O,M,C \vdash e_n : T_n 
+\end{array}}{O,M,C \vdash \mbox {\{ } e_1; e_2; \ldots e_n; \mbox { \}} : T_n}\eqno\mbox{[Sequence]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="435" HEIGHT="125" BORDER="0"
+ SRC="img89.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : T_1 \\
+O,M,C \vd...
+...e_1; e_2; \ldots e_n; \mbox { \}} : T_n}\eqno\mbox{[Sequence]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+The <TT>let</TT> rule has some interesting aspects.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+T_0' = \left\{
+	\begin{array}{rl}
+		{\tt SELF\_TYPE}_C & \mbox {\rm if\ }\ T_0 = {\tt SELF\_TYPE} \\
+		T_0 & \mbox {\rm otherwise}
+	\end{array}
+	\right. \\
+O,M,C \vdash e_1 : T_1 \\
+T_1 \leq T_0' \\
+O[T_0'/x],M,C \vdash e_2 : T_2 
+\end{array}}{O,M,C \vdash \mbox {let } x : T_0 \leftarrow e_1 \mbox { in } e_2 : T_2}\eqno\mbox{[Let-Init]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="479" HEIGHT="141" BORDER="0"
+ SRC="img90.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+T_0' = \left\{
+\begin{array}{rl}
+{...
+...0 \leftarrow e_1 \mbox { in } e_2 : T_2}\eqno\mbox{[Let-Init]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+First, the initialization <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$e_1$"> is type checked in an environment
+without a new definition for <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img91.png"
+ ALT="$x$">.  Thus, the variable <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img91.png"
+ ALT="$x$"> cannot be used
+in <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$e_1$"> unless it already has a definition in an outer scope.
+Second, the body <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img92.png"
+ ALT="$e_2$"> is type checked in the environment <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img56.png"
+ ALT="$O$"> extended
+with the typing <IMG
+ WIDTH="47" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img93.png"
+ ALT="$x:T_0'$">.
+Third, note that the type of <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img91.png"
+ ALT="$x$"> may be <TT>SELF_TYPE</TT>.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+T_0' = \left\{
+	\begin{array}{rl}
+		{\tt SELF\_TYPE}_C & \mbox {\rm if\ }\ T_0 = {\tt SELF\_TYPE} \\
+		T_0 & \mbox {\rm otherwise}
+	\end{array}
+	\right. \\
+O[T_0'/x],M,C \vdash e_1 : T_1 
+\end{array}}{O,M,C \vdash \mbox {let } x : T_0 \mbox { in } e_1 : T_1}\eqno\mbox{[Let-No-Init]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="493" HEIGHT="98" BORDER="0"
+ SRC="img94.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+T_0' = \left\{
+\begin{array}{rl}
+{...
+...let } x : T_0 \mbox { in } e_1 : T_1}\eqno\mbox{[Let-No-Init]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The rule for <TT>let</TT> with no initialization simply omits the conformance
+requirement.  We give
+type rules only for a <TT>let</TT> with a single variable.
+Typing a multiple <TT>let</TT>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\rm let\ x_1 : T_1\ [\leftarrow e_1],\ x_2: T_2\ [\leftarrow e2], \ldots,\ x_n :T_n\ [\leftarrow e_n]\ in\ e\
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="433" HEIGHT="31" BORDER="0"
+ SRC="img95.png"
+ ALT="\begin{displaymath}\rm let\ x_1 : T_1\ [\leftarrow e_1],\ x_2: T_2\ [\leftarrow e2], \ldots,\ x_n :T_n\ [\leftarrow e_n]\ in\ e\ \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+is defined to be the same as typing
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\rm let\ x_1 : T_1\ [\leftarrow e_1]\ in\ (let\ x_2 :T_2\ [\leftarrow e_2],\ldots,\ x_n : T_n\ [\leftarrow e_n]\ in\ e\ )\
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="488" HEIGHT="31" BORDER="0"
+ SRC="img96.png"
+ ALT="\begin{displaymath}
+\rm let\ x_1 : T_1\ [\leftarrow e_1]\ in\ (let\ x_2 :T_2\ [\leftarrow e_2],\ldots,\ x_n : T_n\ [\leftarrow e_n]\ in\ e\ )\
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_0 : T_0 \\
+O[T_1/x_1], M, C \vdash e_1 : T_1' \\
+\vdots \\
+O[T_n/x_n], M, C \vdash e_n : T_n'
+\end{array}}{O,M,C \vdash \mbox {case } e_0 \mbox { of } x_1:T_1 \Rightarrow e_1; \ldots
+				     x_n:T_n \Rightarrow e_n; \mbox { esac} :
+	\bigsqcup_{1 \leq i \leq n} T_i'}\eqno\mbox{[Case]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="533" HEIGHT="148" BORDER="0"
+ SRC="img97.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_0 : T_0 \\
+O[T_1/x_1...
+...{ esac} :
+\bigsqcup_{1 \leq i \leq n} T_i'}\eqno\mbox{[Case]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Each branch of a <TT>case</TT> is type checked in an environment where
+variable <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img98.png"
+ ALT="$x_i$"> has type <IMG
+ WIDTH="20" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img99.png"
+ ALT="$T_i$">.  The type of the entire <TT>case</TT> is
+the join of the types of its branches.  The variables declared on 
+each branch of a <TT>case</TT> must all have distinct types.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : Bool \\
+O,M,C \vdash e_2: T_2 
+\end{array}}{O,M,C \vdash \mbox {while } e_1 \mbox { loop } e_2 \mbox { pool} : Object}\eqno\mbox{[Loop]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="430" HEIGHT="72" BORDER="0"
+ SRC="img100.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : Bool \\
+O,M,C \v...
+...1 \mbox { loop } e_2 \mbox { pool} : Object}\eqno\mbox{[Loop]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The predicate of a loop must have type <IMG
+ WIDTH="41" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img101.png"
+ ALT="$Bool$">; the type of the entire
+loop is always <IMG
+ WIDTH="56" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img102.png"
+ ALT="$Object$">. An <TT>isvoid</TT> test has type <IMG
+ WIDTH="41" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img101.png"
+ ALT="$Bool$">:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{O,M,C \vdash e_1 : T_1}{O,M,C \vdash \mbox {isvoid } e_1 : Bool}\eqno\mbox{[Isvoid]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="375" HEIGHT="46" BORDER="0"
+ SRC="img103.png"
+ ALT="\begin{displaymath}
+\frac{O,M,C \vdash e_1 : T_1}{O,M,C \vdash \mbox {isvoid } e_1 : Bool}\eqno\mbox{[Isvoid]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+With the exception of the rule for equality,
+the type checking rules for the primitive
+logical and arithmetic operations are easy.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+O,M,C \vdash e_1 : Bool}{O,M,C \vdash \neg e_1 : Bool}\eqno\mbox{[Not]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="356" HEIGHT="46" BORDER="0"
+ SRC="img104.png"
+ ALT="\begin{displaymath}
+\frac{
+O,M,C \vdash e_1 : Bool}{O,M,C \vdash \neg e_1 : Bool}\eqno\mbox{[Not]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+O,M,C \vdash e_1 : Int}{O,M,C \vdash \mbox{\~{}} e_1 : Int}\eqno\mbox{[Neg]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="349" HEIGHT="46" BORDER="0"
+ SRC="img106.png"
+ ALT="\begin{displaymath}
+\frac{
+O,M,C \vdash e_1 : Int}{O,M,C \vdash \mbox{\~{}} e_1 : Int}\eqno\mbox{[Neg]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : Int \\
+O,M,C \vdash e_2 : Int \\
+op \in \{ \ast,+,-,/ \}
+\end{array}}{O,M,C \vdash e_1\ op\  e_2 : Int}\eqno\mbox{[Arith]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="367" HEIGHT="93" BORDER="0"
+ SRC="img107.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : Int \\
+O,M,C \vd...
+...nd{array}}{O,M,C \vdash e_1\ op\ e_2 : Int}\eqno\mbox{[Arith]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+The wrinkle in the rule for equality is that any types may be
+freely compared except <TT>Int, String</TT> and <TT>Bool</TT>, which
+may only be compared with objects of the same type. The cases for
+<tt>&lt;</tt> and <tt>&lt;=</tt> are similar to the rule for equality. 
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : T_1 \\
+O,M,C \vdash e_2 : T_2 \\
+T_1 \in \{ Int, String, Bool \} \vee T_2 \in \{ Int, String, Bool \} \Rightarrow T_1 = T_2
+\end{array}}{O,M,C \vdash e_1 = e_2 : Bool}\eqno\mbox{[Equal]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="523" HEIGHT="114" BORDER="0"
+ SRC="img108.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O,M,C \vdash e_1 : T_1 \\
+O,M,C \vd...
+...\end{array}}{O,M,C \vdash e_1 = e_2 : Bool}\eqno\mbox{[Equal]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+The final cases are type checking rules for attributes and methods.
+For a class <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ C$">, let the object environment <IMG
+ WIDTH="29" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img109.png"
+ ALT="$O_C$"> give the types of all
+attributes of <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ C$"> (including any inherited attributes).  More formally,
+if <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img91.png"
+ ALT="$x$"> is an attribute (inherited or not) of <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ C$">, and the declaration of
+<IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img91.png"
+ ALT="$x$"> is <IMG
+ WIDTH="41" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img110.png"
+ ALT="$x:T$">, then
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+O_C(x) = \left\{
+	\begin{array}{rl}
+		{\tt SELF\_TYPE}_C & \mbox {\rm if\ }\ T = {\tt SELF\_TYPE} \\
+		T & \mbox {\rm otherwise}
+	\end{array}
+	\right.
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="336" HEIGHT="54" BORDER="0"
+ SRC="img111.png"
+ ALT="\begin{displaymath}O_C(x) = \left\{
+\begin{array}{rl}
+{\tt SELF\_TYPE}_C &amp; \mb...
+...ELF\_TYPE} \\
+T &amp; \mbox {\rm otherwise}
+\end{array} \right.
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+The method environment <IMG
+ WIDTH="23" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img55.png"
+ ALT="$M$"> is global to the entire program and defines
+for every class <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ C$"> the signatures of all of the methods of <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ C$">
+(including any inherited methods).
+
+<P>
+The two rules for type checking attribute defininitions are similar
+the rules for <TT>let</TT>.  The essential difference is that
+attributes are visible within their initialization expressions.  
+Note that <TT>self</TT> is bound in the initialization.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+O_C(x) = T_0 \\
+O_C[{\tt SELF\_TYPE}_C/\mbox {\em self}],M,C \vdash e_1 : T_1 \\
+T_1 \leq T_0 \\
+\end{array}}{O_C,M,C \vdash x : T_0 \leftarrow e_1;}\eqno\mbox{[Attr-Init]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="459" HEIGHT="93" BORDER="0"
+ SRC="img112.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+O_C(x) = T_0 \\
+O_C[{\tt SELF\_TYPE...
+...O_C,M,C \vdash x : T_0 \leftarrow e_1;}\eqno\mbox{[Attr-Init]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{O_C(x) = T}{O_C,M,C \vdash x : T;}\eqno\mbox{[Attr-No-Init]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="343" HEIGHT="47" BORDER="0"
+ SRC="img113.png"
+ ALT="\begin{displaymath}
+\frac{O_C(x) = T}{O_C,M,C \vdash x : T;}\eqno\mbox{[Attr-No-Init]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+The rule for typing methods checks the body of the method in an
+environment where <IMG
+ WIDTH="29" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img109.png"
+ ALT="$O_C$"> is extended with bindings for the formal
+parameters and <TT>self</TT>. The type of the method body must conform to
+the declared return type.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{
+\begin{array}{l}
+M(C,f) = (T_1,\ldots,T_n,T_0) \\
+O_C[{\tt SELF\_TYPE}_C/\mbox {\em self}][T_1/x_1]\ldots[T_n/x_n], M, C \vdash e : T_0' \\
+T_0' \leq \left\{
+		\begin{array}{rl}
+			{\tt SELF\_TYPE}_C & \mbox {\rm if\ }T_0 = {\tt SELF\_TYPE} \\
+			T_0 & \mbox {\rm otherwise}
+		\end{array}
+	  \right.
+\end{array}}{O_C,M,C \vdash f(x_1:T_1,\ldots,x_n:T_n) : T_0 \mbox { \{ } e \mbox { \}; }}\eqno\mbox{[Method]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="520" HEIGHT="121" BORDER="0"
+ SRC="img114.png"
+ ALT="\begin{displaymath}
+\frac{
+\begin{array}{l}
+M(C,f) = (T_1,\ldots,T_n,T_0) \\
+O_...
+...n:T_n) : T_0 \mbox { \{ } e \mbox { \}; }}\eqno\mbox{[Method]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<H2>
+<BR>
+Other Semantic Checks 
+</H2>
+
+There are a number of semantic checks applied to Cool programs that are not
+captured by formal typing rules. For example, a Cool program cannot contain
+an inheritance cycle. Similarly, a Cool program cannot contain a class that
+inherits from <tt>String</tt>. These rules are scattered through the
+<i>Cool Reference Manual</i>. 
+
+<p> 
+
+The order in which these other checks are performed is <i>not
+specified</i>. If a Cool program contains both an inheritance cycle and
+also a class htat inherits from <tt>String</tt>, the Cool compiler 
+may report whichever error it prefers. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html635"
+  HREF="node44.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html631"
+  HREF="node41.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html627"
+  HREF="node42.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html633"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html636"
+  HREF="node44.html">Operational Semantics</A>
+<B> Up:</B> <A NAME="tex2html632"
+  HREF="node41.html">Type Rules</A>
+<B> Previous:</B> <A NAME="tex2html628"
+  HREF="node42.html">Type Environments</A>
+ &nbsp; <B>  <A NAME="tex2html634"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

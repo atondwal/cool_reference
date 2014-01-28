@@ -1,0 +1,935 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Operational Rules</TITLE>
+<META NAME="description" CONTENT="Operational Rules">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="previous" HREF="node47.html">
+<LINK REL="up" HREF="node44.html">
+<LINK REL="next" HREF="node49.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html697"
+  HREF="node49.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html693"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html689"
+  HREF="node47.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html695"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html698"
+  HREF="node49.html">Acknowledgements</A>
+<B> Up:</B> <A NAME="tex2html694"
+  HREF="node44.html">Operational Semantics</A>
+<B> Previous:</B> <A NAME="tex2html690"
+  HREF="node47.html">Class definitions</A>
+ &nbsp; <B>  <A NAME="tex2html696"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000144000000000000000">
+Operational Rules</A>
+</H2>
+
+<P>
+Equipped with environments, stores, objects, and class
+definitions, we can now attack the operational semantics for Cool.
+The operational semantics is described by rules similar to the rules
+used in type checking. The general form of the rules is:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\vdots}{so,S,E\vdash e_1 : v,S'}\eqno
+\mbox{}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="140" HEIGHT="64" BORDER="0"
+ SRC="img155.png"
+ ALT="\begin{displaymath}
+\frac{\vdots}{so,S,E\vdash e_1 : v,S'}\eqno
+\mbox{}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The rule should be read as: In the context where <EM>self</EM> is the object
+<IMG
+ WIDTH="21" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img156.png"
+ ALT="$so$">, the store is <IMG
+ WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img129.png"
+ ALT="$S$">, and the environment is <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img125.png"
+ ALT="$E$">,
+ the expression <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$e_1$"> evaluates to
+object <IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img59.png"
+ ALT="$ v$"> and the new store is <IMG
+ WIDTH="21" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img126.png"
+ ALT="$S'$">.
+The dots above the horizontal bar stand for other statements about the
+evaluation of sub-expressions of <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$e_1$">.
+
+<P>
+Besides an environment and a store, the evaluation context
+contains a self object <IMG
+ WIDTH="21" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img156.png"
+ ALT="$so$">. The self object is just the object to which
+the identifier <TT>self</TT> refers if <TT>self</TT> appears in the
+expression. We do not place <TT>self</TT> in the environment and store because
+<TT>self</TT> is not a variable--it cannot be assigned to.
+Note that the rules specify a new store after the evaluation of an
+expression. The new store contains all changes to memory resulting
+as side effects of evaluating expression <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$e_1$">.
+
+<P>
+The rest of this section presents and briefly discusses each of the operational
+rules.  A few cases are not covered; these are discussed at the end of the section.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	 so,S_1,E\vdash e_1 : v_1,S_2\\
+	 E(Id) = l_1\\
+	 S_3 = S_2[v_1/l_1]
+	 \end{array}}{so,S_1,E\vdash Id\leftarrow e_1 : v_1,S_3}\eqno
+\mbox{[Assign]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="377" HEIGHT="93" BORDER="0"
+ SRC="img157.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : v_1,S_2\\
+E(I...
+...o,S_1,E\vdash Id\leftarrow e_1 : v_1,S_3}\eqno
+\mbox{[Assign]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+An assignment first evaluates the expression on the right-hand side, yielding
+a value <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img158.png"
+ ALT="$v_1$">.  This value is stored in memory at the address for the
+identifier.
+
+<P>
+The rules for identifier references, <TT>self</TT>, and constants are straightforward:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	 E(Id) = l\\
+	 S(l) = v
+	 \end{array}}{so,S,E\vdash Id : v,S}\eqno
+\mbox{[Var]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="345" HEIGHT="72" BORDER="0"
+ SRC="img159.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+E(Id) = l\\
+S(l) = v
+\end{array}}{so,S,E\vdash Id : v,S}\eqno
+\mbox{[Var]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{}{so,S,E\vdash \mbox{self} : so,S}\eqno
+\mbox{[Self]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="352" HEIGHT="42" BORDER="0"
+ SRC="img160.png"
+ ALT="\begin{displaymath}
+\frac{}{so,S,E\vdash \mbox{self} : so,S}\eqno
+\mbox{[Self]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{}{so,S,E\vdash \mbox{true} : Bool(true),S}\eqno
+\mbox{[True]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="389" HEIGHT="43" BORDER="0"
+ SRC="img161.png"
+ ALT="\begin{displaymath}
+\frac{}{so,S,E\vdash \mbox{true} : Bool(true),S}\eqno
+\mbox{[True]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{}{so,S,E\vdash \mbox{false} : Bool(false),S}\eqno
+\mbox{[False]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="394" HEIGHT="43" BORDER="0"
+ SRC="img162.png"
+ ALT="\begin{displaymath}
+\frac{}{so,S,E\vdash \mbox{false} : Bool(false),S}\eqno
+\mbox{[False]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{i\mbox{ is an integer constant}}{so,S,E\vdash i : Int(i),S}\eqno
+\mbox{[Int]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="364" HEIGHT="46" BORDER="0"
+ SRC="img163.png"
+ ALT="\begin{displaymath}
+\frac{i\mbox{ is an integer constant}}{so,S,E\vdash i : Int(i),S}\eqno
+\mbox{[Int]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	 s\mbox{ is a string constant}\\
+	l = length(s)
+	 \end{array}}{so,S,E\vdash s : String(l,s),S}\eqno
+\mbox{[String]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="379" HEIGHT="73" BORDER="0"
+ SRC="img164.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+s\mbox{ is a string constant}\\
+l ...
+...d{array}}{so,S,E\vdash s : String(l,s),S}\eqno
+\mbox{[String]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+A <TT>new</TT> expression is more complicated than one might expect:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	T_0 = \left\{ \begin{array}{rl}
+			  X & \mbox {\rm if\ }T = \mbox {\tt SELF\_TYPE} \mbox { and }
+					so = X(\ldots) \\
+			  T & \mbox {\rm otherwise}
+			\end{array}
+		\right. \\
+	class(T_0) = (a_1:T_1\leftarrow e_1,\dots,a_n:T_n\leftarrow e_n)\\
+	l_i = newloc(S_1),\mbox{ for $i=1\ldots n$ and each $l_i$ is diistinct}\\
+	v_1 = T_0(a_1=l_1,\ldots,a_n=l_n)\\
+	S_2 = S_1[D_{T_1}/l_1,\ldots,D_{T_n}/l_n]\\
+	v_1,S_2,[a_1:l_1,\ldots,a_n:l_n]\vdash  \{
+	a_1\leftarrow e_1; \ldots; a_n\leftarrow e_n; \}  : v_2,S_3
+	 \end{array}}{so,S_1,E\vdash \mbox{new }T : v_1,S_3}\eqno
+\mbox{[New]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="532" HEIGHT="184" BORDER="0"
+ SRC="img165.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+T_0 = \left\{ \begin{array}{rl}
+X &amp;...
+...ray}}{so,S_1,E\vdash \mbox{new }T : v_1,S_3}\eqno
+\mbox{[New]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The tricky thing in a <TT>new</TT> expression is to initialize the attributes
+in the right order.  If an attribute does not have an
+initializer, <i>do not</i> evaluate an assignment expression for it in the
+final step. 
+
+Note also that, during initialization, attributes are
+bound to the default of the appropriate class.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : v_1,S_2\\
+	so,S_2,E\vdash e_2 : v_2,S_3\\
+	\vdots{}\\
+	so,S_{n},E\vdash e_n : v_n,S_{n+1}\\
+	so,S_{n+1},E\vdash e_0 : v_0,S_{n+2}\\
+	v_0 = X(a_1=l_{a_1},\ldots,a_m=l_{a_m})\\
+	implementation(X,f) = (x_1,\ldots,x_n,e_{n+1})\\
+	l_{x_i} = newloc(S_{n+2}), \mbox{ for $i=1\ldots n$ and each $l_{x_i}$ is distinct}\\
+	S_{n+3} = S_{n+2}[v_1/l_{x_1},\ldots,v_n/l_{x_n}]\\
+	v_0,S_{n+3},[a_1:l_{a_1},\ldots,a_m:l_{a_m},\,
+	x_1:l_{x_1},\ldots,x_n:l_{x_n}]\vdash e_{n+1} : v_{n+1},S_{n+4} 
+	 \end{array}}{so,S_1,E\vdash e_0.f(e_1,\ldots,e_n) : v_{n+1},S_{n+4}}\eqno
+\mbox{[Dispatch]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="551" HEIGHT="276" BORDER="0"
+ SRC="img166.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : v_1,S_2\\
+so,...
+..._0.f(e_1,\ldots,e_n) : v_{n+1},S_{n+4}}\eqno
+\mbox{[Dispatch]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : v_1,S_2\\
+	so,S_2,E\vdash e_2 : v_2,S_3\\
+	\vdots{}\\
+	so,S_{n},E\vdash e_n : v_n,S_{n+1}\\
+	so,S_{n+1},E\vdash e_0 : v_0,S_{n+2}\\
+	v_0 = X(a_1=l_{a_1},\ldots,a_m=l_{a_m})\\
+	implementation(T,f) = (x_1,\ldots,x_n,e_{n+1})\\
+	l_{x_i} = newloc(S_{n+2}), \mbox{ for $i=1\ldots n$ and each $l_{x_i}$ is distinct}\\
+	S_{n+3} = S_{n+2}[v_1/l_{x_1},\ldots,v_n/l_{x_n}]\\
+	v_0,S_{n+3},[a_1:l_{a_1},\ldots,a_m:l_{a_m},\,
+	x_1:l_{x_1},\ldots,x_n:l_{x_n}]\vdash e_{n+1} : v_{n+1},S_{n+4} 
+	 \end{array}}{so,S_1,E\vdash e_0@T.f(e_1,\ldots,e_n) : v_{n+1},S_{n+4}}\eqno
+\mbox{[StaticDispatch]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="551" HEIGHT="276" BORDER="0"
+ SRC="img167.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : v_1,S_2\\
+so,...
+..._1,\ldots,e_n) : v_{n+1},S_{n+4}}\eqno
+\mbox{[StaticDispatch]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+The two dispatch rules do what one would expect.  The arguments are
+evaluated and saved.  Next, the expression on the left-hand side of
+the ``.'' is evaluated.  In a normal dispatch, the class of this expression
+is used to determine the method to invoke; otherwise the class is specified
+in the dispatch itself.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : Bool(true),S_2\\
+	so,S_2,E\vdash e_2 : v_2,S_3\\
+	 \end{array}}{so,S_1,E\vdash \mbox{if }e_1\mbox{ then }e_2\mbox{ else }e_3\mbox { fi} : v_2,S_3}\eqno
+\mbox{[If-True]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="459" HEIGHT="72" BORDER="0"
+ SRC="img168.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : Bool(true),S_2\...
+..._2\mbox{ else }e_3\mbox { fi} : v_2,S_3}\eqno
+\mbox{[If-True]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : Bool(false),S_2\\
+	so,S_2,E\vdash e_3 : v_3,S_3\\
+	 \end{array}}{so,S_1,E\vdash \mbox{if }e_1\mbox{ then }e_2\mbox{ else }e_3\mbox { fi} : v_3,S_3}\eqno
+\mbox{[If-False]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="461" HEIGHT="72" BORDER="0"
+ SRC="img169.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : Bool(false),S_2...
+...2\mbox{ else }e_3\mbox { fi} : v_3,S_3}\eqno
+\mbox{[If-False]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+There are no surprises in the if-then-else rules.  Note that value of
+the predicate is a <TT>Bool</TT> object, not a boolean.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : v_1,S_2\\
+	so,S_2,E\vdash e_2 : v_2,S_3\\
+	\vdots{}\\
+	so,S_{n},E\vdash e_n : v_n,S_{n+1}\\
+	 \end{array}}{so,S_1,E\vdash \mbox{\{	}e_1; e_2;\ldots; e_n;\mbox{ \}} : v_n,S_{n+1}}\eqno
+\mbox{[Sequence]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="462" HEIGHT="125" BORDER="0"
+ SRC="img170.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : v_1,S_2\\
+so,...
+...2;\ldots; e_n;\mbox{ \}} : v_n,S_{n+1}}\eqno
+\mbox{[Sequence]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Blocks are evaluated from the first expression to the last expression, in
+order.  The result is the result of the last expression.
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : v_1,S_2\\
+	l_1 = newloc(S_2)\\
+	S_3 = S_2[v_1/l_1]\\
+	E' = E[l_1/Id]\\
+	so,S_3,E'\vdash e_2 : v_2,S_4\\
+	 \end{array}}{so,S_1,E\vdash \mbox{let }Id : T_1\leftarrow e_1\mbox{ in } e_2 : v_2,S_{4}}\eqno
+\mbox{[Let]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="427" HEIGHT="137" BORDER="0"
+ SRC="img171.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : v_1,S_2\\
+l_1...
+..._1\leftarrow e_1\mbox{ in } e_2 : v_2,S_{4}}\eqno
+\mbox{[Let]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+A <TT>let</TT> evaluates any initialization code, assigns the result to the variable
+at a fresh location, and evaluates the body of the <TT>let</TT>.  (If there
+is no initialization, the variable is initialized to the default value
+of <IMG
+ WIDTH="22" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img172.png"
+ ALT="$T_1$">.) We give the
+operational semantics only for the case of <TT>let</TT> with a single variable.
+The semantics of a multiple <TT>let</TT>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\rm let\ x_1 : T_1 \leftarrow e_1,\ x_2: T_2 \leftarrow e2, \ldots,\ x_n :T_n \leftarrow e_n\ in\ e\
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="401" HEIGHT="30" BORDER="0"
+ SRC="img173.png"
+ ALT="\begin{displaymath}\rm let\ x_1 : T_1 \leftarrow e_1,\ x_2: T_2 \leftarrow e2, \ldots,\ x_n :T_n \leftarrow e_n\ in\ e\ \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+is defined to be the same as
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\rm let\ x_1 : T_1 \leftarrow e_1\ in\ (let\ x_2 :T_2 \leftarrow e_2,\ldots,\ x_n : T_n \leftarrow e_n\ in\ e\ )\
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="456" HEIGHT="31" BORDER="0"
+ SRC="img174.png"
+ ALT="\begin{displaymath}
+\rm let\ x_1 : T_1 \leftarrow e_1\ in\ (let\ x_2 :T_2 \leftarrow e_2,\ldots,\ x_n : T_n \leftarrow e_n\ in\ e\ )\
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_0 : v_0,S_2\\
+	v_0 = X(\ldots)\\
+	T_i = \mbox{closest ancestor of $X$ in $\{T_1,\ldots,T_n\}$}\\
+	l_0 = newloc(S_2)\\
+	S_3 = S_2[v_0/l_0]\\
+	E' = E[l_0/Id_i]\\
+	so,S_3,E'\vdash e_i : v_1,S_4\\
+	 \end{array}}{so,S_1,E\vdash \mbox{case }e_0\mbox{ of }Id_1:T_1\Rightarrow e_1;\ldots;Id_n:T_n\Rightarrow e_n;\mbox{ esac} : v_1,S_{4}}\eqno
+\mbox{[Case]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="530" HEIGHT="201" BORDER="0"
+ SRC="img175.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_0 : v_0,S_2\\
+v_0...
+..._n\Rightarrow e_n;\mbox{ esac} : v_1,S_{4}}\eqno
+\mbox{[Case]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Note that the <TT>case</TT> rule requires that the class hierarchy be available in
+some form at runtime, so that the correct branch of the <TT>case</TT> can be selected.
+This rule is otherwise straightforward.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : Bool(true),S_2\\
+	so,S_2,E\vdash e_2 : v_2,S_3\\
+	so,S_3,E\vdash \mbox{while }e_1\mbox{ loop } e_2\mbox{ pool} : void,S_4\\
+	 \end{array}}{so,S_1,E\vdash \mbox{while }e_1\mbox{ loop } e_2\mbox{ pool} : void,S_{4}}\eqno
+\mbox{[Loop-True]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="487" HEIGHT="93" BORDER="0"
+ SRC="img176.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : Bool(true),S_2\...
+...{ loop } e_2\mbox{ pool} : void,S_{4}}\eqno
+\mbox{[Loop-True]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : Bool(false),S_2\\
+	 \end{array}}{so,S_1,E\vdash \mbox{while }e_1\mbox{ loop } e_2\mbox{ pool} : void,S_{2}}\eqno
+\mbox{[Loop-False]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="481" HEIGHT="50" BORDER="0"
+ SRC="img177.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : Bool(false),S_2...
+... loop } e_2\mbox{ pool} : void,S_{2}}\eqno
+\mbox{[Loop-False]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+There are two rules for <TT>while</TT>: one for the case where the predicate is
+<TT>true</TT> and one for the case where the predicate is <TT>false</TT>.  Both cases
+are straightforward. The two rules for <TT>isvoid</TT> are also straightforward:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{so,S_1,E\vdash e_1 : void,S_2}{so,S_1,E\vdash \mbox {isvoid } e_1 : Bool(true),S_2}\eqno
+\mbox{[IsVoid-True]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="462" HEIGHT="47" BORDER="0"
+ SRC="img178.png"
+ ALT="\begin{displaymath}
+\frac{so,S_1,E\vdash e_1 : void,S_2}{so,S_1,E\vdash \mbox {isvoid } e_1 : Bool(true),S_2}\eqno
+\mbox{[IsVoid-True]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{so,S_1,E\vdash e_1 : X(\ldots),S_2}{so,S_1,E\vdash \mbox {isvoid } e_1 : Bool(false),S_2}\eqno
+\mbox{[IsVoid-False]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="468" HEIGHT="48" BORDER="0"
+ SRC="img179.png"
+ ALT="\begin{displaymath}
+\frac{so,S_1,E\vdash e_1 : X(\ldots),S_2}{so,S_1,E\vdash \mbox {isvoid } e_1 : Bool(false),S_2}\eqno
+\mbox{[IsVoid-False]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+The remainder of the rules are for the primitive arithmetic and logical 
+operations.  These are all easy rules.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : Bool(b),S_2\\
+	v_1 = Bool(\neg b)
+	 \end{array}}{so,S_1,E\vdash \mbox{not }e_1 : v_1,S_2}\eqno
+\mbox{[Not]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="383" HEIGHT="72" BORDER="0"
+ SRC="img180.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : Bool(b),S_2\\
+...
+...y}}{so,S_1,E\vdash \mbox{not }e_1 : v_1,S_2}\eqno
+\mbox{[Not]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : Int(i_1),S_2\\
+	v_1 = Int(-i_1)\\
+	 \end{array}}{so,S_1,E\vdash \mbox{\~{}}e_1 : v_1,S_2}\eqno
+\mbox{[Neg]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="381" HEIGHT="72" BORDER="0"
+ SRC="img182.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : Int(i_1),S_2\\ ...
+...y}}{so,S_1,E\vdash \mbox{\~{}}e_1 : v_1,S_2}\eqno
+\mbox{[Neg]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : Int(i_1),S_2\\
+	so,S_2,E\vdash e_2 : Int(i_2),S_3\\
+	op \in \{ *, +, -, / \}\\
+	v_1 = Int(i_1\ op\ i_2)
+	 \end{array}}{so,S_1,E\vdash e_1\ op\ e_2 : v_1,S_3}\eqno
+\mbox{[Arith]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="381" HEIGHT="115" BORDER="0"
+ SRC="img183.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : Int(i_1),S_2\\ ...
+...y}}{so,S_1,E\vdash e_1\ op\ e_2 : v_1,S_3}\eqno
+\mbox{[Arith]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Cool <TT>Int</TT>s are 32-bit two's complement signed integers; the arithmetic
+operations are defined accordingly.
+
+<P>
+The notation and rules given above are not powerful enough to
+describe how objects are tested for equality, or how runtime
+exceptions are handled.  For these cases we resort to an
+English description.
+
+<P>
+In <IMG
+ WIDTH="59" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img184.png"
+ ALT="$e_1 = e_2$">, first <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$e_1$"> is evaluated and then <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img92.png"
+ ALT="$e_2$"> is evaluated.
+The two objects are compared for equality by first comparing their
+pointers (addresses). If they are the same, the objects are equal. 
+The value <TT>void</TT> is not equal to any object except itself.  
+If the two objects are of type <TT>String</TT>, <TT>Bool</TT>, or
+<TT>Int</TT>, their respective contents are compared. <tt>&lt;</tt>
+and <tt>&lt;=</tt> are handled similarly. The case for integer arguments 
+is simple: 
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\frac{\begin{array}{l}
+	so,S_1,E\vdash e_1 : Int(i_1),S_2\\
+	so,S_2,E\vdash e_2 : Int(i_2),S_3\\
+	op \in \{ \leq, < \} \\
+	v_1 = \left\{\begin{array}{l}
+		Bool(true),\mbox{ if $i_1\ op\  i_2$}\\
+		Bool(false),\mbox{ otherwise}
+		     \end{array}\right.
+	 \end{array}}{so,S_1,E\vdash e_1\ op\  e_2 : v_1,S_3}\eqno
+\mbox{[Comp]}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="408" HEIGHT="141" BORDER="0"
+ SRC="img181.png"
+ ALT="\begin{displaymath}
+\frac{\begin{array}{l}
+so,S_1,E\vdash e_1 : Int(i_1),S_2\\ ...
+...ay}}{so,S_1,E\vdash e_1\ op\ e_2 : v_1,S_3}\eqno
+\mbox{[Comp]}
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+... but <tt>String</tt> and <tT>Bool</tt> also admit comparisons. String
+comparisons are performed using the standard ASCII string ordering (e.g.,
+<tt>"abc" &lt; "xyz"</tt>). For booleans, <tt>false</tt> is defined to be
+less than <tt>true</tt>. Any other comparison (e.g., a comparison among
+non-void objects of different types) returns <tt>false</tt>. Note that 
+for some objects this may be unintuitive: if <tt>c</tt> is a <tt>Cat</tt> and
+<tt>d</tt> is a <tt>Dog</tt> then <tt>c &lt; d</tt> is <tt>false</tT> but
+<tt>d &lt; c</tt> is <i>also</i> <tt>false</tt>. Note also that comparison
+is based on the dynamic type of the object, not on the static type of the
+object. 
+
+
+<P>
+In addition, the operational rules do not specify what happens in the
+event of a runtime error. When a runtime error occurs, output is flushed
+and execution aborts.  The following list specifies all possible runtime
+errors.
+
+<OL>
+<LI>A dispatch (static or dynamic) on <TT>void</TT>.
+</LI>
+<LI>A case on <TT>void</TT>.
+</LI>
+<LI>Execution of a case statement without a matching branch.
+</LI>
+<LI>Division by zero.
+</LI>
+<LI>Substring out of range. <i>(This error is always reported on line 0, since it occurs inside an "internal" library function.)</i>
+</LI>
+<LI>Heap overflow. <i>(You do not need to implement this runtime
+error.)</i> 
+</li> 
+<li>Stack overflow.
+</li> 
+</ol>
+
+Each outstanding "method invocation" (static or dynamic) and each
+outstanding "new" object allocation expression counts as a "Cool Activation
+Record". (Just to be clear, that second clause about "new" is counting
+currently-resolving constructor calls, not "total objects living in the
+heap".) A Cool interpreter <i>must</i> flag a "stack overflow" runtime
+error if and only if there are <b>1000</b> (one thousand) or more
+outstanding Cool Activation Records. 
+
+<P>
+Finally, the rules given above do not
+explain the execution behaviour for dispatches to primitive methods defined in
+the <TT>Object</TT>, <TT>IO</TT>, or <TT>String</TT> classes.
+Descriptions of these primitive methods are given in Sections&nbsp;<A HREF="node29.html#sec-int">8.3</A>-<A HREF="node31.html#sec-bool">8.5</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html697"
+  HREF="node49.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html693"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html689"
+  HREF="node47.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html695"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html698"
+  HREF="node49.html">Acknowledgements</A>
+<B> Up:</B> <A NAME="tex2html694"
+  HREF="node44.html">Operational Semantics</A>
+<B> Previous:</B> <A NAME="tex2html690"
+  HREF="node47.html">Class definitions</A>
+ &nbsp; <B>  <A NAME="tex2html696"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

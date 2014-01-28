@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Type Environments</TITLE>
+<META NAME="description" CONTENT="Type Environments">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node43.html">
+<LINK REL="previous" HREF="node41.html">
+<LINK REL="up" HREF="node41.html">
+<LINK REL="next" HREF="node43.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html625"
+  HREF="node43.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html621"
+  HREF="node41.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html615"
+  HREF="node41.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html623"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html626"
+  HREF="node43.html">Type Checking Rules</A>
+<B> Up:</B> <A NAME="tex2html622"
+  HREF="node41.html">Type Rules</A>
+<B> Previous:</B> <A NAME="tex2html616"
+  HREF="node41.html">Type Rules</A>
+ &nbsp; <B>  <A NAME="tex2html624"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000131000000000000000"></A>
+<A NAME="sec-typenv"></A>
+<BR>
+Type Environments
+</H2>
+
+<P>
+To a first approximation, type checking in Cool can be thought of as
+a bottom-up algorithm: the type of an expression <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img51.png"
+ ALT="$e$"> is computed from the
+(previously computed) types of <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img51.png"
+ ALT="$e$">'s subexpressions.  For example,
+an integer <TT>1</TT> has type <TT>Int</TT>; there are no subexpressions in
+this case.  As another example, if <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="$\tt e_n$"> has type <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img52.png"
+ ALT="$\tt X$">, then
+the expression <!-- MATH
+ $\tt\mbox {\tt\{}\ e_1; \ldots; e_n;\ \mbox {\tt\}}$
+ -->
+<IMG
+ WIDTH="113" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img53.png"
+ ALT="$\tt\mbox {\tt\{}\ e_1; \ldots; e_n;\ \mbox {\tt\}}$"> has 
+type <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img52.png"
+ ALT="$\tt X$">.
+
+<P>
+A complication arises in the case of an expression <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img54.png"
+ ALT="$\tt v$">, where <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img54.png"
+ ALT="$\tt v$"> is an object identifier.  It is not possible to say what the type of <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img54.png"
+ ALT="$\tt v$"> is in a strictly bottom-up algorithm; we need to know the type
+declared for <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img54.png"
+ ALT="$\tt v$"> in the larger expression.  Such a declaration
+must exist for every object identifier in valid Cool programs.
+
+<P>
+To capture information about the types of identifiers, we use a
+<EM>type environment</EM>.  The environment consists of three parts:
+a method environment <IMG
+ WIDTH="23" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img55.png"
+ ALT="$M$">, an object environment <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img56.png"
+ ALT="$O$">, and 
+the name of the current class in which the expression appears.  
+The method environment and object environment are both functions (also
+called <EM>mappings</EM>).  The object environment is a function of the
+form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+O(v) = T
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="72" HEIGHT="31" BORDER="0"
+ SRC="img57.png"
+ ALT="\begin{displaymath}O(v) = T \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+which assigns the type <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ T$"> to object identifier <IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img59.png"
+ ALT="$ v$">.
+The method environment is more complex; it is a function of the form
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+M(C,f) = (T_1,\ldots,T_{n-1},T_n)
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="218" HEIGHT="31" BORDER="0"
+ SRC="img60.png"
+ ALT="\begin{displaymath}M(C,f) = (T_1,\ldots,T_{n-1},T_n) \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ C$"> is a class name (a type), <IMG
+ WIDTH="15" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$f$"> is a method name,
+and <!-- MATH
+ $t_1,\ldots,t_n$
+ -->
+<IMG
+ WIDTH="72" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img63.png"
+ ALT="$ t_1,\ldots,t_n$"> are types.  The tuple of types is
+the <EM>signature</EM> of the method.  The interpretation of signatures is
+that in class <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ C$"> the method <IMG
+ WIDTH="15" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$f$"> has formal parameters of
+types <!-- MATH
+ $(t_1,\ldots,t_{n-1})$
+ -->
+<IMG
+ WIDTH="103" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img64.png"
+ ALT="$ (t_1,\ldots,t_{n-1})$">--in that order--and a return type <IMG
+ WIDTH="20" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$t_n$">.
+
+<P>
+Two mappings are required instead of one because object names and method
+names do not clash--i.e., there may be a method and an object identifier
+of the same name.
+
+<P>
+The third component of the type environment is the name of the current
+class, which is needed for type rules involving <TT>SELF_TYPE</TT>.
+
+<P>
+Every expression <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img51.png"
+ ALT="$e$"> is type checked in a type environment;
+the subexpressions of <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img51.png"
+ ALT="$e$"> may be type checked in the same environment or,
+if <IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img51.png"
+ ALT="$e$"> introduces a new object identifier, in a modified environment.
+For example, consider the expression
+<DIV ALIGN="CENTER">
+</DIV><PRE>
+  let c : Int &lt;- 33 in
+    ...
+</PRE>
+<DIV ALIGN="CENTER">
+</DIV>
+The <TT>let</TT> expression introduces a new variable <TT>c</TT> with type <TT>Int</TT>.
+Let <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img56.png"
+ ALT="$O$"> be the object component of the type environment for the <TT>let</TT>.
+Then the body of the <TT>let</TT> is type checked in the object type environment
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+O[Int/c]
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="64" HEIGHT="31" BORDER="0"
+ SRC="img66.png"
+ ALT="\begin{displaymath}O[Int/c] \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where the notation <IMG
+ WIDTH="56" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img67.png"
+ ALT="$O[T/c]$"> is defined as follows:
+<P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{eqnarray*}
+O[T/c](c) & = & T \\
+O[T/c](d) & = & O(d)\ \ \mbox {\rm if\ }d \neq c
+\end{eqnarray*}
+ -->
+<IMG
+ WIDTH="224" HEIGHT="57" BORDER="0"
+ SRC="img68.png"
+ ALT="\begin{eqnarray*}
+O[T/c](c) &amp; = &amp; T \\
+O[T/c](d) &amp; = &amp; O(d)\ \ \mbox {\rm if\ }d \neq c
+\end{eqnarray*}"></DIV>
+<BR CLEAR="ALL"><P></P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html625"
+  HREF="node43.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html621"
+  HREF="node41.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html615"
+  HREF="node41.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html623"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html626"
+  HREF="node43.html">Type Checking Rules</A>
+<B> Up:</B> <A NAME="tex2html622"
+  HREF="node41.html">Type Rules</A>
+<B> Previous:</B> <A NAME="tex2html616"
+  HREF="node41.html">Type Rules</A>
+ &nbsp; <B>  <A NAME="tex2html624"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

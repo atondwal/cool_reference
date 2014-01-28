@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Conditionals</TITLE>
+<META NAME="description" CONTENT="Conditionals">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node19.html">
+<LINK REL="previous" HREF="node17.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node19.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html332"
+  HREF="node19.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html328"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html322"
+  HREF="node17.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html330"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html333"
+  HREF="node19.html">Loops</A>
+<B> Up:</B> <A NAME="tex2html329"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html323"
+  HREF="node17.html">Dispatch</A>
+ &nbsp; <B>  <A NAME="tex2html331"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00085000000000000000"></A>
+<A NAME="sec-cond"></A>
+<BR>
+Conditionals
+</H2>
+
+<P>
+A conditional has the form
+<PRE>
+if &lt;expr&gt; then &lt;expr&gt; else &lt;expr&gt; fi
+</PRE>
+
+<P>
+The semantics of conditionals is standard.  The predicate is evaluated
+first.  If the predicate is <TT>true</TT>, then the <TT>then</TT> branch is
+evaluated.  If the predicate is <TT>false</TT>, then the <TT>else</TT> branch is
+evaluated.  The value of the conditional is the value of the evaluated branch.
+
+<P>
+The predicate must have static type <TT>Bool</TT>.  The branches may have any static types.
+To specify the static type of the conditional, we define an operation <IMG
+ WIDTH="16" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$\sqcup$">
+(pronounced ``join'') on types as follows.  Let <TT>A,B,D</TT> be any types other than <TT>SELF_TYPE</TT>.  The <EM>least type</EM> of a set of types means the least element
+with respect to the conformance relation <IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$\leq$">.
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{rcl}
+\tt A \sqcup B & = & \tt\mbox {\rm the least type\ } C \mbox {\rm\ such that\ }
+	 A \leq C \mbox {\rm\ and } B \leq C \\
+\tt A \sqcup A & = & \tt A                     \hbox{\hspace*{2em}\hspace*{2em}(idempotent)} \\
+\tt A \sqcup B & = & \tt B \sqcup A            \hbox{\hspace*{2em}\ (commutative)} \\
+\tt {\tt SELF\_TYPE}_D \sqcup A & = & \tt D \sqcup A \\
+\end{array}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="484" HEIGHT="93" BORDER="0"
+ SRC="img23.png"
+ ALT="\begin{displaymath}
+\begin{array}{rcl}
+\tt A \sqcup B &amp; = &amp; \tt\mbox {\rm the le...
+...\tt SELF\_TYPE}_D \sqcup A &amp; = &amp; \tt D \sqcup A \\
+\end{array}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+Let <TT>T</TT> and <TT>F</TT> be the static types of the branches of the conditional.
+Then the static type of the conditional is <!-- MATH
+ $\tt T \sqcup F$
+ -->
+<IMG
+ WIDTH="42" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img24.png"
+ ALT="$\tt T \sqcup F$">.  (think: Walk
+towards <TT>Object</TT> from each of <TT>T</TT> and <TT>F</TT> until the paths meet.)
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

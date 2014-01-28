@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Class definitions</TITLE>
+<META NAME="description" CONTENT="Class definitions">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node48.html">
+<LINK REL="previous" HREF="node46.html">
+<LINK REL="up" HREF="node44.html">
+<LINK REL="next" HREF="node48.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html687"
+  HREF="node48.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html683"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html677"
+  HREF="node46.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html685"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html688"
+  HREF="node48.html">Operational Rules</A>
+<B> Up:</B> <A NAME="tex2html684"
+  HREF="node44.html">Operational Semantics</A>
+<B> Previous:</B> <A NAME="tex2html678"
+  HREF="node46.html">Syntax for Cool Objects</A>
+ &nbsp; <B>  <A NAME="tex2html686"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000143000000000000000"></A>
+<A NAME="classdefs"></A>
+<BR>
+Class definitions
+</H2>
+In the rules presented in the next section, we need a way to refer to
+the definitions of attributes and methods for classes. 
+Suppose we have the following Cool class
+definition:
+<PRE>
+   class B {
+      s : String &lt;- "Hello";
+      g (y:String) : Int {
+         y.concat(s)
+      };
+      f (x:Int) : Int {
+         x+1
+      };
+   };
+
+   class A inherits B {
+      a : Int;
+      b : B &lt;- new B;
+      f(x:Int) : Int {
+         x+a
+      };
+   };
+</PRE>
+
+<P>
+Two mappings, called <EM>class</EM> and <EM>implementation</EM>, are associated 
+with class definitions.  The <EM>class</EM> mapping is
+used to get the attributes, as well as their types and initializations, of a
+particular class:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+class(A) = (s : String \leftarrow \mbox {\tt "}Hello \mbox {\tt "},\ a : Int
+\leftarrow 0,\ b : B \leftarrow new\ B)
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="489" HEIGHT="31" BORDER="0"
+ SRC="img145.png"
+ ALT="\begin{displaymath}
+class(A) = (s : String \leftarrow \mbox {\tt ''}Hello \mbox {\tt ''},\ a : Int
+\leftarrow 0,\ b : B \leftarrow new\ B)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Note that the information for class <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img45.png"
+ ALT="$A$"> contains everything that it
+inherited from class <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img146.png"
+ ALT="$B$">, as well as its own definitions. If <IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img146.png"
+ ALT="$B$"> had
+inherited other attributes, those attributes would also appear in the information
+for <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img45.png"
+ ALT="$A$">. The attributes are listed in the order they are inherited
+and then in source order:
+all the attributes from the greatest ancestor are listed first in the
+order in which they textually appear, then the attributes of the next greatest
+ancestor, and so on, on down to the attributes defined in the particular class.
+We rely on this order in describing how new objects are initialized.
+
+<P>
+The general form of a class mapping is:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+class(X) = (a_1:T_1\leftarrow e_1,\ \ldots,\ a_n:T_n\leftarrow e_n)
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="341" HEIGHT="31" BORDER="0"
+ SRC="img147.png"
+ ALT="\begin{displaymath}
+class(X) = (a_1:T_1\leftarrow e_1,\ \ldots,\ a_n:T_n\leftarrow e_n)
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+Note that every attribute has an initializing expression, even if the
+Cool program does not specify one for each attribute. The default
+initialization for a variable or attribute is the <EM>default</EM> of
+its type.  The default of <TT>Int</TT> is 0, the default of <TT>String</TT> 
+is <!-- MATH
+ $\mbox {\tt "}\mbox {\tt "}$
+ -->
+<IMG
+ WIDTH="23" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img148.png"
+ ALT="$\mbox {\tt ''}\mbox {\tt ''}$">, the default of <TT>Bool</TT> is <TT>false</TT>, and the default
+of any other type is <TT>void</TT>.<A NAME="tex2html6"
+  HREF="footnode.html#foot1803"><SUP>5</SUP></A>The default of type <IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ T$"> is 
+written <IMG
+ WIDTH="29" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img149.png"
+ ALT="$D_T$">.
+
+<P>
+The implementation mapping gives information about the methods of
+a class. For the above example, <EM>implementation</EM> of A  is defined as
+follows:
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{rcl}
+	implementation(A,f) & = & (x, x+a) \\
+	implementation(A,g) & = & (y, y.concat(s))
+\end{array}
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="328" HEIGHT="50" BORDER="0"
+ SRC="img150.png"
+ ALT="\begin{displaymath}
+\begin{array}{rcl}
+implementation(A,f) &amp; = &amp; (x, x+a) \\
+implementation(A,g) &amp; = &amp; (y, y.concat(s))
+\end{array}\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+
+<P>
+In general, for a class <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img141.png"
+ ALT="$X$"> and a method <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img151.png"
+ ALT="$m$">,
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\mbox{\em implementation}(X,m) = (x_1, x_2, \ldots, x_n, e_{body})
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="347" HEIGHT="32" BORDER="0"
+ SRC="img152.png"
+ ALT="\begin{displaymath}
+\mbox{\em implementation}(X,m) = (x_1, x_2, \ldots, x_n, e_{body})
+\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+specifies that method <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img151.png"
+ ALT="$m$"> when invoked from class <IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img141.png"
+ ALT="$X$">, has formal
+parameters <!-- MATH
+ $x_1, \ldots, x_n$
+ -->
+<IMG
+ WIDTH="80" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img153.png"
+ ALT="$x_1, \ldots, x_n$">, and the body of the method is expression
+<IMG
+ WIDTH="40" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img154.png"
+ ALT="$e_{body}$">.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html687"
+  HREF="node48.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html683"
+  HREF="node44.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html677"
+  HREF="node46.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html685"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html688"
+  HREF="node48.html">Operational Rules</A>
+<B> Up:</B> <A NAME="tex2html684"
+  HREF="node44.html">Operational Semantics</A>
+<B> Previous:</B> <A NAME="tex2html678"
+  HREF="node46.html">Syntax for Cool Objects</A>
+ &nbsp; <B>  <A NAME="tex2html686"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

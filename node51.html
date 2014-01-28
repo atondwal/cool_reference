@@ -1,0 +1,648 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Cool Assembly Language </TITLE>
+<META NAME="description" CONTENT="Cool ASsembly Language">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node33.html">
+<LINK REL="previous" HREF="node26.html">
+<LINK REL="up" HREF="cool-manual.html">
+<LINK REL="next" HREF="node33.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html501"
+  HREF="node33.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html497"
+  HREF="cool-manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html491"
+  HREF="node31.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html499"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html698"
+  HREF="node49.html">Acknowledgements</A>
+<B> Up:</B> <A NAME="tex2html498"
+  HREF="cool-manual.html">The Cool Reference Manual<SUP>1</SUP></A>
+<B> Previous:</B> <A NAME="tex2html700"
+  HREF="node48.html">Operational Rules</A>
+ &nbsp; <B>  <A NAME="tex2html500"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION000100000000000000000"></A>
+<A NAME="sec-main"></A>
+<BR>
+Cool Assembly Language
+</H1>
+
+<P>
+Cool Assembly Language is a simplified RISC-style assembly language that
+is reminiscient of <a href="http://en.wikipedia.org/wiki/MIPS_architecture#MIPS_assembly_language">MIPS Assembly Language</a> crossed with
+<a href="http://en.wikipedia.org/wiki/X86_assembly_language">x86 Assembly
+Language</a>. It also features typing aspects that may remind one of
+<a href="http://en.wikipedia.org/wiki/Java_bytecode">Java Bytecode</a>. 
+
+<p>
+
+A Cool Assembly Language <b>program</b> is a list of <b>instructions</b>.
+Each instruction may be preceeded by any number of <b>labels</b>. Comments
+follow the standard Cool conventions. In addition, a semicolon <tt>;</tt>
+functions like a double dash <tt>--</tt> in that it marks the rest of that
+line as a comment. The Cool CPU is a <a
+href="http://en.wikipedia.org/wiki/RISC">load-store architecture</a> with
+eight 
+<a href="http://en.wikipedia.org/wiki/General_purpose_register">
+general purpose registers</a>
+and three special-purpose registers. For simplicity, a machine word 
+can hold either a 32-bit integer value or an entire raw string; regardless, all
+machine words have size one.
+
+<p>
+
+This document assumes that you already have some familiarity with assembly
+language, registers, and how CPUs operate. We first present a formal
+grammar and then explain the semantics. Only terms in <tt>typewriter
+font</tt> are part of the formal grammar. Text after &mdash; is a comment.   
+We use <tt><i>italics</i></tt> for non-terminals. 
+
+<P>
+
+<tt><i>register</i> ::= r0</tt> &mdash; general purpose register #0, often
+used as the <i>accumulator</i><br>
+<tt><i>register</i> ::= r1</tt> &mdash; general purpose register #1 <br>
+<tt><i>register</i> ::= r2</tt><br>
+<tt><i>register</i> ::= r3</tt><br>
+<tt><i>register</i> ::= r4</tt><br>
+<tt><i>register</i> ::= r5</tt><br>
+<tt><i>register</i> ::= r6</tt><br>
+<tt><i>register</i> ::= r7</tt><br>
+<tt><i>register</i> ::= sp</tt> &mdash; stack pointer register<br> 
+<tt><i>register</i> ::= fp</tt> &mdash; frame pointer register<br> 
+<tt><i>register</i> ::= ra</tt> &mdash; return address register<br>
+
+<p>
+
+<tt><i>instruction</i> ::= li  <i>register</i> &lt;- <i>integer</i></tt> &mdash; load immediate <br>
+<tt><i>instruction</i> ::= mov <i>register</i> &lt;- <i>register</i></tt> &mdash; register-to-register copy <br>
+<tt><i>instruction</i> ::= add <i>register</i> &lt;- <i>register</i> <i>register</i></tt><br>
+<tt><i>instruction</i> ::= sub <i>register</i> &lt;- <i>register</i> <i>register</i></tt><br>
+<tt><i>instruction</i> ::= mul <i>register</i> &lt;- <i>register</i> <i>register</i></tt><br>
+<tt><i>instruction</i> ::= div <i>register</i> &lt;- <i>register</i> <i>register</i></tt><br>
+
+<p>
+
+<tt><i>instruction</i> ::= jmp <i>label</i> </tt> &mdash; unconditional branch<br>
+<tt><i>instruction</i> ::= bz <i>register</i> <i>label</i> </tt> &mdash; branch if equal to zero <br>
+<tt><i>instruction</i> ::= bnz <i>register</i> <i>label</i> </tt> &mdash; branch if not zero <br>
+<tt><i>instruction</i> ::= beq <i>register</i> <i>register</i> <i>label</i> </tt> &mdash; branch if equal <br>
+<tt><i>instruction</i> ::= blt <i>register</i> <i>register</i> <i>label</i> </tt> &mdash; branch if less than <br>
+<tt><i>instruction</i> ::= ble <i>register</i> <i>register</i> <i>label</i> </tt> &mdash; branch if less than or equal to <br>
+<tt><i>instruction</i> ::= call <i>label</i> </tt> &mdash; direct function call<br>
+<tt><i>instruction</i> ::= call <i>register</i> </tt> &mdash; register-indirect function call<br>
+<tt><i>instruction</i> ::= return </tt> &mdash; function return<br>
+
+<p>
+
+<tt><i>instruction</i> ::= push <i>register</i> </tt> &mdash; push a value on the stack<br>
+<tt><i>instruction</i> ::= pop <i>register</i> </tt> &mdash; push a value off the stack<br>
+<tt><i>instruction</i> ::= ld <i>register</i> &lt;- <i>register</i> [ <i>integer</i> ] </tt> &mdash; load a value from memory <br>
+<tt><i>instruction</i> ::= st <i>register</i> [ <i>integer</i> ] &lt;- <i>register</i> </tt> &mdash; store a value into memory <br>
+<tt><i>instruction</i> ::= la <i>register</i> &lt;- <i>label</i> </tt>
+&mdash; load an address into a register <br>
+
+<p>
+
+<tt><i>instruction</i> ::= alloc <i>register</i> <i>register</i> </tt> &mdash; allocate memory<br>
+<tt><i>instruction</i> ::= constant <i>integer</i> </tt> &mdash; lay out a compile-time constant in memory<br>
+<tt><i>instruction</i> ::= constant <i>raw_string</i> </tt> &mdash; lay out a compile-time constant in memory<br>
+<tt><i>instruction</i> ::= constant <i>label</i> </tt> &mdash; lay out a compile-time constant in memory<br>
+
+<p>
+
+<tt><i>instruction</i> ::= syscall <i>name</i> </tt> &mdash; request a service from the run-time system<br>
+
+<p>
+
+<tt><i>instruction</i> ::= debug <i>register</i> </tt> &mdash; debugging support: print register value <br>
+<tt><i>instruction</i> ::= trace </tt> &mdash; toggle tracing <br>
+
+<p>
+
+That's it, and the last two do not really count. We next describe the
+interpretation of these instructions in more detail. 
+<ul>
+  <li> Note that there are only eight general purpose registers available, 
+  as with the x86 instruction set. This is a departure from general RISC,
+  but it will give you more of a feel for the real world. Eight is
+  entirely sufficient for a stack-machine style of code generation --
+  the reference compiler only uses four of them. However, for advanced
+  optimizations such as register allocation, eight is quite small.
+
+  <li> <tt>li r1 &lt;- some_int</tt> overwrites <tt>r1</tt> with a the
+  value <tt>some_int</tt> 
+
+  <li> Note that in Cool Assembly Language, the arrows <tt>&lt;-</tt> are
+  required. They remind you that the destination is always on the left
+  and the operands are always on the right. 
+
+  <li> <tt>bz r1 label</tt> jumps to <tt>label</tt> if the value
+  of <tt>r1</tt> is zero. If not, control passes to the instruction
+  immediately following this one. 
+
+  <li> <tt>beq r1 r2 label</tt> jumps to <tt>label</tt> if the registers
+  <tt>r1</tt> and <tt>r2</tt> hold the same value. 
+
+  <li> <tt>ble r1 r2 label</tt> jumps to <tt>label</tt> if the value
+  of <tt>r1</tt> is less than or equal to the value of <tt>r2</tt>. For
+  integers this is standard. If <tt>r1</tt> and <tt>r2</tt> hold raw strings,
+  those strings are compared lexicographically. 
+
+  <li> <tt>call label</tt> stores the value of the next instruction (i.e.,
+  the value of the current program counter + 1) in the <tt>ra</tt> register
+  and then jumps to <tt>label</tt>. 
+
+  <li> <tt>call <i>register</i></tt> stores the value of the next
+  instruction (i.e., the value of the current program counter + 1) in the
+  <tt>ra</tt> register and then jumps to address stored in <i>register</i>.
+
+  <li> <tt>return</tt> jumps to the address stored in the <tt>ra</tt>
+  register. 
+
+  <li> Like the x86, the Cool CPU has explicit support for a stack. The
+  stack pointer starts at a very high value and <i>grows down</i>, toward
+  smaller numbers, as values are pushed on it. <tt>push r1</tt> takes the
+  value of <tt>r1</tt> and stores it at the address given by
+  the stack pointer <tt>sp</tt> and then decrements <tt>sp</tt>. <tt>pop
+  r1</tt> increments <tt>sp</tt> and then loads the value from the address
+  given by the stack pointer and copies that value into <tt>r1</tt>.  
+
+  <li> <tt>ld r1 &lt;- r2 [ offset ] </tt> computes an address by
+  adding <tt>offset</tt> to the value stored in <tt>r2</tt>. The contents
+  of that address are loaded and written to <tt>r1</tt>. 
+
+  <li> <tt>st r1 [ offset ] &lt;- r2 </tt> computes an address by
+  adding <tt>offset</tt> to the value stored in <tt>r1</tt>. The contents
+  of <tt>r2</tt> are stored into that address in memory. 
+
+  <li> <tt>la r1 label</tt> stores the address associated with
+  <tt>label</tt> into <tt>r1</tt>. 
+
+  <li> <tt>alloc r1 r2</tt> allocates new contiguous memory and stores
+  a pointer to it in <tt>r1</tt>. The number of words to be allocated is
+  given in <tt>r2</tt>. For example, if <tt>r2 = 5</tt> and <tt>alloc r1
+  r2</tt> assigns <tt>100</tt> into <tt>r1</tt>, then <tt>100</tt> through
+  <tt>104</tt> are now valid memory addresses. 
+
+  <li> <tt>constant whatever</tt> lays out <tt>whatever</tt> in program
+  memory before execution begins. 
+</ul>
+
+<p>
+
+The system calls available are: 
+
+<ul>
+  <li> <tt>syscall IO.in_string</tt> reads a raw string from the user,
+  allocates one word of memory, stores the raw string value in that memory
+  word, and then stores the address of that memory word in <tt>r1</tt>. 
+  Note that this yields a raw string value and not a Cool String object --
+  you'll have to do a bit more work to package it up into a full-fledged
+  Cool String object.
+
+  <li> <tt>syscall IO.in_int</tt> reads an integer from the user and
+  stores that integer value in <tt>r1</tt>. Note that this yields a raw
+  integer value and not a Cool Int object. 
+
+  <li> <tt>syscall IO.out_int</tt> reads the value in <tt>r1</tt> and
+  displays it as an integer to the user. Note that <tt>r1</tt> should
+  be a raw integer and not an entire large Cool Int object. 
+
+  <li> <tt>syscall IO.out_string</tt> reads the value in <tt>r1</tt>,
+  which should be an address that points to a machine word containing a
+  raw string. That raw string value is read from memory and displayed to
+  the user.  Note that <tt>r1</tt> should be a pointer to a raw string, and
+  not a large Cool String object. 
+
+  <li> <tt>syscall String.length</tt> reads the value in <tt>r1</tt>,
+  which should be an address that points to a machine word containing a
+  raw string. The length of that string value is computed and stored in 
+  <tt>r1</tt>. 
+
+  <li> <tt>syscall String.concat</tt> reads the values in <tt>r1</tt>
+  and <tt>r2</tt>, both of which should be addresses that point to machine
+  words that contain raw strings. A machine word for a new string is
+  allocated in memory. That new string contains the r1-string concatenated
+  with the r2-string. The register <tt>r1</tt> is overwritten so that
+  it contains a pointer to the newly-created raw string. 
+
+  <li> <tt>syscall String.substr</tt> reads the value in <tt>r0</tt>, 
+  which should be an address that points to a machine word containing
+  a raw string, as well as <tt>r1</tt> and <tt>r2</tt>, which are both raw
+  integer values. 
+    <ul>
+    <li> If r1&lt;0, r2&lt;0, or r1+r2&gt; the length of the
+  raw string, the system call stores 0 in <tt>r1</tt>. 
+    <li> Otherwise, a word is allocated in memory to hold a new raw string.
+    That new raw string holds the substring specified by the three arguments.
+    The address of that new raw string is stored in <tt>r1</tt>.
+    </ul>
+
+  <li> <tt>syscall exit</tt> terminates execution of the Cool Assembly
+  Language program. 
+
+</ul> 
+
+That system calls correspond directly to internal predefined methods on
+Cool Int and String objects. The key difference is that the system calls
+work on raw values (i.e., machine-level ints and strings) and not on Cool
+Objects. 
+
+
+<H1><A NAME="SECTION000100000000000000000"></A>
+<A NAME="sec-main"></A>
+<BR>
+Cool CPU Simulator
+</H1>
+
+The normal Cool compiler executable (e.g., <tt>cool.exe</tt>) also serves
+as a Cool CPU Simulator that executes Cool Assembly Language programs. Just
+pass <tt>file.cl-asm</tt> as an argument. 
+
+<p>
+
+The simulator performs the following actions: 
+<ol>
+  <li> Load the <tt>.cl-asm</tt> program into memory starting at address
+  1000. That is, if the first instruction in <tt>file.cl-asm</tt> is
+  <tt>mov r1, r2</tt>, then memory location 1000 will hold the instruction
+  <tt>mov r1, r2</tt>. If the second instruction in <tt>file.cl-asm</tt>
+  is <tt>constant 55</tt>, then memory location 1001 will hold the integer
+  55. 
+
+  <li> Set <tt>sp</tt> and <tt>fp</tt> to 2,000,000,000. Remember, the
+  stack starts at high addresses and grows down. 
+
+  <li> Search <tt>file.cl-asm</tt> for a label named <tt>start</tt>. 
+  The program counter is set to the address corresponding to that label.
+  For example, if <tt>start:</tt> occurs just before the third instruction
+  in <tt>file.cl-asm</tt>, then the program counter starts at 1002.
+
+  <li> Fetch the instruction pointed to by the program counter and
+  execute it. Unless the instruction specifies otherwise, the program
+  counter is incremented by one and the process repeats. 
+
+  <p> 
+
+  <li> When memory is allocated (e.g., by the <tt>alloc</tt> instruction),
+  addresses starting from at least 20,000 are used. 
+
+  <li> If more than 1000 <tt>call</tt> instructions are executed before any
+  <tt>return</tt> instructions are executed (i.e., if there are more than
+  1000 calls on the stack), the simulator terminates and prints a stack
+  overflow error. 
+
+</ol>
+
+The constant values listed above (1000; 20,000; 2,000,000,000) should not
+be counted on by your program, but are listed here to help with debugging. 
+Addresses near 1000 hold program instructions or compile-time data (i.e.,
+the code segment), addresses near 20,000 hold the heap, and addresses near
+two billion are on the stack.
+
+<H1><A NAME="SECTION000100000000000000000"></A>
+<A NAME="sec-main"></A>
+<BR>
+Debugging
+</H1>
+
+Debugging assembly language programs is notoriously difficult! While
+writing your code generator, you will spend quite a bit of time running
+generated Cool Assembly programs through the Cool CPU Simulator to see if
+they work. Often they will not. The Cool CPU Simulator has been designed
+with a large number of features to aid debugging. Basically none of these
+features are present in traditional assemblers, so you actually have a
+wealth of debugging support, but it will still be difficult.
+<ul>
+  <li> The simulator tracks a notion of time &mdash; the first instruction
+  is executed at time one, the second at time two, etc. More importantly:
+
+  <li> The simulator tracks, for each register and memory value, the
+  last time it was written to and the instruction that wrote to it. This can
+  be invaluable for tracking down memory corruption errors (e.g., finding
+  who is scribbling over memory) or otherwise determining why <tt>r1</tt>
+  holds an integer when you were sure it was supposed to hold a string.
+
+  <li> If you try to read from a register or a memory address that has
+  never been written to, the simulator will catch it and abort the program,
+  rather than continuing with a garbage value. 
+
+  <li> You can use the <tt>debug r1</tt> opcode to print out the current 
+  value of any register, as well as its last modification information. 
+
+  <li> The simulator keeps track of integers, strings, labels and code
+  segment addresses separately "under the hood". Thus if you 
+  execute <tt>la r5 my_label</tt> and then inspect the value of
+  <tt>r5</tt>, it will print as <tt>label my_label</tt> rather than
+  <tt>1056</tt> or whatever that address happens to be. This can be quite
+  handy for tracking down problems related to virtual function tables. 
+  Perhaps more importantly:
+
+  <li> The simulator uses this type information when simulating
+  instructions, and stops early if you provide the wrong type of argument.
+  For example, in <tt>st r1 [ 0 ] &lt;- r2</tt>, if <tt>r1</tt> is actually
+  a string or a pointer to the code segment, the simulator will raise an
+  error rather than silently corrupting your program. If <tt>r1</tt> is a
+  label or integer address, everything works fine. (If the string example
+  confuses you, remember that in Cool Assembly Language a raw string is a
+  one-word value that fits in a register, not a C-style pointer to a
+  buffer.)
+
+  <li> The simulator keeps a best effort stack trace. If you use the
+  <tt>call</tt> and <tt>return</tt> instructions, the simulator will keep 
+  track of which functions were called, and from where, and print that
+  back trace out if there is an error. 
+
+  <li> When dynamically allocating memory, the simulator actually allocates
+  more space than is needed and leaves the remainder empty. For example, if
+  you make two allocations of five words each, you may get back the
+  addresses 21,000 and 21,010. The range 21,005-21,009 remains unused, and
+  if you attempt to read from it, the simulator will abort. This can help
+  to prevent walking off the end of a buffer. 
+
+  <li> If you attempt to divide by zero or dereference a null pointer, the
+  simulator will catch it. 
+
+  <li> Finally, if you use the <tt>--trace-eval</tt> option to
+  <tt>cool.exe</tt> or execute the <tt>trace</tt> instruction (which
+  toggles the state of tracing), the simulator will print copious debugging
+  information before every time step, including the contents of all
+  registers and the current instruction.
+
+</ul> 
+
+<H1><A NAME="SECTION000100000000000000000"></A>
+<A NAME="sec-main"></A>
+<BR>
+Control Flow Graphs
+</H1>
+The Cool reference compiler also includes options to produce control
+flow graphic visualizations in the style of the <tt>dotty</tt> tool
+from the <a href="http://en.wikipedia.org/wiki/Graphviz">Graphviz</a>
+toolkit. 
+<p>
+Passing the <tt>--cfg</tt> option (with, for example, <tt>--opt --asm</tt>)
+produces <tt><i>method</i>.dot</tt>, which can then be inspected via a number of
+tools. For example, this program:
+<prE>
+class Main {
+  main():Object {
+    if (isvoid self) then  
+      (new IO).out_string("cannot happen!\n")
+    else 
+      (new IO).out_string("hello, world!\n")
+    fi 
+  };
+};
+</pre> 
+Might produce this control-flow graph: 
+<p> 
+<img src="cfg-example.png">
+<p> 
+While you do not have to match the reference compiler exactly, inspecting
+its control-flow graphs can help you debug your own code to create
+control-flow graphs.
+
+<H1><A NAME="SECTION000100000000000000000"></A>
+<A NAME="sec-main"></A>
+<BR>
+Performance Model
+</H1>
+
+As discussed above, the Cool reference compiler also includes a reference
+machine simulator to interpret Cool Assembly Language instructions. This
+simulator can be invoked directly by passing a <tt>.cl-asm</tt> file to
+<tt>cool.exe</tt>: 
+<pre>
+cool$ cat hello-world.cl
+class Main {
+  main():Object {
+    (new IO).out_string("hello, world!\n")
+  };
+};
+cool$ ./cool --asm hello-world.cl
+cool$ ./cool hello-world.cl-asm 
+hello, world!
+</pre> 
+The simulator can also give detailed performance information: 
+<pre> 
+cool$ ./cool --profile hello-world.cl-asm 
+hello, world!
+PROFILE:           instructions =        107 @    1 =>        107
+PROFILE:        pushes and pops =         29 @    1 =>         29
+PROFILE:             cache hits =         22 @    0 =>          0
+PROFILE:           cache misses =        570 @  100 =>      57000
+PROFILE:     branch predictions =          0 @    0 =>          0
+PROFILE:  branch mispredictions =         11 @   20 =>        220
+PROFILE:        multiplications =          0 @   10 =>          0
+PROFILE:              divisions =          0 @   40 =>          0
+PROFILE:           system calls =          2 @ 1000 =>       2000
+CYCLES: 59356
+</pre> 
+The execution time of a Cool Assembly Language program is measured in
+simulated <a href="http://en.wikipedia.org/wiki/CPU_cycle">instruction
+cycles</a>.  In general, each assembly instruction takes one cycle.  Some
+instructions, such as system calls or memory operation, can cost many more
+cycles. The total cycle cost of a program is the sum of all of its
+component cycle costs. 
+<p> 
+In modern architectures, <a
+href="http://en.wikipedia.org/wiki/Memory_hierarchy">memory hierarchy</a>
+effects (e.g., <a href="http://en.wikipedia.org/wiki/Cache">caching</a>) 
+and <a href="http://en.wikipedia.org/wiki/Branch_prediction">branch 
+prediction</a> are dominant factors in the execution speed of a program.
+To give you a flavor for what real-world code optimization is like,
+the Cool Simulator also simulates a cache and a branch predictor.  
+<p> 
+The Cool Simulator features a 64-word 
+<a
+href="http://en.wikipedia.org/wiki/Cache_algorithms#Least_Recently_Used">least-recently-used</a>
+<a
+href="http://en.wikipedia.org/wiki/CPU_cache#Associativity">fully
+associative</a> <a
+href="http://en.wikipedia.org/wiki/Von_Neumann_architecture">combined
+instruction and data</a> cache. It also uses a static
+<a
+href="http://en.wikipedia.org/wiki/Branch_predictor#Static_prediction">backward
+= taken, forward = not taken</a> branch prediction scheme. 
+<p>
+We now discuss each of the performance components in turn:
+<ol>
+<li> <b>instructions</b>. Each Cool Assembly Language instruction executed
+costs at least one cycle. This represents the time taken to fetch and
+decode the instruction, as well as to shepherd it through the pipeline. 
+Instructions such as <tt>li</tt>, <tt>mov</tt> and <tt>add</tt> take one
+cycle. 
+
+<li> <b>pushes and pops</b>. Such <tt>push</tt> and <tt>pop</tt> 
+involve both a load/store and also an add/sub, each costs an additional
+cycle (for a total of two). (<tt>push</tt> and <tt>pop</tt> can also incur
+cache miss penalties; see below.) 
+
+<li> <b>cache hits & misses</b>. In modern computers, the CPU executes much
+faster than main memory: hundreds of "normal" instructions can be executed
+in the time it takes to fetch one value from memory. To mitigate this
+problem, a small number of values are placed in expensive, high-speed
+memory near the CPU. This small, fast memory stores recently-used values
+and is known as a <b>cache</b>. The Cool Simulator features a 64-word
+fully-associated cache: the values associated with 64 addresses can be
+accessed rapidly. If a memory read or write accesses an address that is in
+the cache, the instruction completes immediately with no extra cost.
+If a memory read or write accesses an address that is not in the
+cache, it costs 100 cycles while that value is read in from main memory. 
+If there is no room in the cache to hold that new address's value, the 
+address that has been touched (read or written) least recently is evicted
+and the new address/value is put in its place. 
+Typical <a
+href="http://en.wikipedia.org/wiki/Cache_miss#Cache_misses">reasons for
+cache misses</a> include compulsory, capacity and conflict. 
+<p>
+Note that the cache and the cache miss penalty apply to every
+access to memory. This includes:
+<ul>
+  <li> Fetching the next instruction based on the program counter.
+  <li> <tt>push</tt>, <tt>pop</tt>
+  <li> <tt>ld</tt>, <tt>st</tt> 
+  <li> <tt>IO.in_string</tt>
+  <li> <tt>IO.out_string</tt>
+  <li> <tt>String.length</tt>
+  <li> <tt>String.concat</tt> (three times)
+  <li> <tt>String.substr</tt> (two times)
+</ul> 
+<p> 
+
+
+<li> <b>branch prediction & misprediction</b>. In a modern
+<a href="http://en.wikipedia.org/wiki/CPU_pipeline">pipelined CPU</a>, 
+the next instruction is fetched before the current instruction has
+completed. This means that the CPU needs to know the address of the next
+instruction as early as possible. For a conditional branch, that may be
+difficult: the CPU may have to wait until the comparison is complete to
+determine if the next instruction will be at <tt>pc+1</tt> or
+<tt>label</tt>. Modern CPUs optimistically "guess" or "predict" that a
+branch will go one way or the other and then rollback instructions if they
+are wrong. A correctly-predicted branch costs nothing; a mispredicted
+branch costs 20 cycles. The following instructions are related to this
+cost:
+<ul>
+  <li> <tt>jmp</tt> &mdash; always correctly predicted
+  <li> <tt>call label</tt> &mdash; always correctly predicted
+  <li> <tt>bz bnz beq blt ble</tt> &mdash; The Cool CPU Simulator uses the
+  following heuristic: if the address <tt>label</tt> is less than the
+  address of the current PC (i.e., if label's definition occurs
+  <i>before</i> the current PC in the assembly code), guess taken.
+  Otherwise, guess not taken. This heuristic works well in practice:
+  imagine a <tt>for</tt> loop that executes 10 times: the heuristic will be
+  right 90% of the time. 
+  <li> <tt>call reg</tt> &mdash; always mispredicted 
+  <li> <tt>return</tt> &mdash; always mispredicted 
+  </ul> 
+
+<li> <b>multiplication & division</b>. Integer multiplication and division
+take longer on most architectures than addition and subtraction. In the
+Cool Simulator, <tt>mul</tt> costs an extra 10 cycles and <tt>div</tt>
+costs an extra 40. 
+
+<li> <b>system calls</b>. A <a
+href="http://en.wikipedia.org/wiki/System_call">system call</a> involves
+trapping to the operating system, switching CPU protection contexts,
+putting the old process on the scheduling queue, handling the operation,
+rescheduling the new process, and switching CPU protection contexts again.
+System calls take forever. In the Cool Simulator, each <tt>syscall</tt>
+instruction takes 1000 extra cycles. 
+
+</ol> 
+
+This cost model involves realistic components but potentially unrealistic
+values (e.g., a modern CPU would have a much larger non-associative cache,
+and also a much larger cache miss cost). If you're interested in that sort
+of performance modeling, take a graduate class in computer architecture. 
+You should know that this CPU performance model is one of the most
+realistic that I've seen for a compiler optimization project in terms of
+the issues that it forces you to address. 
+
+<p> 
+
+The reference compiler includes a simple reference <a
+href="http://en.wikipedia.org/wiki/Peephole_optimization">peephole
+optimizer</a>, as well as a few optimizations backed by <a
+href="http://en.wikipedia.org/wiki/Data-flow_analysis">dataflow
+analyses</a> (liveness, reaching definitions, constant folding) 
+and <a href="http://en.wikipedia.org/wiki/Register_allocation">register
+allocation</a> 
+enabled via the <tt>--opt</tt> flag. You can use it to get an idea for
+how to get started (but note that we are evil and strip all comments from
+the optimized output).
+<pre> 
+yuki:~/src/cool$ ./cool --opt --asm hello-world.cl
+yuki:~/src/cool$ ./cool --profile hello-world.cl-asm 
+hello, world!
+PROFILE:           instructions =         79 @    1 =>         79
+PROFILE:        pushes and pops =         23 @    1 =>         23
+PROFILE:             cache hits =         15 @    0 =>          0
+PROFILE:           cache misses =        513 @  100 =>      51300
+PROFILE:     branch predictions =          2 @    0 =>          0
+PROFILE:  branch mispredictions =          7 @   20 =>        140
+PROFILE:        multiplications =          0 @   10 =>          0
+PROFILE:              divisions =          0 @   40 =>          0
+PROFILE:           system calls =          2 @ 1000 =>       2000
+CYCLES: 53542
+</pre>
+For the <tt>hello-world</tt> program, this optimizer reduces the cycle cost
+from 59356 to 53453 &mdash; a 10% improvement. 
+If you are writing an optimizer, you will want to do
+at least as well as the reference, averaged over many input programs.
+Notably, you'll probably want to implement much more than the 
+required dead code elimination optimization.
+
+
+
+
+
+
+
+
+
+
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

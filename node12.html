@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Methods</TITLE>
+<META NAME="description" CONTENT="Methods">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node13.html">
+<LINK REL="previous" HREF="node10.html">
+<LINK REL="up" HREF="cool-manual.html">
+<LINK REL="next" HREF="node13.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html248"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html244"
+  HREF="cool-manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html238"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html246"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html249"
+  HREF="node13.html">Expressions</A>
+<B> Up:</B> <A NAME="tex2html245"
+  HREF="cool-manual.html">The Cool Reference Manual<SUP>1</SUP></A>
+<B> Previous:</B> <A NAME="tex2html239"
+  HREF="node11.html">Void</A>
+ &nbsp; <B>  <A NAME="tex2html247"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00070000000000000000"></A>
+<A NAME="sec-method"></A>
+<BR>
+Methods
+</H1>
+
+<P>
+A method definition has the form
+<PRE>
+&lt;id&gt;(&lt;id&gt; : &lt;type&gt;,...,&lt;id&gt; : &lt;type&gt;): &lt;type&gt; { &lt;expr&gt; };
+</PRE>
+There may be zero or more formal parameters.  The identifiers used
+in the formal parameter list must be distinct.  The type of the
+method body must conform to the declared return type.  When a method is
+invoked, the formal parameters are bound to the actual arguments
+and the expression is evaluated; the resulting value is the meaning
+of the method invocation.  A formal parameter
+hides any definition of an attribute of the same name.  
+
+<P>
+To ensure type safety, there are restrictions on the redefinition of
+inherited methods.  The rule is simple: If a class <TT>C</TT> inherits a
+method <TT>f</TT> from an ancestor class <TT>P</TT>, then <TT>C</TT> may
+override the inherited definition of <TT>f</TT> provided the number of
+arguments, the types of the formal parameters, and the return type are
+exactly the same in both definitions.
+
+<P>
+To see why some restriction is necessary on the redefinition of inherited
+methods, consider the following example:
+<PRE>
+class P {
+   f(): Int { 1 };
+};
+
+class C inherits P {
+   f(): String { "1" };
+};
+</PRE>
+Let <TT>p</TT> be an object with dynamic type <TT>P</TT>.
+Then
+<PRE>
+p.f() + 1
+</PRE>
+is a well-formed expression with value 2.  However, we cannot
+substitute a value of type <TT>C</TT> for <TT>p</TT>, as it would result in
+adding a string to a number.  Thus, if methods can be 
+redefined arbitrarily, then subclasses may not simply extend the behavior of
+their parents, and much of the usefulness of inheritance, as well
+as type safety, is lost.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html248"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html244"
+  HREF="cool-manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html238"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html246"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html249"
+  HREF="node13.html">Expressions</A>
+<B> Up:</B> <A NAME="tex2html245"
+  HREF="cool-manual.html">The Cool Reference Manual<SUP>1</SUP></A>
+<B> Previous:</B> <A NAME="tex2html239"
+  HREF="node11.html">Void</A>
+ &nbsp; <B>  <A NAME="tex2html247"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

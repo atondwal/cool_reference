@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Arithmetic and Comparison Operations</TITLE>
+<META NAME="description" CONTENT="Arithmetic and Comparison Operations">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="previous" HREF="node24.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node26.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html414"
+  HREF="node26.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html410"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html406"
+  HREF="node24.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html412"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html415"
+  HREF="node26.html">Basic Classes</A>
+<B> Up:</B> <A NAME="tex2html411"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html407"
+  HREF="node24.html">Isvoid</A>
+ &nbsp; <B>  <A NAME="tex2html413"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION000812000000000000000">
+Arithmetic and Comparison Operations</A>
+</H2>
+
+<h4>Binary Arithmetic</h4>
+
+<P>
+Cool has four binary arithmetic operations: <TT>+, -, *, /</TT>.
+The syntax is
+<PRE>
+expr1 &lt;op&gt; expr2
+</PRE>
+To evaluate such an expression first <TT>expr1</TT> is evaluated and
+then <TT>expr2</TT>.  The result of the operation is the result of the
+expression.
+
+<P>
+The static types of the two sub-expressions must be <TT>Int</TT>.
+The static type of the entire arithmetic expression is also <TT>Int</TT>.
+Cool has only integer division.
+
+<h4>Binary Relations</h4>
+
+<P>
+Cool has three comparison operations: <TT>&lt;, &lt;=, =</TT>. These
+comparisons may be applied to subexpressions of any types, subject to the
+following rules:
+<ul>
+  <li> <tt>expr1</tt> is an <tt>Int</tt> if and only if <tt>expr2</tt> is an <tT>Int</tt> 
+  <li> <tt>expr1</tt> is a <tt>String</tt> if and only if <tt>expr2</tt> is a <tT>String</tt> 
+  <li> <tt>expr1</tt> is a <tt>Bool</tt> if and only if <tt>expr2</tt> is a <tT>Bool</tt> 
+  <li> Otherwise, <tt>expr1</tt> may be of any type (including
+  <tt>SELF_TYPE</tt>) and <tt>expr2</tt> may be of any (possibly different)
+  type (including <tt>SELF_TYPE</tt>). 
+</ul>
+In all cases, the result of the comparison is a <tt>Bool</tt>. See 
+<a href="node43.html">the type checking rules</a> for more information. 
+<P>
+In principle, there is nothing wrong with permitting equality tests
+between, for example, <TT>Bool</TT> and <TT>Int</TT>.  However, such a test
+must always be false and almost certainly indicates some sort of
+programming error. The Cool type checking rules catch such errors at
+compile-time instead of waiting until runtime. 
+<p> 
+On non-basic objects, equality is decided via pointer equality (i.e.,
+whether the memory addresses of the objects are the same). Equality is
+defined for <TT>void</TT>: two <tt>void</tt> values are equal and
+a <tt>void</tt> value is never equal to a non-<tt>void</tt> value. See <a
+href="node48.html">the operational semantics rules</a> for more
+informaiton. 
+
+<h4>Unary Expressions</h4>
+
+<P>
+Finally, there is one unary arithmetic and one unary logical operator.
+<ul>
+<li>
+The expression <TT>~ &lt;expr&gt;</TT> is the integer complement of <TT>&lt;expr&gt;</TT>.
+The subexpression <TT>&lt;expr&gt;</TT> must have static type <TT>Int</TT> and the entire
+expression has static type <TT>Int</TT>.
+<li>
+The expression <TT>not &lt;expr&gt;</TT> is the boolean complement of <TT>&lt;expr&gt;</TT>.
+The subexpression <TT>&lt;expr&gt;</TT> must have static type <TT>Bool</TT> and the entire
+expression has static type <TT>Bool</TT>.
+</ul> 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html414"
+  HREF="node26.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html410"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html406"
+  HREF="node24.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html412"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html415"
+  HREF="node26.html">Basic Classes</A>
+<B> Up:</B> <A NAME="tex2html411"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html407"
+  HREF="node24.html">Isvoid</A>
+ &nbsp; <B>  <A NAME="tex2html413"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

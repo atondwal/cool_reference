@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Types</TITLE>
+<META NAME="description" CONTENT="Types">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node10.html">
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="cool-manual.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html189"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html185"
+  HREF="cool-manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html179"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html187"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html190"
+  HREF="node8.html">SELF_TYPE</A>
+<B> Up:</B> <A NAME="tex2html186"
+  HREF="cool-manual.html">The Cool Reference Manual<SUP>1</SUP></A>
+<B> Previous:</B> <A NAME="tex2html180"
+  HREF="node6.html">Inheritance</A>
+ &nbsp; <B>  <A NAME="tex2html188"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00050000000000000000">
+Types</A>
+</H1>
+
+<P>
+In Cool, every class name is also a type.  In addition, there is a
+type <TT>SELF_TYPE</TT> that can be used in special circumstances.
+
+<P>
+A <EM>type declaration</EM> has the form <TT>x:C</TT>, where <TT>x</TT> is a variable
+and <TT>C</TT> is a type.  Every variable must have a type declaration at the
+point it is introduced, whether that is in a <TT>let</TT>, <TT>case</TT>, or as
+the formal parameter of a method.  The types of all attributes must also be
+declared.
+
+<P>
+The basic type rule in Cool is that if a method or variable expects a value
+of type <TT>P</TT>, then any value of type <TT>C</TT> may be used instead, provided
+that <TT>P</TT> is an ancestor of <TT>C</TT> in the class hierarchy.  In other
+words, if <TT>C</TT> inherits from <TT>P</TT>, either directly or indirectly, then
+a <TT>C</TT> can be used wherever a <TT>P</TT> would suffice.
+
+<P>
+When an object of class <TT>C</TT> may be used in place of an object of class
+<TT>P</TT>, we say that <TT>C</TT> <EM>conforms</EM> to <TT>P</TT> or that
+<IMG
+ WIDTH="46" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$\tt C \leq P$"> (think: <TT>C</TT> is lower down in the inheritance tree). 
+As discussed above,
+conformance is defined in terms of the inheritance graph.
+<P>
+<DIV><A NAME="def-conforms"><B>Definition  4.1</B></A> (Conformance)  &nbsp; Let <IMG
+ WIDTH="35" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$\tt A,C,$"> and <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$\tt P$"> be types.
+
+<UL>
+<LI><IMG
+ WIDTH="46" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$\tt A \leq A$"> for all types <TT>A</TT>
+
+<P>
+</LI>
+<LI>if <TT>C</TT> inherits from <TT>P</TT>, then <IMG
+ WIDTH="46" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$\tt C \leq P$">
+
+<P>
+</LI>
+<LI>if <IMG
+ WIDTH="46" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$\tt A \leq C$"> and <IMG
+ WIDTH="46" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$\tt C \leq P$"> then <IMG
+ WIDTH="46" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.png"
+ ALT="$\tt A \leq P$">
+
+<P>
+</LI>
+</UL></DIV><P></P>
+
+<P>
+Because <TT>Object</TT> is the root of the class hierarchy, it follows that
+<!-- MATH
+ $\tt A \leq Object$
+ -->
+<IMG
+ WIDTH="92" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.png"
+ ALT="$\tt A \leq Object$"> for all types <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$\tt A$">.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html191"
+  HREF="node8.html">SELF_TYPE</A>
+<LI><A NAME="tex2html192"
+  HREF="node9.html">Type Checking</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html189"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html185"
+  HREF="cool-manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html179"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html187"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html190"
+  HREF="node8.html">SELF_TYPE</A>
+<B> Up:</B> <A NAME="tex2html186"
+  HREF="cool-manual.html">The Cool Reference Manual<SUP>1</SUP></A>
+<B> Previous:</B> <A NAME="tex2html180"
+  HREF="node6.html">Inheritance</A>
+ &nbsp; <B>  <A NAME="tex2html188"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

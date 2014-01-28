@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Dispatch</TITLE>
+<META NAME="description" CONTENT="Dispatch">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node18.html">
+<LINK REL="previous" HREF="node16.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node18.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html320"
+  HREF="node18.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html316"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html310"
+  HREF="node16.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html318"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html321"
+  HREF="node18.html">Conditionals</A>
+<B> Up:</B> <A NAME="tex2html317"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html311"
+  HREF="node16.html">Assignment</A>
+ &nbsp; <B>  <A NAME="tex2html319"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00084000000000000000">
+Dispatch</A>
+</H2>
+
+<P>
+There are three forms of dispatch (i.e. method call) in Cool. 
+The three forms differ only in how the called method is selected.
+The most commonly used form of dispatch is
+<PRE>
+&lt;expr&gt;.&lt;id&gt;(&lt;expr&gt;,...,&lt;expr&gt;)
+</PRE>
+Consider the dispatch <!-- MATH
+ $\tt e_0.f(e_1,\ldots,e_n)$
+ -->
+<IMG
+ WIDTH="121" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img16.png"
+ ALT="$\tt e_0.f(e_1,\ldots,e_n)$">.
+To evaluate this expression, the arguments are evaluated in left-to-right
+order, from <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img17.png"
+ ALT="$\tt e_1$"> to <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="$\tt e_n$">.  Next, <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$\tt e_0$"> is evaluated and
+its class <TT>C</TT> noted (if <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$\tt e_0$"> is <TT>void</TT> a runtime error is
+generated).  Finally, the method <TT>f</TT> in class <TT>C</TT>
+is invoked, with the value of <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$\tt e_0$"> bound to <TT>self</TT> in the body of
+<TT>f</TT> and the actual arguments bound to the formals as usual.
+The value of the expression is the value returned by the method invocation.
+
+<P>
+Type checking a dispatch involves several steps.  Assume <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$\tt e_0$"> has
+static type <TT>A</TT>.  (Recall that this type is not necessarily the
+same as the type <TT>C</TT> above.  <TT>A</TT> is the type inferred by the
+type checker; <TT>C</TT> is the class of the object computed at runtime,
+which is potentially any subclass of <TT>A</TT>.)  Class <TT>A</TT> must
+have a method <TT>f</TT>, the dispatch and the definition of <TT>f</TT> must
+have the same number of arguments, and the static type of the <IMG
+ WIDTH="10" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img20.png"
+ ALT="$i$">th actual
+parameter must conform to the declared type of the <IMG
+ WIDTH="10" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img20.png"
+ ALT="$i$">th formal
+parameter.
+
+<P>
+If <TT>f</TT> has return type <TT>B</TT> and <TT>B</TT> is a class name, then
+the static type of the dispatch is <TT>B</TT>.  Otherwise, if <TT>f</TT> has
+return type <TT>SELF_TYPE</TT>, then the static type of the dispatch is <TT>A</TT>. To see
+why this is sound, note that the <TT>self</TT> parameter of the method <TT>f</TT>
+conforms to type <TT>A</TT>.  Therefore, because <TT>f</TT> returns <TT>SELF_TYPE</TT>,
+we can infer that the result must also conform to <TT>A</TT>.  Inferring
+accurate static types for dispatch expressions is what justifies including
+<TT>SELF_TYPE</TT> in the Cool type system.
+
+<P>
+The other forms of dispatch are:
+<PRE>
+&lt;id&gt;(&lt;expr&gt;,...,&lt;expr&gt;)
+&lt;expr&gt;@&lt;type&gt;.id(&lt;expr&gt;,...,&lt;expr&gt;)
+</PRE>
+The first form is shorthand for <TT>self.&lt;id&gt;(&lt;expr&gt;,...,&lt;expr&gt;)</TT>.
+
+<P>
+The second form  provides a way of accessing methods of parent classes 
+that have been hidden by redefinitions in child classes.
+Instead of using the class of the leftmost expression
+to determine the method, the method of the class explicitly specified is
+used.  For example, <TT>e@B.f()</TT> invokes the method <TT>f</TT> in
+class <TT>B</TT> on the object that is the value of <TT>e</TT>.  For this form
+of dispatch, the static type to the left of ``@''must conform to the
+type specified to the right of ``@''.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html320"
+  HREF="node18.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html316"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html310"
+  HREF="node16.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html318"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html321"
+  HREF="node18.html">Conditionals</A>
+<B> Up:</B> <A NAME="tex2html317"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html311"
+  HREF="node16.html">Assignment</A>
+ &nbsp; <B>  <A NAME="tex2html319"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

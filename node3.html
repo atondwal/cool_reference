@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Getting Started</TITLE>
+<META NAME="description" CONTENT="Getting Started">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="cool-manual.html">
+<LINK REL="next" HREF="node4.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html141"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html137"
+  HREF="cool-manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html131"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html139"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html142"
+  HREF="node4.html">Classes</A>
+<B> Up:</B> <A NAME="tex2html138"
+  HREF="cool-manual.html">The Cool Reference Manual<SUP>1</SUP></A>
+<B> Previous:</B> <A NAME="tex2html132"
+  HREF="node2.html">Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html140"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00030000000000000000"></A>
+<A NAME="sec-start"></A>
+<BR>
+Getting Started
+</H1>
+
+<P>
+
+Cool source files have extension <tt>.cl</tt>. The programming projects 
+will also define other file formats related to Cool but they are not
+officially part of the language specification. 
+
+<p> 
+
+You can obtain the Cool interpreter <tt>cool</tt> from the course
+website. To interpret (i.e., run) a Cool program:
+<pre>
+cool file.cl 
+</pre> 
+
+This official version is often called the <i>reference implementation</i>
+and you are encouraged to use it as a point of comparison when you are
+designing and testing parts of the course project. 
+
+<p>
+
+The reference Cool interpreter has been specifically structured so that you
+can run the various stages (i.e., lexing, parsing, type-checking and
+interpreting) independently. This power is useful for PA2 through PA5. 
+
+<p> 
+
+The Cool interpreter has an number of command-line options: 
+<p> 
+<table border=1> 
+<tr>
+  <td> <tt>--lex</tt> </td> 
+  <td> This option causes Cool to stop after lexing and
+  produce a new file, <tt>file.cl-lex</tt>, which contains the lexed tokens
+  in a simple interchange format. Handy for PA2. 
+</tr> 
+<tr>
+  <td> <tt>--unlex</tt> </td> 
+  <td> This option causes Cool to undo lexing and produce <tt>file.cl2</tt>
+  (a Cool source file) from the lexed tokens. This is usually used as a
+  debugging aid for PA2 by feeding Cool a <tt>file.cl-lex</tt> file
+  produced by <i>your lexer</i> from <tt>file.cl</tt> and then comparing
+  <tt>file.cl2</tt> to the original <tt>file.cl</tt>. 
+</tr> 
+<tr>
+  <td> <tt>--parse</tt> </td> 
+  <td> This option causes Cool to stop after parsing and produce a new
+  file, <tt>file.cl-ast</tt>, which contains the abstract syntax tree in a
+  simple interchange format. Handy for PA3. 
+</tr> 
+<tr>
+  <td> <tt>--unparse</tt> </td> 
+  <td> This option causes Cool to undo parsing and produce <tt>file.cl3</tt>
+  (a Cool source file) from the abstract syntax tree. This is usually used
+  as a debugging aid for PA3 by feeding Cool a <tt>file.cl-ast</tt> file
+  produced by <i>your parser</i> from <tt>file.cl</tt> and then comparing
+  <tt>file.cl3</tt> to the original <tt>file.cl</tt>. 
+</tr> 
+<tr>
+  <td> <tt>--type</tt> </td> 
+  <td> This option causes Cool to stop after type checking and semantic
+  analysis and produce a new file, <tt>file.cl-type</tt>, which contains
+  the <a href="node47.html">class mapping and implementation mapping</a> in
+  a simple interchange format. Handy for PA4. 
+</tr> 
+<tr>
+  <td> <tt>--class-map</tt> </td> 
+  <td> This option causes Cool to stop after type checking and semantic
+  analysis and produce a new file, <tt>file.cl-type</tt>, which contains
+  the <a href="node47.html">class mapping</a> only in
+  a simple interchange format. Handy for the PA4 Checkpoint (WA4). 
+</tr> 
+<tr>
+  <td> <tt>--imp-map</tt> </td> 
+  <td> This option causes Cool to stop after type checking and semantic
+  analysis and produce a new file, <tt>file.cl-type</tt>, which contains
+  the <a href="node47.html">implementation mapping</a> only in
+  a simple interchange format. Handy for the rest of PA4. 
+</tr> 
+
+<tr>
+  <td> <tt>--out <i>newname</i></tt> </td> 
+  <td> Causes Cool to produce <tt><i>newname</i>.cl</tt> (or
+  <tt>.cl-ast</tt>, or whatever) instead of <tt>file.cl</tt>. 
+</tr> 
+
+</table> 
+<p>
+
+<p>
+
+You may encounter other University uses of Cool on the web that mention
+programs such as <tt>coolc</tt> and <tt>spim</tt>. Those tool are used 
+for a course on compilers; this is a course on interpreters. We will not
+use <tt>coolc</tt> or <tt>spim</tt>. In addition, we use a slightly
+different version of the Cool language specification, so comparing results
+against external tools may not be helpful. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html141"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html137"
+  HREF="cool-manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html131"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html139"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html142"
+  HREF="node4.html">Classes</A>
+<B> Up:</B> <A NAME="tex2html138"
+  HREF="cool-manual.html">The Cool Reference Manual<SUP>1</SUP></A>
+<B> Previous:</B> <A NAME="tex2html132"
+  HREF="node2.html">Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html140"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

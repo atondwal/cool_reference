@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Let</TITLE>
+<META NAME="description" CONTENT="Let">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node22.html">
+<LINK REL="previous" HREF="node20.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node22.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html368"
+  HREF="node22.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html364"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html358"
+  HREF="node20.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html366"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html369"
+  HREF="node22.html">Case</A>
+<B> Up:</B> <A NAME="tex2html365"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html359"
+  HREF="node20.html">Blocks</A>
+ &nbsp; <B>  <A NAME="tex2html367"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00088000000000000000">
+Let</A>
+</H2>
+A let expression has the form
+<PRE>
+let &lt;id1&gt; : &lt;type1&gt; [ &lt;- &lt;expr1&gt; ], ..., &lt;idn&gt; : &lt;typen&gt; [ &lt;- &lt;exprn&gt; ] in &lt;expr&gt;
+</PRE>
+
+<P>
+The optional expressions are <EM>initialization</EM>; the other
+expression is the <EM>body</EM>.
+A <TT>let</TT> is evaluated as follows.
+First <TT>&lt;expr1&gt;</TT> is evaluated and the result bound to <TT>&lt;id1&gt;</TT>.
+Then <TT>&lt;expr2&gt;</TT> is evaluated and the result bound to <TT>&lt;id2&gt;</TT>,
+and so on, until all of the variables in the
+<TT>let</TT> are initialized.  (If the initialization of <TT>&lt;idk&gt;</TT> is
+omitted, the default initialization of type <TT>&lt;typek&gt;</TT> is used.)
+Next the body of the <TT>let</TT> is evaluated.
+The value of the <TT>let</TT> is the value of the body.
+
+<P>
+The <TT>let</TT> identifiers <TT>&lt;id1&gt;,...,&lt;idn&gt;</TT> are visible in the
+body of the <TT>let</TT>.  Furthermore, identifiers <TT>&lt;id1&gt;,...,&lt;idk&gt;</TT> are
+visible in the initialization of <TT>&lt;idm&gt;</TT> for any <TT>m &gt; k</TT>.
+
+<P>
+If an identifier is defined multiple times in a <TT>let</TT>, later
+bindings hide earlier ones.  Identifiers introduced by <TT>let</TT> also
+hide any definitions for the same names in containing scopes.
+Every <TT>let</TT> expression must introduce at least one identifier.
+
+<P>
+The type of an initialization expression must conform to
+the declared type of the identifier.  The type of <TT>let</TT> is the type
+of the body.
+
+<P>
+The <TT>&lt;expr&gt;</TT> of a <TT>let</TT> extends as far (encompasses as many tokens)
+as the grammar allows.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html368"
+  HREF="node22.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html364"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html358"
+  HREF="node20.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html366"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html369"
+  HREF="node22.html">Case</A>
+<B> Up:</B> <A NAME="tex2html365"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html359"
+  HREF="node20.html">Blocks</A>
+ &nbsp; <B>  <A NAME="tex2html367"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Object</TITLE>
+<META NAME="description" CONTENT="Object">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node28.html">
+<LINK REL="previous" HREF="node26.html">
+<LINK REL="up" HREF="node26.html">
+<LINK REL="next" HREF="node28.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html443"
+  HREF="node28.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html439"
+  HREF="node26.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html433"
+  HREF="node26.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html441"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html444"
+  HREF="node28.html">IO</A>
+<B> Up:</B> <A NAME="tex2html440"
+  HREF="node26.html">Basic Classes</A>
+<B> Previous:</B> <A NAME="tex2html434"
+  HREF="node26.html">Basic Classes</A>
+ &nbsp; <B>  <A NAME="tex2html442"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00091000000000000000">
+Object</A>
+</H2>
+The <TT>Object</TT> class is the root of the inheritance graph. Even the
+other basic classes (e.g., IO and Int) inherit from Object (and thus
+inherit the three methods listed below). 
+
+It is an error to redefine <tT>Object</tT>. 
+Methods with the following declarations are defined:
+<PRE>
+abort() : Object
+type_name() : String
+copy() : SELF_TYPE
+</PRE>
+The method <TT>abort</TT> flushes all output and then halts program
+execution with the error message <tt>"abort\n"</tt>. 
+<p>
+The method <TT>type_name</TT> returns a string with the name of the
+(run-time, dynamic) class of the object.
+The method <TT>copy</TT> produces a <EM>shallow</EM> copy of the object.<A NAME="tex2html4"
+  HREF="footnode.html#foot715"><SUP>4</SUP></A>
+<P>
+<BR><HR>
+
+</BODY>
+</HTML>

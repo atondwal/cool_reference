@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Case</TITLE>
+<META NAME="description" CONTENT="Case">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="next" HREF="node23.html">
+<LINK REL="previous" HREF="node21.html">
+<LINK REL="up" HREF="node13.html">
+<LINK REL="next" HREF="node23.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html380"
+  HREF="node23.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html376"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html370"
+  HREF="node21.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html378"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html381"
+  HREF="node23.html">New</A>
+<B> Up:</B> <A NAME="tex2html377"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html371"
+  HREF="node21.html">Let</A>
+ &nbsp; <B>  <A NAME="tex2html379"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00089000000000000000">
+Case</A>
+</H2>
+A case expression has the form
+<PRE>
+case &lt;expr0&gt; of 
+    &lt;id1&gt; : &lt;type1&gt; =&gt; &lt;expr1&gt;; 
+    . . .
+    &lt;idn&gt; : &lt;typen&gt; =&gt; &lt;exprn&gt;; 
+esac
+</PRE>
+Case expressions provide runtime type tests on objects. 
+First, <TT>expr0</TT> is evaluated and its dynamic type <TT>C</TT> noted
+(if <TT>expr0</TT> evaluates to <TT>void</TT> a run-time error is produced).
+Next, from among the branches the branch with the least type
+<TT>&lt;typek&gt;</TT> such that <TT>C <IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$\leq$"> &lt;typek&gt;</TT> is selected. The identifier
+<TT>&lt;idk&gt;</TT> is bound to the
+value of <TT>&lt;expr0&gt;</TT> and the expression <TT>&lt;exprk&gt;</TT> is evaluated.
+The result of the <TT>case</TT> is the value of <TT>&lt;exprk&gt;</TT>.
+If no branch can be selected for evaluation, a run-time error is generated.
+Every <TT>case</TT> expression must have at least one branch.
+
+<P>
+For each branch, let <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img25.png"
+ ALT="$\tt T_i$"> be the static type of <TT>&lt;expri&gt;</TT>.
+The static type of a <TT>case</TT> expression is <!-- MATH
+ $\tt\bigsqcup_{1 \leq i \leq
+n} T_i$
+ -->
+<IMG
+ WIDTH="79" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img26.png"
+ ALT="$\tt\bigsqcup_{1 \leq i \leq
+n} T_i$">.
+The identifier <TT>id</TT> introduced by a branch of a <TT>case</TT> hides any 
+variable or attribute definition for <TT>id</TT> visible in the containing scope.
+
+<P>
+The <TT>case</TT> expression has no special construct for a ``default'' or
+``otherwise'' branch.  The same affect is achieved by including a branch
+<PRE>
+   x : Object =&gt; ...
+</PRE>
+because every type is <IMG
+ WIDTH="18" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$\leq$"> to <TT>Object</TT>.
+
+<P>
+The <TT>case</TT> expression provides programmers a way to insert explicit
+runtime type checks in situations where static types inferred by
+the type checker are too conservative.  A typical
+situation is that a programmer writes an expression <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img27.png"
+ ALT="$\tt e$"> and type
+checking infers that <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img27.png"
+ ALT="$\tt e$"> has static type <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$\tt P$">.  However, the programmer
+may know that, in fact, the dynamic type of <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img27.png"
+ ALT="$\tt e$"> is always <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.png"
+ ALT="$\tt C$"> for
+some <IMG
+ WIDTH="46" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$\tt C \leq P$">.  This information can be captured
+using a case expression:
+<PRE>
+case e of x : C =&gt; ...
+</PRE>
+In the branch the variable <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img29.png"
+ ALT="$\tt x$"> is bound to the value of <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img27.png"
+ ALT="$\tt e$"> but
+has the more specific static type <IMG
+ WIDTH="14" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.png"
+ ALT="$\tt C$">.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html380"
+  HREF="node23.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html376"
+  HREF="node13.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html370"
+  HREF="node21.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html378"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html381"
+  HREF="node23.html">New</A>
+<B> Up:</B> <A NAME="tex2html377"
+  HREF="node13.html">Expressions</A>
+<B> Previous:</B> <A NAME="tex2html371"
+  HREF="node21.html">Let</A>
+ &nbsp; <B>  <A NAME="tex2html379"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

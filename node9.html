@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002-2-1 (1.70) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002-2-1 (1.70),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Type Checking</TITLE>
+<META NAME="description" CONTENT="Type Checking">
+<META NAME="keywords" CONTENT="cool-manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002-2-1 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="cool-manual.css">
+
+<LINK REL="previous" HREF="node8.html">
+<LINK REL="up" HREF="node7.html">
+<LINK REL="next" HREF="node10.html">
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<A NAME="tex2html213"
+  HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html209"
+  HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html205"
+  HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html211"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html214"
+  HREF="node10.html">Attributes</A>
+<B> Up:</B> <A NAME="tex2html210"
+  HREF="node7.html">Types</A>
+<B> Previous:</B> <A NAME="tex2html206"
+  HREF="node8.html">SELF_TYPE</A>
+ &nbsp; <B>  <A NAME="tex2html212"
+  HREF="node1.html">Contents</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00052000000000000000">
+Type Checking</A>
+</H2>
+
+<P>
+The Cool type system guarantees at compile time that execution of a program
+cannot result in runtime type errors.  Using the type declarations for
+identifiers supplied by the programmer, the type checker infers a type for
+every expression in the program.  
+
+<P>
+It is important to distinguish between the type assigned by the type
+checker to an expression at compile time, which we shall call the <EM>static</EM> type of the expression, and the type(s) to which the
+expression may evaluate during execution, which we shall call the <EM>dynamic</EM> types.
+
+<P>
+The distinction between static and dynamic types is needed because the
+type checker cannot, at compile time, have perfect information about
+what values will be computed at runtime.  Thus, in general, the static and
+dynamic types may be different.  What we require, however, is that the
+type checker's static types be <EM>sound</EM> with respect to the dynamic types.
+
+<P>
+<P>
+<DIV><B>Definition  4.2</B> &nbsp; For any expression  <TT>e</TT>, let <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$\tt D_e$"> be a dynamic type of <TT>e</TT>
+and let <IMG
+ WIDTH="21" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img14.png"
+ ALT="$\tt S_e$"> be the static type inferred by the type checker.
+Then the type checker is <EM>sound</EM> if for all expressions <TT>e</TT> it is the
+case that <!-- MATH
+ $\tt D_e \leq S_e$
+ -->
+<IMG
+ WIDTH="61" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.png"
+ ALT="$\tt D_e \leq S_e$">.</DIV><P></P>
+
+<P>
+Put another way, we require that the type checker err on the side of
+overestimating the type of an expression in those cases where perfect
+accuracy is not possible.  Such a type checker will never accept a
+program that contains type errors.  However, the price paid is that
+the type checker will reject some programs that would actually execute
+without runtime errors.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html213"
+  HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next"
+ SRC="next.png"></A> 
+<A NAME="tex2html209"
+  HREF="node7.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="up.png"></A> 
+<A NAME="tex2html205"
+  HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="prev.png"></A> 
+<A NAME="tex2html211"
+  HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents"
+ SRC="contents.png"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html214"
+  HREF="node10.html">Attributes</A>
+<B> Up:</B> <A NAME="tex2html210"
+  HREF="node7.html">Types</A>
+<B> Previous:</B> <A NAME="tex2html206"
+  HREF="node8.html">SELF_TYPE</A>
+ &nbsp; <B>  <A NAME="tex2html212"
+  HREF="node1.html">Contents</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>
