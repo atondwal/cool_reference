@@ -21,25 +21,6 @@
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \usepackage{longtable}
-\usepackage{graphicx}
-% Redefine \includegraphics so that, unless explicit options are
-% given, the image width will not exceed the width of the page.
-% Images get their normal width if they fit onto the page, but
-% are scaled down if they would overflow the margins.
-\makeatletter
-\def\ScaleIfNeeded{%
-  \ifdim\Gin@nat@width>\linewidth
-    \linewidth
-  \else
-    \Gin@nat@width
-  \fi
-}
-\makeatother
-\let\Oldincludegraphics\includegraphics
-{%
- \catcode`\@=11\relax%
- \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
-}%
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -341,9 +322,8 @@ classes, which is equally aptly called ``multiple inheritance.''
 \end{verbatim}
 \item[\ldots{}
 object.\href{node27.html\#tex2html4}{\textsuperscript{4}}]
-A shallow copy of \includegraphics{img30.png} copies
-\includegraphics{img30.png} itself, but does not recursively copy
-objects that \includegraphics{img30.png} points to.
+A shallow copy of $a$ copies $a$ itself, but does not recursively copy
+objects that $a$ points to.
 
 \begin{verbatim}
 .
@@ -712,27 +692,25 @@ commonly used form of dispatch is
 <expr>.<id>(<expr>,...,<expr>)
 \end{verbatim}
 
-Consider the dispatch \includegraphics{img16.png}. To evaluate this
+Consider the dispatch $\tt e_0.f(e_1,\ldots,e_n)$. To evaluate this
 expression, the arguments are evaluated in left-to-right order, from
-\includegraphics{img17.png} to \includegraphics{img18.png}. Next,
-\includegraphics{img19.png} is evaluated and its class \texttt{C} noted
-(if \includegraphics{img19.png} is \texttt{void} a runtime error is
+$\tt e_1$ to $\tt e_n$. Next, $\tt e_0$ is evaluated and its class
+\texttt{C} noted (if $\tt e_0$ is \texttt{void} a runtime error is
 generated). Finally, the method \texttt{f} in class \texttt{C} is
-invoked, with the value of \includegraphics{img19.png} bound to
-\texttt{self} in the body of \texttt{f} and the actual arguments bound
-to the formals as usual. The value of the expression is the value
-returned by the method invocation.
+invoked, with the value of $\tt e_0$ bound to \texttt{self} in the body
+of \texttt{f} and the actual arguments bound to the formals as usual.
+The value of the expression is the value returned by the method
+invocation.
 
-Type checking a dispatch involves several steps. Assume
-\includegraphics{img19.png} has static type \texttt{A}. (Recall that
-this type is not necessarily the same as the type \texttt{C} above.
-\texttt{A} is the type inferred by the type checker; \texttt{C} is the
-class of the object computed at runtime, which is potentially any
-subclass of \texttt{A}.) Class \texttt{A} must have a method \texttt{f},
-the dispatch and the definition of \texttt{f} must have the same number
-of arguments, and the static type of the \includegraphics{img20.png}th
-actual parameter must conform to the declared type of the
-\includegraphics{img20.png}th formal parameter.
+Type checking a dispatch involves several steps. Assume $\tt e_0$ has
+static type \texttt{A}. (Recall that this type is not necessarily the
+same as the type \texttt{C} above. \texttt{A} is the type inferred by
+the type checker; \texttt{C} is the class of the object computed at
+runtime, which is potentially any subclass of \texttt{A}.) Class
+\texttt{A} must have a method \texttt{f}, the dispatch and the
+definition of \texttt{f} must have the same number of arguments, and the
+static type of the $i$th actual parameter must conform to the declared
+type of the $i$th formal parameter.
 
 If \texttt{f} has return type \texttt{B} and \texttt{B} is a class name,
 then the static type of the dispatch is \texttt{B}. Otherwise, if
@@ -797,18 +775,17 @@ evaluated branch.
 
 The predicate must have static type \texttt{Bool}. The branches may have
 any static types. To specify the static type of the conditional, we
-define an operation \includegraphics{img21.png} (pronounced ``join'') on
-types as follows. Let \texttt{A,B,D} be any types other than
-\texttt{SELF\_TYPE}. The \emph{least type} of a set of types means the
-least element with respect to the conformance relation
-\includegraphics{img22.png}. \\
+define an operation $\sqcup$ (pronounced ``join'') on types as follows.
+Let \texttt{A,B,D} be any types other than \texttt{SELF\_TYPE}. The
+\emph{least type} of a set of types means the least element with respect
+to the conformance relation $\leq$. \\
 
 \includegraphics{img23.png}
 
 Let \texttt{T} and \texttt{F} be the static types of the branches of the
 conditional. Then the static type of the conditional is
-\includegraphics{img24.png}. (think: Walk towards \texttt{Object} from
-each of \texttt{T} and \texttt{F} until the paths meet.)
+$\tt T \sqcup F$. (think: Walk towards \texttt{Object} from each of
+\texttt{T} and \texttt{F} until the paths meet.)
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
@@ -1108,11 +1085,12 @@ Next, from among the branches the branch with the least type
 If no branch can be selected for evaluation, a run-time error is
 generated. Every \texttt{case} expression must have at least one branch.
 
-For each branch, let \includegraphics{img25.png} be the static type of
+For each branch, let $\tt T_i$ be the static type of
 \texttt{\textless{}expri\textgreater{}}. The static type of a
-\texttt{case} expression is \includegraphics{img26.png}. The identifier
-\texttt{id} introduced by a branch of a \texttt{case} hides any variable
-or attribute definition for \texttt{id} visible in the containing scope.
+\texttt{case} expression is $\tt\bigsqcup_{1 \leq i \leq
+n} T_i$. The identifier \texttt{id} introduced by a branch of a
+\texttt{case} hides any variable or attribute definition for \texttt{id}
+visible in the containing scope.
 
 The \texttt{case} expression has no special construct for a
 ``default'`or ``otherwise'' branch. The same affect is achieved by
@@ -1658,9 +1636,9 @@ sequence `\textbackslash{}c' denotes the two characters
 
 \begin{longtable}[c]{@{}ll@{}}
 \hline\noalign{\medskip}
-\includegraphics{img33.png} & tab
+$\rm\backslash t$ & tab
 \\\noalign{\medskip}
-\includegraphics{img34.png} & newline
+$\rm\backslash n$ & newline
 \\\noalign{\medskip}
 \hline
 \end{longtable}
@@ -1802,15 +1780,13 @@ Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
 
 Figure~\hyperref[fig1]{1} provides a specification of Cool syntax. The
 specification is not in pure Backus-Naur Form (BNF); for convenience, we
-also use some regular expression notation. Specifically,
-\includegraphics{img44.png} means zero or more
-\includegraphics{img45.png}'s in succession; \includegraphics{img46.png}
-means one or more \includegraphics{img45.png}'s. Items in square
-brackets \includegraphics{img47.png} are optional. Double brackets
-\includegraphics{img48.png} are not part of Cool; they are used in the
-grammar as a meta-symbol to show association of grammar symbols (e.g.
-\includegraphics{img49.png} means \includegraphics{img30.png} followed
-by one or more \includegraphics{img50.png} pairs).
+also use some regular expression notation. Specifically, $A^{\ast}$
+means zero or more $A$'s in succession; $A^+$ means one or more $A$'s.
+Items in square brackets $[\ldots]$ are optional. Double brackets
+$\lbrack\!\lbrack \, \rbrack\!\rbrack $ are not part of Cool; they are
+used in the grammar as a meta-symbol to show association of grammar
+symbols (e.g. $a \lbrack\!\lbrack b c \rbrack\!\rbrack ^ {+}$ means $a$
+followed by one or more $bc$ pairs).
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
@@ -2003,46 +1979,38 @@ Section~\href{node43.html\#sec-typr}{12.2} gives the type rules.
 \subsection{\\ Type Environments}
 
 To a first approximation, type checking in Cool can be thought of as a
-bottom-up algorithm: the type of an expression
-\includegraphics{img51.png} is computed from the (previously computed)
-types of \includegraphics{img51.png}'s subexpressions. For example, an
+bottom-up algorithm: the type of an expression $e$ is computed from the
+(previously computed) types of $e$'s subexpressions. For example, an
 integer \texttt{1} has type \texttt{Int}; there are no subexpressions in
-this case. As another example, if \includegraphics{img18.png} has type
-\includegraphics{img52.png}, then the expression
-\includegraphics{img53.png} has type \includegraphics{img52.png}.
+this case. As another example, if $\tt e_n$ has type $\tt X$, then the
+expression $\tt\mbox {\tt\{}\ e_1; \ldots; e_n;\ \mbox {\tt\}}$ has type
+$\tt X$.
 
-A complication arises in the case of an expression
-\includegraphics{img54.png}, where \includegraphics{img54.png} is an
-object identifier. It is not possible to say what the type of
-\includegraphics{img54.png} is in a strictly bottom-up algorithm; we
-need to know the type declared for \includegraphics{img54.png} in the
-larger expression. Such a declaration must exist for every object
-identifier in valid Cool programs.
+A complication arises in the case of an expression $\tt v$, where
+$\tt v$ is an object identifier. It is not possible to say what the type
+of $\tt v$ is in a strictly bottom-up algorithm; we need to know the
+type declared for $\tt v$ in the larger expression. Such a declaration
+must exist for every object identifier in valid Cool programs.
 
 To capture information about the types of identifiers, we use a
 \emph{type environment}. The environment consists of three parts: a
-method environment \includegraphics{img55.png}, an object environment
-\includegraphics{img56.png}, and the name of the current class in which
-the expression appears. The method environment and object environment
-are both functions (also called \emph{mappings}). The object environment
-is a function of the form \\
+method environment $M$, an object environment $O$, and the name of the
+current class in which the expression appears. The method environment
+and object environment are both functions (also called \emph{mappings}).
+The object environment is a function of the form \\
 
-\includegraphics{img57.png}
+\begin{displaymath}O(v) = T \end{displaymath}
 
-which assigns the type \includegraphics{img58.png} to object identifier
-\includegraphics{img59.png}. The method environment is more complex; it
-is a function of the form \\
+which assigns the type $ T$ to object identifier $ v$. The method
+environment is more complex; it is a function of the form \\
 
-\includegraphics{img60.png}
+\begin{displaymath}M(C,f) = (T_1,\ldots,T_{n-1},T_n) \end{displaymath}
 
-where \includegraphics{img61.png} is a class name (a type),
-\includegraphics{img62.png} is a method name, and
-\includegraphics{img63.png} are types. The tuple of types is the
-\emph{signature} of the method. The interpretation of signatures is that
-in class \includegraphics{img61.png} the method
-\includegraphics{img62.png} has formal parameters of types
-\includegraphics{img64.png}--in that order--and a return type
-\includegraphics{img65.png}.
+where $ C$ is a class name (a type), $f$ is a method name, and
+$ t_1,\ldots,t_n$ are types. The tuple of types is the \emph{signature}
+of the method. The interpretation of signatures is that in class $ C$
+the method $f$ has formal parameters of types
+$ (t_1,\ldots,t_{n-1})$--in that order--and a return type $t_n$.
 
 Two mappings are required instead of one because object names and method
 names do not clash--i.e., there may be a method and an object identifier
@@ -2051,10 +2019,9 @@ of the same name.
 The third component of the type environment is the name of the current
 class, which is needed for type rules involving \texttt{SELF\_TYPE}.
 
-Every expression \includegraphics{img51.png} is type checked in a type
-environment; the subexpressions of \includegraphics{img51.png} may be
-type checked in the same environment or, if \includegraphics{img51.png}
-introduces a new object identifier, in a modified environment. For
+Every expression $e$ is type checked in a type environment; the
+subexpressions of $e$ may be type checked in the same environment or, if
+$e$ introduces a new object identifier, in a modified environment. For
 example, consider the expression
 
 \begin{verbatim}
@@ -2096,50 +2063,53 @@ where the notation \includegraphics{img67.png} is defined as follows:
 
 The general form a type checking rule is: \\
 
-\includegraphics{img69.png}
+\begin{displaymath}
+\frac{\vdots}{O,M,C \vdash e : T}\eqno\mbox{}
+\end{displaymath}
 
-The rule should be read: In the type environment for objects
-\includegraphics{img56.png}, methods \includegraphics{img55.png}, and
-containing class \includegraphics{img61.png}, the expression
-\includegraphics{img51.png} has type \includegraphics{img58.png}. The
-dots above the horizontal bar stand for other statements about the types
-of sub-expressions of \includegraphics{img51.png}. These other
-statements are hypotheses of the rule; if the hypotheses are satisfied,
-then the statement below the bar is true. In the conclusion, the
+The rule should be read: In the type environment for objects $O$,
+methods $M$, and containing class $ C$, the expression $e$ has type
+$ T$. The dots above the horizontal bar stand for other statements about
+the types of sub-expressions of $e$. These other statements are
+hypotheses of the rule; if the hypotheses are satisfied, then the
+statement below the bar is true. In the conclusion, the
 ``\href{http://en.wikipedia.org/wiki/Turnstile_\%28symbol\%29}{turnstile}''
-(``\includegraphics{img70.png}'') separates context
-(\includegraphics{img71.png}) from statement
-(\includegraphics{img72.png}).
+(``$\vdash$'') separates context ($O,M,C$) from statement ($e : T$).
 
 The rule for object identifiers is simply that if the environment
-assigns an identifier \includegraphics{img73.png} type
-\includegraphics{img58.png}, then \includegraphics{img73.png} has type
-\includegraphics{img58.png}. \\
+assigns an identifier $ Id $ type $ T$, then $ Id $ has type $ T$. \\
 
-\includegraphics{img74.png}
+\begin{displaymath}
+\frac{O(Id) = T}{O,M,C \vdash Id : T}\eqno\mbox{[Var]}
+\end{displaymath}
 
 The rule for assignment to a variable is more complex: \\
 
 \includegraphics{img75.png}
 
 Note that this type rule--as well as others--use the conformance
-relation \includegraphics{img22.png} (see
-Section~\href{node6.html\#sec-inherit}{3.2}). The rule says that the
-assigned expression \includegraphics{img76.png} must have a type
-\includegraphics{img77.png} that conforms to the type
-\includegraphics{img58.png} of the identifier
-\includegraphics{img73.png} in the type environment. The type of the
-whole expression is \includegraphics{img77.png}.
+relation $\leq$ (see Section~\href{node6.html\#sec-inherit}{3.2}). The
+rule says that the assigned expression $e_1$ must have a type $T'$ that
+conforms to the type $ T$ of the identifier $ Id $ in the type
+environment. The type of the whole expression is $T'$.
 
 The type rules for constants are all easy: \\
 
-\includegraphics{img78.png}
+\begin{displaymath}
+\frac{}{O,M,C \vdash true : Bool}\eqno\mbox{[True]}
+\end{displaymath}
 
-\includegraphics{img79.png}
+\begin{displaymath}
+\frac{}{O,M,C \vdash false : Bool}\eqno\mbox{[False]}
+\end{displaymath}
 
-\includegraphics{img80.png}
+\begin{displaymath}
+\frac{i \mbox {\ is an integer constant}}{O,M,C \vdash i : Int}\eqno\mbox{[Int]}
+\end{displaymath}
 
-\includegraphics{img81.png}
+\begin{displaymath}
+\frac{s \mbox {\ is a string constant}}{O,M,C \vdash s : String}\eqno\mbox{[String]}
+\end{displaymath}
 
 There are two cases for \texttt{new}, one for \texttt{new SELF\_TYPE}
 and one for any other form: \\
@@ -2153,17 +2123,13 @@ Dispatch expressions are the most complex to type check. \\
 \includegraphics{img84.png}
 
 To type check a dispatch, each of the subexpressions must first be type
-checked. The type \includegraphics{img85.png} of
-\includegraphics{img86.png} determines which declaration of the method
-\includegraphics{img62.png} is used. The argument types of the dispatch
-must conform to the declared argument types. Note that the type of the
-result of the dispatch is either the declared return type or
-\includegraphics{img85.png} in the case that the declared return type is
-\includegraphics{img87.png}. The only difference in type checking a
-static dispatch is that the class \includegraphics{img58.png} of the
-method \includegraphics{img62.png} is given in the dispatch, and the
-type \includegraphics{img85.png} must conform to
-\includegraphics{img58.png}.
+checked. The type $T_0$ of $e_0$ determines which declaration of the
+method $f$ is used. The argument types of the dispatch must conform to
+the declared argument types. Note that the type of the result of the
+dispatch is either the declared return type or $T_0$ in the case that
+the declared return type is $\tt SELF\_TYPE$. The only difference in
+type checking a static dispatch is that the class $ T$ of the method $f$
+is given in the dispatch, and the type $T_0$ must conform to $ T$.
 
 The type checking rules for \texttt{if} and \texttt{\{}-\texttt{\}}
 expressions are straightforward. See
@@ -2193,34 +2159,42 @@ The rule for \texttt{let} with no initialization simply omits the
 conformance requirement. We give type rules only for a \texttt{let} with
 a single variable. Typing a multiple \texttt{let} \\
 
-\includegraphics{img95.png}
+\begin{displaymath}\rm let\ x_1 : T_1\ [\leftarrow e_1],\ x_2: T_2\ [\leftarrow e2], \ldots,\ x_n :T_n\ [\leftarrow e_n]\ in\ e\ \end{displaymath}
 
 is defined to be the same as typing \\
 
-\includegraphics{img96.png}
+\begin{displaymath}
+\rm let\ x_1 : T_1\ [\leftarrow e_1]\ in\ (let\ x_2 :T_2\ [\leftarrow e_2],\ldots,\ x_n : T_n\ [\leftarrow e_n]\ in\ e\ )\
+\end{displaymath}
 
 \includegraphics{img97.png}
 
 Each branch of a \texttt{case} is type checked in an environment where
-variable \includegraphics{img98.png} has type
-\includegraphics{img99.png}. The type of the entire \texttt{case} is the
-join of the types of its branches. The variables declared on each branch
-of a \texttt{case} must all have distinct types.
+variable $x_i$ has type $T_i$. The type of the entire \texttt{case} is
+the join of the types of its branches. The variables declared on each
+branch of a \texttt{case} must all have distinct types.
 
 \includegraphics{img100.png}
 
-The predicate of a loop must have type \includegraphics{img101.png}; the
-type of the entire loop is always \includegraphics{img102.png}. An
-\texttt{isvoid} test has type \includegraphics{img101.png}: \\
+The predicate of a loop must have type $Bool$; the type of the entire
+loop is always $Object$. An \texttt{isvoid} test has type $Bool$: \\
 
-\includegraphics{img103.png}
+\begin{displaymath}
+\frac{O,M,C \vdash e_1 : T_1}{O,M,C \vdash \mbox {isvoid } e_1 : Bool}\eqno\mbox{[Isvoid]}
+\end{displaymath}
 
 With the exception of the rule for equality, the type checking rules for
 the primitive logical and arithmetic operations are easy. \\
 
-\includegraphics{img104.png}
+\begin{displaymath}
+\frac{
+O,M,C \vdash e_1 : Bool}{O,M,C \vdash \neg e_1 : Bool}\eqno\mbox{[Not]}
+\end{displaymath}
 
-\includegraphics{img106.png}
+\begin{displaymath}
+\frac{
+O,M,C \vdash e_1 : Int}{O,M,C \vdash \mbox{\~{}} e_1 : Int}\eqno\mbox{[Neg]}
+\end{displaymath}
 
 \includegraphics{img107.png}
 
@@ -2347,19 +2321,17 @@ mapping of variable identifiers to \emph{locations}. Intuitively, an
 environment tells us for a given identifier the address of the memory
 location where that identifier's value is stored. For a given
 expression, the environment must assign a location to all identifiers to
-which the expression may refer. For the expression, e.g.,
-\includegraphics{img115.png}, we need an environment that maps
-\includegraphics{img30.png} to some location and
-\includegraphics{img116.png} to some location. We'll use the following
-syntax to describe environments, which is very similar to the syntax of
-type assumptions used in Section~\href{node41.html\#sec-typrules}{12}.
-\\
+which the expression may refer. For the expression, e.g., $a + b$, we
+need an environment that maps $a$ to some location and $b$ to some
+location. We'll use the following syntax to describe environments, which
+is very similar to the syntax of type assumptions used in
+Section~\href{node41.html\#sec-typrules}{12}. \\
 
-\includegraphics{img117.png}
+\begin{displaymath}
+E = [ a:l_1, b:l_2]
+\end{displaymath}
 
-This environment maps \includegraphics{img30.png} to location
-\includegraphics{img118.png}, and \includegraphics{img116.png} to
-location \includegraphics{img119.png}.
+This environment maps $a$ to location $l_1$, and $b$ to location $l_2$.
 
 The second component of the context for the evaluation of an expression
 is the \emph{store} (memory). The store maps locations to values, where
@@ -2367,39 +2339,42 @@ values in Cool are just objects. Intuitively, a store tells us what
 value is stored in a given memory location. For the moment, assume all
 values are integers. A store is similar to an environment: \\
 
-\includegraphics{img120.png}
+\begin{displaymath}
+S = [ l_1\rightarrow 55, l_2\rightarrow 77 ]
+\end{displaymath}
 
-This store maps location \includegraphics{img118.png} to value
-\includegraphics{img121.png} and location \includegraphics{img119.png}
-to value \includegraphics{img122.png}.
+This store maps location $l_1$ to value $55$ and location $l_2$ to value
+$77$.
 
 Given an environment and a store, the value of an identifier can be
 found by first looking up the location that the identifier maps to in
 the environment and then looking up the location in the store. \\
 
-\includegraphics{img123.png}
+\begin{displaymath}
+\begin{array}{rcl}
+E(a) &=& l_1 \\
+S(l_1) & = & 55
+\end{array}\end{displaymath}
 
 Together, the environment and the store define the execution state at a
 particular step of the evaluation of a Cool expression. The double
 indirection from identifiers to locations to values allows us to model
-variables. Consider what happens if the value
-\includegraphics{img124.png} is assigned variable
-\includegraphics{img30.png} in the environment and store defined above.
-Assigning to a variable means changing the value to which it refers but
-not its location. To perform the assignment, we look up the location for
-\includegraphics{img30.png} in the environment
-\includegraphics{img125.png} and then change the mapping for the
-obtained location to the new value, giving a new store
-\includegraphics{img126.png}.
+variables. Consider what happens if the value $99$ is assigned variable
+$a$ in the environment and store defined above. Assigning to a variable
+means changing the value to which it refers but not its location. To
+perform the assignment, we look up the location for $a$ in the
+environment $E$ and then change the mapping for the obtained location to
+the new value, giving a new store $S'$.
 
-\includegraphics{img127.png}
+\begin{displaymath}
+\begin{array}{rcl}
+E(a) & = & l_1 \\
+S' & = & S[99/l_1]
+\end{array}\end{displaymath}
 
-The syntax \includegraphics{img128.png} denotes a new store that is
-identical to the store \includegraphics{img129.png}, except that
-\includegraphics{img126.png} maps location \includegraphics{img130.png}
-to value \includegraphics{img59.png}. For all locations
-\includegraphics{img131.png} where \includegraphics{img132.png}, we
-still have \includegraphics{img133.png}.
+The syntax $S[v/l]$ denotes a new store that is identical to the store
+$S$, except that $S'$ maps location $l$ to value $ v$. For all locations
+$l'$ where $l'\not=l$, we still have $S'(l')=S(l')$.
 
 The store models the contents of memory of the computer during program
 execution. Assigning to a variable modifies the store.
@@ -2413,29 +2388,27 @@ the following Cool fragment:
 \end{verbatim}
 
 When evaluating this expression, we must introduce the new identifier
-\includegraphics{img134.png} into the environment before evaluating the
-body of the \texttt{let}. If the current environment and state are
-\includegraphics{img125.png} and \includegraphics{img129.png}, then we
-create a new environment \includegraphics{img135.png} and a new store
-\includegraphics{img126.png} defined by: \\
+$c$ into the environment before evaluating the body of the \texttt{let}.
+If the current environment and state are $E$ and $S$, then we create a
+new environment $E'$ and a new store $S'$ defined by: \\
 
-\includegraphics{img136.png}
+\begin{displaymath}
+\begin{array}{rcl}
+l_c & = & newloc(S)\\
+E' & = & E[l_c/c]\\
+S' & = & S[33/l_c]
+\end{array}\end{displaymath}
 
-The first step is to allocate a location for the variable
-\includegraphics{img134.png}. The location should be fresh, meaning that
-the current store does not have a mapping for it. The function
-\includegraphics{img137.png} applied to a store gives us an unused
-location in that store. We then create a new environment
-\includegraphics{img135.png}, which maps \includegraphics{img134.png} to
-\includegraphics{img138.png} but also contains all of the mappings of
-\includegraphics{img125.png} for identifiers other than
-\includegraphics{img134.png}. Note that if \includegraphics{img134.png}
-already has a mapping in \includegraphics{img125.png}, the new
-environment \includegraphics{img135.png} hides this old mapping. We must
-also update the store to map the new location to a value. In this case
-\includegraphics{img138.png} maps to the value
-\includegraphics{img139.png}, which is the initial value for
-\includegraphics{img134.png} as defined by the let-expression.
+The first step is to allocate a location for the variable $c$. The
+location should be fresh, meaning that the current store does not have a
+mapping for it. The function $newloc()$ applied to a store gives us an
+unused location in that store. We then create a new environment $E'$,
+which maps $c$ to $l_c$ but also contains all of the mappings of $E$ for
+identifiers other than $c$. Note that if $c$ already has a mapping in
+$E$, the new environment $E'$ hides this old mapping. We must also
+update the store to map the new location to a value. In this case $l_c$
+maps to the value $33$, which is the initial value for $c$ as defined by
+the let-expression.
 
 The example in this subsection oversimplifies Cool environments and
 stores a bit, because simple integers are not Cool values. Even integers
@@ -2467,16 +2440,15 @@ Every Cool value is an object. Objects contain a list of named
 attributes, a bit like records in C. In addition, each object belongs to
 a class. We use the following syntax for values in Cool: \\
 
-\includegraphics{img140.png}
+\begin{displaymath}
+v = X(a_1=l_1,a_2=l_2,\ldots,a_n=l_n)
+\end{displaymath}
 
-Read the syntax as follows: The value \includegraphics{img59.png} is a
-member of class \includegraphics{img141.png} containing the attributes
-\includegraphics{img142.png} whose locations are
-\includegraphics{img143.png}. Note that the attributes have an
-associated location. Intuitively this means that there is some space in
-memory reserved for each attribute. The value
-\includegraphics{img59.png} has \emph{dynamic} type
-\includegraphics{img141.png}.
+Read the syntax as follows: The value $ v$ is a member of class $X$
+containing the attributes $a_1, \ldots, a_n$ whose locations are
+$l_1, \ldots, l_n$. Note that the attributes have an associated
+location. Intuitively this means that there is some space in memory
+reserved for each attribute. The value $ v$ has \emph{dynamic} type $X$.
 
 For base objects of Cool (i.e., \texttt{Int}s, \texttt{String}s, and
 \texttt{Bool}s) we use a special case of the above syntax. Base objects
@@ -2484,7 +2456,12 @@ have a class name, but their attributes are not like attributes of
 normal classes, because they cannot be modified. Therefore, we describe
 base objects using the following syntax:
 
-\includegraphics{img144.png}
+\begin{displaymath}
+\begin{array}{l}
+Int(5)\\
+Bool(true)\\
+String(4,\mbox {\tt ''}Cool \mbox {\tt ''})
+\end{array}\end{displaymath}
 
 For \texttt{Int}s and \texttt{Bool}s, the meaning is obvious.
 \texttt{String}s contain two parts, the length and the actual sequence
@@ -2612,26 +2589,25 @@ can now attack the operational semantics for Cool. The operational
 semantics is described by rules similar to the rules used in type
 checking. The general form of the rules is: \\
 
-\includegraphics{img155.png}
+\begin{displaymath}
+\frac{\vdots}{so,S,E\vdash e_1 : v,S'}\eqno
+\mbox{}
+\end{displaymath}
 
 The rule should be read as: In the context where \emph{self} is the
-object \includegraphics{img156.png}, the store is
-\includegraphics{img129.png}, and the environment is
-\includegraphics{img125.png}, the expression \includegraphics{img76.png}
-evaluates to object \includegraphics{img59.png} and the new store is
-\includegraphics{img126.png}. The dots above the horizontal bar stand
-for other statements about the evaluation of sub-expressions of
-\includegraphics{img76.png}.
+object $so$, the store is $S$, and the environment is $E$, the
+expression $e_1$ evaluates to object $ v$ and the new store is $S'$. The
+dots above the horizontal bar stand for other statements about the
+evaluation of sub-expressions of $e_1$.
 
 Besides an environment and a store, the evaluation context contains a
-self object \includegraphics{img156.png}. The self object is just the
-object to which the identifier \texttt{self} refers if \texttt{self}
-appears in the expression. We do not place \texttt{self} in the
-environment and store because \texttt{self} is not a variable--it cannot
-be assigned to. Note that the rules specify a new store after the
-evaluation of an expression. The new store contains all changes to
-memory resulting as side effects of evaluating expression
-\includegraphics{img76.png}.
+self object $so$. The self object is just the object to which the
+identifier \texttt{self} refers if \texttt{self} appears in the
+expression. We do not place \texttt{self} in the environment and store
+because \texttt{self} is not a variable--it cannot be assigned to. Note
+that the rules specify a new store after the evaluation of an
+expression. The new store contains all changes to memory resulting as
+side effects of evaluating expression $e_1$.
 
 The rest of this section presents and briefly discusses each of the
 operational rules. A few cases are not covered; these are discussed at
@@ -2640,8 +2616,8 @@ the end of the section. \\
 \includegraphics{img157.png}
 
 An assignment first evaluates the expression on the right-hand side,
-yielding a value \includegraphics{img158.png}. This value is stored in
-memory at the address for the identifier.
+yielding a value $v_1$. This value is stored in memory at the address
+for the identifier.
 
 The rules for identifier references, \texttt{self}, and constants are
 straightforward: \\
@@ -2741,11 +2717,10 @@ The notation and rules given above are not powerful enough to describe
 how objects are tested for equality, or how runtime exceptions are
 handled. For these cases we resort to an English description.
 
-In \includegraphics{img184.png}, first \includegraphics{img76.png} is
-evaluated and then \includegraphics{img92.png} is evaluated. The two
-objects are compared for equality by first comparing their pointers
-(addresses). If they are the same, the objects are equal. The value
-\texttt{void} is not equal to any object except itself. If the two
+In $e_1 = e_2$, first $e_1$ is evaluated and then $e_2$ is evaluated.
+The two objects are compared for equality by first comparing their
+pointers (addresses). If they are the same, the objects are equal. The
+value \texttt{void} is not equal to any object except itself. If the two
 objects are of type \texttt{String}, \texttt{Bool}, or \texttt{Int},
 their respective contents are compared. \texttt{\textless{}} and
 \texttt{\textless{}=} are handled similarly. The case for integer
@@ -3683,28 +3658,25 @@ either directly or indirectly, then a \texttt{C} can be used wherever a
 
 When an object of class \texttt{C} may be used in place of an object of
 class \texttt{P}, we say that \texttt{C} \emph{conforms} to \texttt{P}
-or that \includegraphics{img1.png} (think: \texttt{C} is lower down in
-the inheritance tree). As discussed above, conformance is defined in
-terms of the inheritance graph.
+or that $\tt C \leq P$ (think: \texttt{C} is lower down in the
+inheritance tree). As discussed above, conformance is defined in terms
+of the inheritance graph.
 
-\textbf{Definition 4.1} (Conformance) ~ Let \includegraphics{img2.png}
-and \includegraphics{img3.png} be types.
+\textbf{Definition 4.1} (Conformance) ~ Let $\tt A,C,$ and $\tt P$ be
+types.
 
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  \includegraphics{img4.png} for all types \texttt{A}
+  $\tt A \leq A$ for all types \texttt{A}
 \item
-  if \texttt{C} inherits from \texttt{P}, then
-  \includegraphics{img1.png}
+  if \texttt{C} inherits from \texttt{P}, then $\tt C \leq P$
 \item
-  if \includegraphics{img5.png} and \includegraphics{img1.png} then
-  \includegraphics{img6.png}
+  if $\tt A \leq C$ and $\tt C \leq P$ then $\tt A \leq P$
 \end{itemize}
 
 Because \texttt{Object} is the root of the class hierarchy, it follows
-that \includegraphics{img7.png} for all types
-\includegraphics{img8.png}.
+that $\tt A \leq Object$ for all types $\tt A$.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
@@ -3768,17 +3740,17 @@ Note that the meaning of \texttt{SELF\_TYPE} is not fixed, but depends
 on the class in which it is used. In general, \texttt{SELF\_TYPE} may
 refer to the class \texttt{C} in which it appears, or any class that
 conforms to \texttt{C}. When it is useful to make explicit what
-\includegraphics{img9.png} may refer to, we use the name of the class
-\texttt{C} in which \texttt{SELF\_TYPE} appears as an index
-\includegraphics{img10.png}. This subscript notation is not part of Cool
+${\tt SELF\_TYPE}$ may refer to, we use the name of the class \texttt{C}
+in which \texttt{SELF\_TYPE} appears as an index
+${\tt SELF\_TYPE}_{\tt C}$. This subscript notation is not part of Cool
 syntax--it is used merely to make clear in what class a particular
 occurrence of \texttt{SELF\_TYPE} appears.
 
 From Definition~\href{node7.html\#def-conforms}{4.1}, it follows that
-\includegraphics{img11.png}. There is also a special conformance rule
-for \texttt{SELF\_TYPE}: \\
+${\tt SELF\_TYPE}_{\tt X} \leq {\tt SELF\_TYPE}_{\tt X}$. There is also
+a special conformance rule for \texttt{SELF\_TYPE}: \\
 
-\includegraphics{img12.png}
+\begin{displaymath}\tt {\tt SELF\_TYPE}_C \leq P \;\mbox {\rm\ if\ }\; C \leq P \end{displaymath}
 
 Finally, \texttt{SELF\_TYPE} may be used in the following places:
 \texttt{new SELF\_TYPE}, as the return type of a method, as the declared
@@ -3823,11 +3795,10 @@ and dynamic types may be different. What we require, however, is that
 the type checker's static types be \emph{sound} with respect to the
 dynamic types.
 
-\textbf{Definition 4.2} ~ For any expression \texttt{e}, let
-\includegraphics{img13.png} be a dynamic type of \texttt{e} and let
-\includegraphics{img14.png} be the static type inferred by the type
-checker. Then the type checker is \emph{sound} if for all expressions
-\texttt{e} it is the case that \includegraphics{img15.png}.
+\textbf{Definition 4.2} ~ For any expression \texttt{e}, let $\tt D_e$
+be a dynamic type of \texttt{e} and let $\tt S_e$ be the static type
+inferred by the type checker. Then the type checker is \emph{sound} if
+for all expressions \texttt{e} it is the case that $\tt D_e \leq S_e$.
 
 Put another way, we require that the type checker err on the side of
 overestimating the type of an expression in those cases where perfect
