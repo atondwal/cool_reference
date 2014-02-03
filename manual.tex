@@ -21,6 +21,25 @@
 % use microtype if available
 \IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \usepackage{longtable}
+\usepackage{graphicx}
+% Redefine \includegraphics so that, unless explicit options are
+% given, the image width will not exceed the width of the page.
+% Images get their normal width if they fit onto the page, but
+% are scaled down if they would overflow the margins.
+\makeatletter
+\def\ScaleIfNeeded{%
+  \ifdim\Gin@nat@width>\linewidth
+    \linewidth
+  \else
+    \Gin@nat@width
+  \fi
+}
+\makeatother
+\let\Oldincludegraphics\includegraphics
+{%
+ \catcode`\@=11\relax%
+ \gdef\includegraphics{\@ifnextchar[{\Oldincludegraphics}{\Oldincludegraphics[width=\ScaleIfNeeded]}}%
+}%
 \ifxetex
   \usepackage[setpagesize=false, % page size defined by xetex
               unicode=false, % unicode breaks when used with xetex
@@ -50,9 +69,10 @@
 \begin{document}
 \maketitle
 
-\href{node1.html}{next} up previous \href{node1.html}{contents} \\
-\textbf{Next:} \href{node1.html}{Contents} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\href{node1.html}{\includegraphics{next.png}} \includegraphics{up_g.png}
+\includegraphics{prev_g.png}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node1.html}{Contents} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{The Cool Reference
 Manual\href{footnode.html\#foot266}{\textsuperscript{1}}}
@@ -395,12 +415,14 @@ programmers.
 \end{verbatim}
 \end{description}
 
-\href{node11.html}{next} \href{cool-manual.html}{up}
-\href{node9.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node11.html}{Void} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node9.html}{Type Checking} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\href{node11.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node9.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node11.html}{Void} \textbf{Up:} \href{cool-manual.html}{The Cool
+Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node9.html}{Type Checking} ~ \textbf{\href{node1.html}{Contents}}
+\\ \\
 
 \section{\\ Attributes}
 
@@ -436,12 +458,13 @@ inherited. Inherited attributes cannot be redefined.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node12.html}{next} \href{node10.html}{up}
-\href{node10.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node12.html}{Methods} \textbf{Up:}
-\href{node10.html}{Attributes} \textbf{Previous:}
-\href{node10.html}{Attributes} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
+\href{node12.html}{\includegraphics{next.png}}
+\href{node10.html}{\includegraphics{up.png}}
+\href{node10.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node12.html}{Methods} \textbf{Up:} \href{node10.html}{Attributes}
+\textbf{Previous:} \href{node10.html}{Attributes} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Void}
 
@@ -471,18 +494,21 @@ Section~\href{node26.html\#sec-basic}{8}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node12.html}{next} \href{node10.html}{up}
-\href{node10.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node12.html}{Methods} \textbf{Up:}
-\href{node10.html}{Attributes} \textbf{Previous:}
-\href{node10.html}{Attributes} ~ \textbf{\href{node1.html}{Contents}}
+\href{node12.html}{\includegraphics{next.png}}
+\href{node10.html}{\includegraphics{up.png}}
+\href{node10.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node12.html}{Methods} \textbf{Up:} \href{node10.html}{Attributes}
+\textbf{Previous:} \href{node10.html}{Attributes} ~
+\textbf{\href{node1.html}{Contents}}
 
-\href{node13.html}{next} \href{cool-manual.html}{up}
-\href{node11.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node13.html}{Expressions} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node11.html}{Void} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\href{node13.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node11.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node13.html}{Expressions} \textbf{Up:} \href{cool-manual.html}{The
+Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node11.html}{Void} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{\\ Methods}
 
@@ -534,19 +560,21 @@ much of the usefulness of inheritance, as well as type safety, is lost.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node13.html}{next} \href{cool-manual.html}{up}
-\href{node11.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node13.html}{Expressions} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node11.html}{Void} ~
-\textbf{\href{node1.html}{Contents}}
+\href{node13.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node11.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node13.html}{Expressions} \textbf{Up:} \href{cool-manual.html}{The
+Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node11.html}{Void} ~ \textbf{\href{node1.html}{Contents}}
 
-\href{node14.html}{next} \href{cool-manual.html}{up}
-\href{node12.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node14.html}{Constants} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node12.html}{Methods} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\href{node14.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node12.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node14.html}{Constants} \textbf{Up:} \href{cool-manual.html}{The
+Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node12.html}{Methods} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{\\ Expressions}
 
@@ -586,9 +614,11 @@ Expressions are the largest syntactic category in Cool. \\
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node15.html}{next} \href{node13.html}{up}
-\href{node13.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node15.html}{Identifiers} \textbf{Up:}
+\href{node15.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node13.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node15.html}{Identifiers} \textbf{Up:}
 \href{node13.html}{Expressions} \textbf{Previous:}
 \href{node13.html}{Expressions} ~ \textbf{\href{node1.html}{Contents}}
 \\ \\
@@ -609,9 +639,11 @@ appropriate basic class.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node16.html}{next} \href{node13.html}{up}
-\href{node14.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node16.html}{Assignment} \textbf{Up:}
+\href{node16.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node14.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node16.html}{Assignment} \textbf{Up:}
 \href{node13.html}{Expressions} \textbf{Previous:}
 \href{node14.html}{Constants} ~ \textbf{\href{node1.html}{Contents}} \\
 \\
@@ -636,9 +668,11 @@ class.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node17.html}{next} \href{node13.html}{up}
-\href{node15.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node17.html}{Dispatch} \textbf{Up:}
+\href{node17.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node15.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node17.html}{Dispatch} \textbf{Up:}
 \href{node13.html}{Expressions} \textbf{Previous:}
 \href{node15.html}{Identifiers} ~ \textbf{\href{node1.html}{Contents}}
 \\ \\
@@ -658,9 +692,11 @@ type of an assignment is the static type of
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node18.html}{next} \href{node13.html}{up}
-\href{node16.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node18.html}{Conditionals} \textbf{Up:}
+\href{node18.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node16.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node18.html}{Conditionals} \textbf{Up:}
 \href{node13.html}{Expressions} \textbf{Previous:}
 \href{node16.html}{Assignment} ~ \textbf{\href{node1.html}{Contents}} \\
 \\
@@ -726,18 +762,21 @@ to the right of ``@''.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node18.html}{next} \href{node13.html}{up}
-\href{node16.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node18.html}{Conditionals} \textbf{Up:}
+\href{node18.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node16.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node18.html}{Conditionals} \textbf{Up:}
 \href{node13.html}{Expressions} \textbf{Previous:}
 \href{node16.html}{Assignment} ~ \textbf{\href{node1.html}{Contents}}
 
-\href{node19.html}{next} \href{node13.html}{up}
-\href{node17.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node19.html}{Loops} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node17.html}{Dispatch} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
+\href{node19.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node17.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node19.html}{Loops} \textbf{Up:} \href{node13.html}{Expressions}
+\textbf{Previous:} \href{node17.html}{Dispatch} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{\\ Conditionals}
 
@@ -760,11 +799,7 @@ Let \texttt{A,B,D} be any types other than \texttt{SELF\_TYPE}. The
 \emph{least type} of a set of types means the least element with respect
 to the conformance relation $\leq$. \\
 
-\begin{displaymath}
-\begin{array}{rcl}
-\tt A \sqcup B & = & \tt\mbox {\rm the le...
-...\tt SELF\_TYPE}_D \sqcup A & = & \tt D \sqcup A \\
-\end{array}\end{displaymath}
+\includegraphics{img23.png}
 
 Let \texttt{T} and \texttt{F} be the static types of the branches of the
 conditional. Then the static type of the conditional is
@@ -773,12 +808,13 @@ $\tt T \sqcup F$. (think: Walk towards \texttt{Object} from each of
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node20.html}{next} \href{node13.html}{up}
-\href{node18.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node20.html}{Blocks} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node18.html}{Conditionals} ~ \textbf{\href{node1.html}{Contents}}
-\\ \\
+\href{node20.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node18.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node20.html}{Blocks} \textbf{Up:} \href{node13.html}{Expressions}
+\textbf{Previous:} \href{node18.html}{Conditionals} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Loops}
 
@@ -798,8 +834,9 @@ static type. The static type of a loop expression is \texttt{Object}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node2.html}{next} \href{cool-manual.html}{up}
-\href{cool-manual.html}{previous} \\ \textbf{Next:}
+\href{node2.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{cool-manual.html}{\includegraphics{prev.png}} \\ \textbf{Next:}
 \href{node2.html}{Introduction} \textbf{Up:} \href{cool-manual.html}{The
 Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
 \href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}} \\
@@ -947,11 +984,13 @@ Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node21.html}{next} \href{node13.html}{up}
-\href{node19.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node21.html}{Let} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node19.html}{Loops} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node21.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node19.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node21.html}{Let} \textbf{Up:} \href{node13.html}{Expressions}
+\textbf{Previous:} \href{node19.html}{Loops} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Blocks}
 
@@ -974,11 +1013,13 @@ Section~\href{node39.html\#sec-gram}{11} for details.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node22.html}{next} \href{node13.html}{up}
-\href{node20.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node22.html}{Case} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node20.html}{Blocks} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node22.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node20.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node22.html}{Case} \textbf{Up:} \href{node13.html}{Expressions}
+\textbf{Previous:} \href{node20.html}{Blocks} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Let}
 
@@ -1022,17 +1063,21 @@ far (encompasses as many tokens) as the grammar allows.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node22.html}{next} \href{node13.html}{up}
-\href{node20.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node22.html}{Case} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node20.html}{Blocks} ~ \textbf{\href{node1.html}{Contents}}
+\href{node22.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node20.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node22.html}{Case} \textbf{Up:} \href{node13.html}{Expressions}
+\textbf{Previous:} \href{node20.html}{Blocks} ~
+\textbf{\href{node1.html}{Contents}}
 
-\href{node23.html}{next} \href{node13.html}{up}
-\href{node21.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node23.html}{New} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node21.html}{Let} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node23.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node21.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node23.html}{New} \textbf{Up:} \href{node13.html}{Expressions}
+\textbf{Previous:} \href{node21.html}{Let} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Case}
 
@@ -1094,17 +1139,21 @@ has the more specific static type $\tt C$.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node23.html}{next} \href{node13.html}{up}
-\href{node21.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node23.html}{New} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node21.html}{Let} ~ \textbf{\href{node1.html}{Contents}}
+\href{node23.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node21.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node23.html}{New} \textbf{Up:} \href{node13.html}{Expressions}
+\textbf{Previous:} \href{node21.html}{Let} ~
+\textbf{\href{node1.html}{Contents}}
 
-\href{node24.html}{next} \href{node13.html}{up}
-\href{node22.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node24.html}{Isvoid} \textbf{Up:}
-\href{node13.html}{Expressions} \textbf{Previous:}
-\href{node22.html}{Case} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node24.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node22.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node24.html}{Isvoid} \textbf{Up:} \href{node13.html}{Expressions}
+\textbf{Previous:} \href{node22.html}{Case} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{New}
 
@@ -1121,10 +1170,12 @@ The value is a fresh object of the appropriate class. If the type is
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node25.html}{next} \href{node13.html}{up}
-\href{node23.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node25.html}{Arithmetic and Comparison Operations}
-\textbf{Up:} \href{node13.html}{Expressions} \textbf{Previous:}
+\href{node25.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node23.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node25.html}{Arithmetic and Comparison Operations} \textbf{Up:}
+\href{node13.html}{Expressions} \textbf{Previous:}
 \href{node23.html}{New} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{\\ Isvoid}
@@ -1140,9 +1191,11 @@ evaluates to \texttt{false} if \texttt{expr} is not \texttt{void}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node26.html}{next} \href{node13.html}{up}
-\href{node24.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node26.html}{Basic Classes} \textbf{Up:}
+\href{node26.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node24.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node26.html}{Basic Classes} \textbf{Up:}
 \href{node13.html}{Expressions} \textbf{Previous:}
 \href{node24.html}{Isvoid} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
@@ -1227,18 +1280,22 @@ Finally, there is one unary arithmetic and one unary logical operator.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node26.html}{next} \href{node13.html}{up}
-\href{node24.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node26.html}{Basic Classes} \textbf{Up:}
+\href{node26.html}{\includegraphics{next.png}}
+\href{node13.html}{\includegraphics{up.png}}
+\href{node24.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node26.html}{Basic Classes} \textbf{Up:}
 \href{node13.html}{Expressions} \textbf{Previous:}
 \href{node24.html}{Isvoid} ~ \textbf{\href{node1.html}{Contents}}
 
-\href{node27.html}{next} \href{cool-manual.html}{up}
-\href{node25.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node27.html}{Object} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node25.html}{Arithmetic and Comparison
-Operations} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node27.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node25.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node27.html}{Object} \textbf{Up:} \href{cool-manual.html}{The Cool
+Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node25.html}{Arithmetic and Comparison Operations} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{\\ Basic Classes}
 
@@ -1262,12 +1319,13 @@ Operations} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node28.html}{next} \href{node26.html}{up}
-\href{node26.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node28.html}{IO} \textbf{Up:}
-\href{node26.html}{Basic Classes} \textbf{Previous:}
-\href{node26.html}{Basic Classes} ~ \textbf{\href{node1.html}{Contents}}
-\\ \\
+\href{node28.html}{\includegraphics{next.png}}
+\href{node26.html}{\includegraphics{up.png}}
+\href{node26.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node28.html}{IO} \textbf{Up:} \href{node26.html}{Basic Classes}
+\textbf{Previous:} \href{node26.html}{Basic Classes} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Object}
 
@@ -1292,11 +1350,13 @@ object.\href{footnode.html\#foot715}{\textsuperscript{4}}
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node29.html}{next} \href{node26.html}{up}
-\href{node27.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node29.html}{Int} \textbf{Up:}
-\href{node26.html}{Basic Classes} \textbf{Previous:}
-\href{node27.html}{Object} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node29.html}{\includegraphics{next.png}}
+\href{node26.html}{\includegraphics{up.png}}
+\href{node27.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node29.html}{Int} \textbf{Up:} \href{node26.html}{Basic Classes}
+\textbf{Previous:} \href{node27.html}{Object} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{IO}
 
@@ -1369,11 +1429,13 @@ class.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node30.html}{next} \href{node26.html}{up}
-\href{node28.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node30.html}{String} \textbf{Up:}
-\href{node26.html}{Basic Classes} \textbf{Previous:}
-\href{node28.html}{IO} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node30.html}{\includegraphics{next.png}}
+\href{node26.html}{\includegraphics{up.png}}
+\href{node28.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node30.html}{String} \textbf{Up:} \href{node26.html}{Basic
+Classes} \textbf{Previous:} \href{node28.html}{IO} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{\\ Int}
 
@@ -1384,9 +1446,11 @@ redefine \texttt{Int}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node3.html}{next} \href{cool-manual.html}{up}
-\href{node1.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node3.html}{Getting Started} \textbf{Up:}
+\href{node3.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node1.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node3.html}{Getting Started} \textbf{Up:}
 \href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
 \textbf{Previous:} \href{node1.html}{Contents} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -1422,18 +1486,22 @@ description begins with Section~\href{node33.html\#lex-struct}{10}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node3.html}{next} \href{cool-manual.html}{up}
-\href{node1.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node3.html}{Getting Started} \textbf{Up:}
+\href{node3.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node1.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node3.html}{Getting Started} \textbf{Up:}
 \href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
 \textbf{Previous:} \href{node1.html}{Contents} ~
 \textbf{\href{node1.html}{Contents}}
 
-\href{node31.html}{next} \href{node26.html}{up}
-\href{node29.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node31.html}{Bool} \textbf{Up:}
-\href{node26.html}{Basic Classes} \textbf{Previous:}
-\href{node29.html}{Int} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node31.html}{\includegraphics{next.png}}
+\href{node26.html}{\includegraphics{up.png}}
+\href{node29.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node31.html}{Bool} \textbf{Up:} \href{node26.html}{Basic Classes}
+\textbf{Previous:} \href{node29.html}{Int} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{String}
 
@@ -1461,11 +1529,13 @@ redefine \texttt{String}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node32.html}{next} \href{node26.html}{up}
-\href{node30.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node32.html}{Main Class} \textbf{Up:}
-\href{node26.html}{Basic Classes} \textbf{Previous:}
-\href{node30.html}{String} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node32.html}{\includegraphics{next.png}}
+\href{node26.html}{\includegraphics{up.png}}
+\href{node30.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node32.html}{Main Class} \textbf{Up:} \href{node26.html}{Basic
+Classes} \textbf{Previous:} \href{node30.html}{String} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{\\ Bool}
 
@@ -1476,9 +1546,11 @@ redefine \texttt{Bool}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node33.html}{next} \href{cool-manual.html}{up}
-\href{node31.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node33.html}{Lexical Structure} \textbf{Up:}
+\href{node33.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node31.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node33.html}{Lexical Structure} \textbf{Up:}
 \href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
 \textbf{Previous:} \href{node31.html}{Bool} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -1500,12 +1572,14 @@ semantics (Section~\href{node44.html\#sec-opsem}{13}).
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node34.html}{next} \href{cool-manual.html}{up}
-\href{node32.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node34.html}{Integers, Identifiers, and Special}
-\textbf{Up:} \href{cool-manual.html}{The Cool Reference
-Manual\textsuperscript{1}} \textbf{Previous:} \href{node32.html}{Main
-Class} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node34.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node32.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node34.html}{Integers, Identifiers, and Special} \textbf{Up:}
+\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
+\textbf{Previous:} \href{node32.html}{Main Class} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{\\ Lexical Structure}
 
@@ -1532,11 +1606,12 @@ identifiers, special notation, strings, keywords, and white space.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node35.html}{next} \href{node33.html}{up}
-\href{node33.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node35.html}{Strings} \textbf{Up:}
-\href{node33.html}{Lexical Structure} \textbf{Previous:}
-\href{node33.html}{Lexical Structure} ~
+\href{node35.html}{\includegraphics{next.png}}
+\href{node33.html}{\includegraphics{up.png}}
+\href{node33.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node35.html}{Strings} \textbf{Up:} \href{node33.html}{Lexical
+Structure} \textbf{Previous:} \href{node33.html}{Lexical Structure} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Integers, Identifiers, and Special Notation}
@@ -1562,12 +1637,13 @@ etc.) are given in Figure~\href{node39.html\#fig1}{1}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node36.html}{next} \href{node33.html}{up}
-\href{node34.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node36.html}{Comments} \textbf{Up:}
-\href{node33.html}{Lexical Structure} \textbf{Previous:}
-\href{node34.html}{Integers, Identifiers, and Special} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\href{node36.html}{\includegraphics{next.png}}
+\href{node33.html}{\includegraphics{up.png}}
+\href{node34.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node36.html}{Comments} \textbf{Up:} \href{node33.html}{Lexical
+Structure} \textbf{Previous:} \href{node34.html}{Integers, Identifiers,
+and Special} ~ \textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Strings}
 
@@ -1639,11 +1715,13 @@ allowed. Any other character may be included in a string.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node37.html}{next} \href{node33.html}{up}
-\href{node35.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node37.html}{Keywords} \textbf{Up:}
-\href{node33.html}{Lexical Structure} \textbf{Previous:}
-\href{node35.html}{Strings} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node37.html}{\includegraphics{next.png}}
+\href{node33.html}{\includegraphics{up.png}}
+\href{node35.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node37.html}{Keywords} \textbf{Up:} \href{node33.html}{Lexical
+Structure} \textbf{Previous:} \href{node35.html}{Strings} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Comments}
 
@@ -1656,12 +1734,13 @@ boundaries.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node38.html}{next} \href{node33.html}{up}
-\href{node36.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node38.html}{White Space} \textbf{Up:}
-\href{node33.html}{Lexical Structure} \textbf{Previous:}
-\href{node36.html}{Comments} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
+\href{node38.html}{\includegraphics{next.png}}
+\href{node33.html}{\includegraphics{up.png}}
+\href{node36.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node38.html}{White Space} \textbf{Up:} \href{node33.html}{Lexical
+Structure} \textbf{Previous:} \href{node36.html}{Comments} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Keywords}
 
@@ -1677,12 +1756,13 @@ may be upper or lower case. Thus \textbf{FALse} is not a keyword but a
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node39.html}{next} \href{node33.html}{up}
-\href{node37.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node39.html}{Cool Syntax} \textbf{Up:}
-\href{node33.html}{Lexical Structure} \textbf{Previous:}
-\href{node37.html}{Keywords} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
+\href{node39.html}{\includegraphics{next.png}}
+\href{node33.html}{\includegraphics{up.png}}
+\href{node37.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node39.html}{Cool Syntax} \textbf{Up:} \href{node33.html}{Lexical
+Structure} \textbf{Previous:} \href{node37.html}{Keywords} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{White Space}
 
@@ -1694,23 +1774,20 @@ $\tt\backslash t$ (tab, ascii 9), $\tt\backslash v$ (vertical tab, ascii
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node40.html}{next} \href{cool-manual.html}{up}
-\href{node38.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node40.html}{Precedence} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node38.html}{White Space} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\href{node40.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node38.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node40.html}{Precedence} \textbf{Up:} \href{cool-manual.html}{The
+Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node38.html}{White Space} ~ \textbf{\href{node1.html}{Contents}}
+\\ \\
 
 \section{\\ Cool Syntax}
 
 \begin{longtable}[c]{@{}l@{}}
 \hline\noalign{\medskip}
-\begin{figure}\begin{eqnarray*}
-\mbox {\it program} & ::=& \lbrack\!\lbrack \mbo...
-...\mbox {\bf true} \\
-& \,\vert\,& \mbox {\bf false}
-\end{eqnarray*}
-\end{figure}
+\includegraphics{img43.png}
 \\\noalign{\medskip}
 \hline
 \noalign{\medskip}
@@ -1739,12 +1816,14 @@ followed by one or more $bc$ pairs).
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node4.html}{next} \href{cool-manual.html}{up}
-\href{node2.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node4.html}{Classes} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node2.html}{Introduction} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\href{node4.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node2.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node4.html}{Classes} \textbf{Up:} \href{cool-manual.html}{The Cool
+Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node2.html}{Introduction} ~ \textbf{\href{node1.html}{Contents}}
+\\ \\
 
 \section{\\ Getting Started}
 
@@ -1833,19 +1912,21 @@ results against external tools may not be helpful.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node4.html}{next} \href{cool-manual.html}{up}
-\href{node2.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node4.html}{Classes} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node2.html}{Introduction} ~
-\textbf{\href{node1.html}{Contents}}
+\href{node4.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node2.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node4.html}{Classes} \textbf{Up:} \href{cool-manual.html}{The Cool
+Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node2.html}{Introduction} ~ \textbf{\href{node1.html}{Contents}}
 
-\href{node41.html}{next} \href{node39.html}{up}
-\href{node39.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node41.html}{Type Rules} \textbf{Up:}
-\href{node39.html}{Cool Syntax} \textbf{Previous:}
-\href{node39.html}{Cool Syntax} ~ \textbf{\href{node1.html}{Contents}}
-\\ \\
+\href{node41.html}{\includegraphics{next.png}}
+\href{node39.html}{\includegraphics{up.png}}
+\href{node39.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node41.html}{Type Rules} \textbf{Up:} \href{node39.html}{Cool
+Syntax} \textbf{Previous:} \href{node39.html}{Cool Syntax} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Precedence}
 
@@ -1870,9 +1951,11 @@ operations, which do not associate.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node42.html}{next} \href{cool-manual.html}{up}
-\href{node40.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node42.html}{Type Environments} \textbf{Up:}
+\href{node42.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node40.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node42.html}{Type Environments} \textbf{Up:}
 \href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
 \textbf{Previous:} \href{node40.html}{Precedence} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -1900,9 +1983,11 @@ Section~\href{node43.html\#sec-typr}{12.2} gives the type rules.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node43.html}{next} \href{node41.html}{up}
-\href{node41.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node43.html}{Type Checking Rules} \textbf{Up:}
+\href{node43.html}{\includegraphics{next.png}}
+\href{node41.html}{\includegraphics{up.png}}
+\href{node41.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node43.html}{Type Checking Rules} \textbf{Up:}
 \href{node41.html}{Type Rules} \textbf{Previous:}
 \href{node41.html}{Type Rules} ~ \textbf{\href{node1.html}{Contents}} \\
 \\
@@ -1976,15 +2061,19 @@ O[T/c](d) & = & O(d)\ \ \mbox {\rm if\ }d \neq c
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node43.html}{next} \href{node41.html}{up}
-\href{node41.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node43.html}{Type Checking Rules} \textbf{Up:}
+\href{node43.html}{\includegraphics{next.png}}
+\href{node41.html}{\includegraphics{up.png}}
+\href{node41.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node43.html}{Type Checking Rules} \textbf{Up:}
 \href{node41.html}{Type Rules} \textbf{Previous:}
 \href{node41.html}{Type Rules} ~ \textbf{\href{node1.html}{Contents}}
 
-\href{node44.html}{next} \href{node41.html}{up}
-\href{node42.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node44.html}{Operational Semantics} \textbf{Up:}
+\href{node44.html}{\includegraphics{next.png}}
+\href{node41.html}{\includegraphics{up.png}}
+\href{node42.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node44.html}{Operational Semantics} \textbf{Up:}
 \href{node41.html}{Type Rules} \textbf{Previous:}
 \href{node42.html}{Type Environments} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -2015,12 +2104,7 @@ assigns an identifier $ Id $ type $ T$, then $ Id $ has type $ T$. \\
 
 The rule for assignment to a variable is more complex: \\
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-O(Id) = T \\
-O,M,C \vdash e_1 : T'...
-...ray}}{O,M,C \vdash Id \leftarrow e_1 : T'}\eqno\mbox{[ASSIGN]}
-\end{displaymath}
+\includegraphics{img75.png}
 
 Note that this type rule--as well as others--use the conformance
 relation $\leq$ (see Section~\href{node6.html\#sec-inherit}{3.2}). The
@@ -2049,31 +2133,13 @@ The type rules for constants are all easy: \\
 There are two cases for \texttt{new}, one for \texttt{new SELF\_TYPE}
 and one for any other form: \\
 
-\begin{displaymath}
-\frac{
-T' = \left\{
-\begin{array}{rl}
-{\tt SELF\_TYPE}_C &...
-...\end{array} \right.}{O,M,C \vdash new\ T: T'}\eqno\mbox{[New]}
-\end{displaymath}
+\includegraphics{img82.png}
 
 Dispatch expressions are the most complex to type check. \\
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O,M,C \vdash e_0 : T_0 \\
-O,M,C \vd...
-... \vdash e_0.f(e_1,\ldots,e_n) : T_{n+1}}\eqno\mbox{[Dispatch]}
-\end{displaymath}
+\includegraphics{img83.png}
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O,M,C \vdash e_0 : T_0 \\
-O,M,C \vd...
-...e_0@T.f(e_1,\ldots,e_n) : T_{n+1}}\eqno\mbox{[StaticDispatch]}
-\end{displaymath}
+\includegraphics{img84.png}
 
 To type check a dispatch, each of the subexpressions must first be type
 checked. The type $T_0$ of $e_0$ determines which declaration of the
@@ -2089,32 +2155,13 @@ expressions are straightforward. See
 Section~\href{node18.html\#sec-cond}{7.5} for the definition of the
 $\sqcup$ operation. \\
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O,M,C \vdash e_1 : Bool \\
-O,M,C \v...
-...box { else } e_3 \mbox { fi} : T_2 \sqcup T_3}\eqno\mbox{[If]}
-\end{displaymath}
+\includegraphics{img88.png}
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O,M,C \vdash e_1 : T_1 \\
-O,M,C \vd...
-...e_1; e_2; \ldots e_n; \mbox { \}} : T_n}\eqno\mbox{[Sequence]}
-\end{displaymath}
+\includegraphics{img89.png}
 
 The \texttt{let} rule has some interesting aspects. \\
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-T_0' = \left\{
-\begin{array}{rl}
-{...
-...0 \leftarrow e_1 \mbox { in } e_2 : T_2}\eqno\mbox{[Let-Init]}
-\end{displaymath}
+\includegraphics{img90.png}
 
 First, the initialization $e_1$ is type checked in an environment
 without a new definition for $x$. Thus, the variable $x$ cannot be used
@@ -2123,14 +2170,7 @@ the body $e_2$ is type checked in the environment $O$ extended with the
 typing $x:T_0'$. Third, note that the type of $x$ may be
 \texttt{SELF\_TYPE}.
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-T_0' = \left\{
-\begin{array}{rl}
-{...
-...let } x : T_0 \mbox { in } e_1 : T_1}\eqno\mbox{[Let-No-Init]}
-\end{displaymath}
+\includegraphics{img94.png}
 
 The rule for \texttt{let} with no initialization simply omits the
 conformance requirement. We give type rules only for a \texttt{let} with
@@ -2144,27 +2184,14 @@ is defined to be the same as typing \\
 \rm let\ x_1 : T_1\ [\leftarrow e_1]\ in\ (let\ x_2 :T_2\ [\leftarrow e_2],\ldots,\ x_n : T_n\ [\leftarrow e_n]\ in\ e\ )\
 \end{displaymath}
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O,M,C \vdash e_0 : T_0 \\
-O[T_1/x_1...
-...{ esac} :
-\bigsqcup_{1 \leq i \leq n} T_i'}\eqno\mbox{[Case]}
-\end{displaymath}
+\includegraphics{img97.png}
 
 Each branch of a \texttt{case} is type checked in an environment where
 variable $x_i$ has type $T_i$. The type of the entire \texttt{case} is
 the join of the types of its branches. The variables declared on each
 branch of a \texttt{case} must all have distinct types.
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O,M,C \vdash e_1 : Bool \\
-O,M,C \v...
-...1 \mbox { loop } e_2 \mbox { pool} : Object}\eqno\mbox{[Loop]}
-\end{displaymath}
+\includegraphics{img100.png}
 
 The predicate of a loop must have type $Bool$; the type of the entire
 loop is always $Object$. An \texttt{isvoid} test has type $Bool$: \\
@@ -2186,13 +2213,7 @@ O,M,C \vdash e_1 : Bool}{O,M,C \vdash \neg e_1 : Bool}\eqno\mbox{[Not]}
 O,M,C \vdash e_1 : Int}{O,M,C \vdash \mbox{\~{}} e_1 : Int}\eqno\mbox{[Neg]}
 \end{displaymath}
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O,M,C \vdash e_1 : Int \\
-O,M,C \vd...
-...nd{array}}{O,M,C \vdash e_1\ op\ e_2 : Int}\eqno\mbox{[Arith]}
-\end{displaymath}
+\includegraphics{img107.png}
 
 The wrinkle in the rule for equality is that any types may be freely
 compared except \texttt{Int, String} and \texttt{Bool}, which may only
@@ -2200,13 +2221,7 @@ be compared with objects of the same type. The cases for
 \texttt{\textless{}} and \texttt{\textless{}=} are similar to the rule
 for equality. \\
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O,M,C \vdash e_1 : T_1 \\
-O,M,C \vd...
-...\end{array}}{O,M,C \vdash e_1 = e_2 : Bool}\eqno\mbox{[Equal]}
-\end{displaymath}
+\includegraphics{img108.png}
 
 The final cases are type checking rules for attributes and methods. For
 a class $ C$, let the object environment $O_C$ give the types of all
@@ -2214,13 +2229,7 @@ attributes of $ C$ (including any inherited attributes). More formally,
 if $x$ is an attribute (inherited or not) of $ C$, and the declaration
 of $x$ is $x:T$, then \\
 
-\begin{displaymath}O_C(x) = \left\{
-\begin{array}{rl}
-{\tt SELF\_TYPE}_C & \mb...
-...ELF\_TYPE} \\
-T & \mbox {\rm otherwise}
-\end{array} \right.
-\end{displaymath}
+\includegraphics{img111.png}
 
 The method environment $M$ is global to the entire program and defines
 for every class $ C$ the signatures of all of the methods of $ C$
@@ -2231,13 +2240,7 @@ rules for \texttt{let}. The essential difference is that attributes are
 visible within their initialization expressions. Note that \texttt{self}
 is bound in the initialization. \\
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-O_C(x) = T_0 \\
-O_C[{\tt SELF\_TYPE...
-...O_C,M,C \vdash x : T_0 \leftarrow e_1;}\eqno\mbox{[Attr-Init]}
-\end{displaymath}
+\includegraphics{img112.png}
 
 \begin{displaymath}
 \frac{O_C(x) = T}{O_C,M,C \vdash x : T;}\eqno\mbox{[Attr-No-Init]}
@@ -2248,13 +2251,7 @@ environment where $O_C$ is extended with bindings for the formal
 parameters and \texttt{self}. The type of the method body must conform
 to the declared return type.
 
-\begin{displaymath}
-\frac{
-\begin{array}{l}
-M(C,f) = (T_1,\ldots,T_n,T_0) \\
-O_...
-...n:T_n) : T_0 \mbox { \{ } e \mbox { \}; }}\eqno\mbox{[Method]}
-\end{displaymath}
+\includegraphics{img114.png}
 
 \subsection{\\ Other Semantic Checks}
 
@@ -2271,19 +2268,23 @@ report whichever error it prefers.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node44.html}{next} \href{node41.html}{up}
-\href{node42.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node44.html}{Operational Semantics} \textbf{Up:}
+\href{node44.html}{\includegraphics{next.png}}
+\href{node41.html}{\includegraphics{up.png}}
+\href{node42.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node44.html}{Operational Semantics} \textbf{Up:}
 \href{node41.html}{Type Rules} \textbf{Previous:}
 \href{node42.html}{Type Environments} ~
 \textbf{\href{node1.html}{Contents}}
 
-\href{node45.html}{next} \href{cool-manual.html}{up}
-\href{node43.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node45.html}{Environment and the Store}
-\textbf{Up:} \href{cool-manual.html}{The Cool Reference
-Manual\textsuperscript{1}} \textbf{Previous:} \href{node43.html}{Type
-Checking Rules} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node45.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node43.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node45.html}{Environment and the Store} \textbf{Up:}
+\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
+\textbf{Previous:} \href{node43.html}{Type Checking Rules} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{\\ Operational Semantics}
 
@@ -2319,9 +2320,11 @@ expressions. How this behavior is implemented is another matter.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node46.html}{next} \href{node44.html}{up}
-\href{node44.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node46.html}{Syntax for Cool Objects} \textbf{Up:}
+\href{node46.html}{\includegraphics{next.png}}
+\href{node44.html}{\includegraphics{up.png}}
+\href{node44.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node46.html}{Syntax for Cool Objects} \textbf{Up:}
 \href{node44.html}{Operational Semantics} \textbf{Previous:}
 \href{node44.html}{Operational Semantics} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -2429,16 +2432,20 @@ are full-fledged objects in Cool.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node46.html}{next} \href{node44.html}{up}
-\href{node44.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node46.html}{Syntax for Cool Objects} \textbf{Up:}
+\href{node46.html}{\includegraphics{next.png}}
+\href{node44.html}{\includegraphics{up.png}}
+\href{node44.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node46.html}{Syntax for Cool Objects} \textbf{Up:}
 \href{node44.html}{Operational Semantics} \textbf{Previous:}
 \href{node44.html}{Operational Semantics} ~
 \textbf{\href{node1.html}{Contents}}
 
-\href{node47.html}{next} \href{node44.html}{up}
-\href{node45.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node47.html}{Class definitions} \textbf{Up:}
+\href{node47.html}{\includegraphics{next.png}}
+\href{node44.html}{\includegraphics{up.png}}
+\href{node45.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node47.html}{Class definitions} \textbf{Up:}
 \href{node44.html}{Operational Semantics} \textbf{Previous:}
 \href{node45.html}{Environment and the Store} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -2478,16 +2485,20 @@ of ASCII characters.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node47.html}{next} \href{node44.html}{up}
-\href{node45.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node47.html}{Class definitions} \textbf{Up:}
+\href{node47.html}{\includegraphics{next.png}}
+\href{node44.html}{\includegraphics{up.png}}
+\href{node45.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node47.html}{Class definitions} \textbf{Up:}
 \href{node44.html}{Operational Semantics} \textbf{Previous:}
 \href{node45.html}{Environment and the Store} ~
 \textbf{\href{node1.html}{Contents}}
 
-\href{node48.html}{next} \href{node44.html}{up}
-\href{node46.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node48.html}{Operational Rules} \textbf{Up:}
+\href{node48.html}{\includegraphics{next.png}}
+\href{node44.html}{\includegraphics{up.png}}
+\href{node46.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node48.html}{Operational Rules} \textbf{Up:}
 \href{node44.html}{Operational Semantics} \textbf{Previous:}
 \href{node46.html}{Syntax for Cool Objects} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -2575,16 +2586,20 @@ $e_{body}$.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node48.html}{next} \href{node44.html}{up}
-\href{node46.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node48.html}{Operational Rules} \textbf{Up:}
+\href{node48.html}{\includegraphics{next.png}}
+\href{node44.html}{\includegraphics{up.png}}
+\href{node46.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node48.html}{Operational Rules} \textbf{Up:}
 \href{node44.html}{Operational Semantics} \textbf{Previous:}
 \href{node46.html}{Syntax for Cool Objects} ~
 \textbf{\href{node1.html}{Contents}}
 
-\href{node49.html}{next} \href{node44.html}{up}
-\href{node47.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node49.html}{Acknowledgements} \textbf{Up:}
+\href{node49.html}{\includegraphics{next.png}}
+\href{node44.html}{\includegraphics{up.png}}
+\href{node47.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node49.html}{Acknowledgements} \textbf{Up:}
 \href{node44.html}{Operational Semantics} \textbf{Previous:}
 \href{node47.html}{Class definitions} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -2620,13 +2635,7 @@ The rest of this section presents and briefly discusses each of the
 operational rules. A few cases are not covered; these are discussed at
 the end of the section. \\
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : v_1,S_2\\
-E(I...
-...o,S_1,E\vdash Id\leftarrow e_1 : v_1,S_3}\eqno
-\mbox{[Assign]}
-\end{displaymath}
+\includegraphics{img157.png}
 
 An assignment first evaluates the expression on the right-hand side,
 yielding a value $v_1$. This value is stored in memory at the address
@@ -2663,23 +2672,11 @@ S(l) = v
 \mbox{[Int]}
 \end{displaymath}
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-s\mbox{ is a string constant}\\
-l ...
-...d{array}}{so,S,E\vdash s : String(l,s),S}\eqno
-\mbox{[String]}
-\end{displaymath}
+\includegraphics{img164.png}
 
 A \texttt{new} expression is more complicated than one might expect: \\
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-T_0 = \left\{ \begin{array}{rl}
-X &...
-...ray}}{so,S_1,E\vdash \mbox{new }T : v_1,S_3}\eqno
-\mbox{[New]}
-\end{displaymath}
+\includegraphics{img165.png}
 
 The tricky thing in a \texttt{new} expression is to initialize the
 attributes in the right order. If an attribute does not have an
@@ -2687,21 +2684,9 @@ initializer, \emph{do not} evaluate an assignment expression for it in
 the final step. Note also that, during initialization, attributes are
 bound to the default of the appropriate class.
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : v_1,S_2\\
-so,...
-..._0.f(e_1,\ldots,e_n) : v_{n+1},S_{n+4}}\eqno
-\mbox{[Dispatch]}
-\end{displaymath}
+\includegraphics{img166.png}
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : v_1,S_2\\
-so,...
-..._1,\ldots,e_n) : v_{n+1},S_{n+4}}\eqno
-\mbox{[StaticDispatch]}
-\end{displaymath}
+\includegraphics{img167.png}
 
 The two dispatch rules do what one would expect. The arguments are
 evaluated and saved. Next, the expression on the left-hand side of the
@@ -2709,41 +2694,19 @@ evaluated and saved. Next, the expression on the left-hand side of the
 is used to determine the method to invoke; otherwise the class is
 specified in the dispatch itself.
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : Bool(true),S_2\...
-..._2\mbox{ else }e_3\mbox { fi} : v_2,S_3}\eqno
-\mbox{[If-True]}
-\end{displaymath}
+\includegraphics{img168.png}
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : Bool(false),S_2...
-...2\mbox{ else }e_3\mbox { fi} : v_3,S_3}\eqno
-\mbox{[If-False]}
-\end{displaymath}
+\includegraphics{img169.png}
 
 There are no surprises in the if-then-else rules. Note that value of the
 predicate is a \texttt{Bool} object, not a boolean.
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : v_1,S_2\\
-so,...
-...2;\ldots; e_n;\mbox{ \}} : v_n,S_{n+1}}\eqno
-\mbox{[Sequence]}
-\end{displaymath}
+\includegraphics{img170.png}
 
 Blocks are evaluated from the first expression to the last expression,
 in order. The result is the result of the last expression.
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : v_1,S_2\\
-l_1...
-..._1\leftarrow e_1\mbox{ in } e_2 : v_2,S_{4}}\eqno
-\mbox{[Let]}
-\end{displaymath}
+\includegraphics{img171.png}
 
 A \texttt{let} evaluates any initialization code, assigns the result to
 the variable at a fresh location, and evaluates the body of the
@@ -2760,32 +2723,16 @@ is defined to be the same as \\
 \rm let\ x_1 : T_1 \leftarrow e_1\ in\ (let\ x_2 :T_2 \leftarrow e_2,\ldots,\ x_n : T_n \leftarrow e_n\ in\ e\ )\
 \end{displaymath}
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_0 : v_0,S_2\\
-v_0...
-..._n\Rightarrow e_n;\mbox{ esac} : v_1,S_{4}}\eqno
-\mbox{[Case]}
-\end{displaymath}
+\includegraphics{img175.png}
 
 Note that the \texttt{case} rule requires that the class hierarchy be
 available in some form at runtime, so that the correct branch of the
 \texttt{case} can be selected. This rule is otherwise straightforward.
 \\
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : Bool(true),S_2\...
-...{ loop } e_2\mbox{ pool} : void,S_{4}}\eqno
-\mbox{[Loop-True]}
-\end{displaymath}
+\includegraphics{img176.png}
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : Bool(false),S_2...
-... loop } e_2\mbox{ pool} : void,S_{2}}\eqno
-\mbox{[Loop-False]}
-\end{displaymath}
+\includegraphics{img177.png}
 
 There are two rules for \texttt{while}: one for the case where the
 predicate is \texttt{true} and one for the case where the predicate is
@@ -2805,27 +2752,11 @@ predicate is \texttt{true} and one for the case where the predicate is
 The remainder of the rules are for the primitive arithmetic and logical
 operations. These are all easy rules. \\
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : Bool(b),S_2\\
-...
-...y}}{so,S_1,E\vdash \mbox{not }e_1 : v_1,S_2}\eqno
-\mbox{[Not]}
-\end{displaymath}
+\includegraphics{img180.png}
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : Int(i_1),S_2\\ ...
-...y}}{so,S_1,E\vdash \mbox{\~{}}e_1 : v_1,S_2}\eqno
-\mbox{[Neg]}
-\end{displaymath}
+\includegraphics{img182.png}
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : Int(i_1),S_2\\ ...
-...y}}{so,S_1,E\vdash e_1\ op\ e_2 : v_1,S_3}\eqno
-\mbox{[Arith]}
-\end{displaymath}
+\includegraphics{img183.png}
 
 Cool \texttt{Int}s are 32-bit two's complement signed integers; the
 arithmetic operations are defined accordingly.
@@ -2843,12 +2774,7 @@ their respective contents are compared. \texttt{\textless{}} and
 \texttt{\textless{}=} are handled similarly. The case for integer
 arguments is simple:
 
-\begin{displaymath}
-\frac{\begin{array}{l}
-so,S_1,E\vdash e_1 : Int(i_1),S_2\\ ...
-...ay}}{so,S_1,E\vdash e_1\ op\ e_2 : v_1,S_3}\eqno
-\mbox{[Comp]}
-\end{displaymath}
+\includegraphics{img181.png}
 
 \ldots{} but \texttt{String} and \texttt{Bool} also admit comparisons.
 String comparisons are performed using the standard ASCII string
@@ -2903,19 +2829,22 @@ Sections~\href{node29.html\#sec-int}{8.3}-\href{node31.html\#sec-bool}{8.5}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node49.html}{next} \href{node44.html}{up}
-\href{node47.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node49.html}{Acknowledgements} \textbf{Up:}
+\href{node49.html}{\includegraphics{next.png}}
+\href{node44.html}{\includegraphics{up.png}}
+\href{node47.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node49.html}{Acknowledgements} \textbf{Up:}
 \href{node44.html}{Operational Semantics} \textbf{Previous:}
 \href{node47.html}{Class definitions} ~
 \textbf{\href{node1.html}{Contents}}
 
-\href{node50.html}{next} \href{cool-manual.html}{up}
-\href{node48.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node50.html}{About this document \ldots{}}
-\textbf{Up:} \href{cool-manual.html}{The Cool Reference
-Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node48.html}{Operational Rules} ~
+\href{node50.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node48.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node50.html}{About this document \ldots{}} \textbf{Up:}
+\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
+\textbf{Previous:} \href{node48.html}{Operational Rules} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{Acknowledgements}
@@ -2935,11 +2864,13 @@ George C. Necula and Bor-Yuh Evan Chang.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node5.html}{next} \href{cool-manual.html}{up}
-\href{node3.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node5.html}{Features} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node3.html}{Getting Started} ~
+\href{node5.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node3.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node5.html}{Features} \textbf{Up:} \href{cool-manual.html}{The
+Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node3.html}{Getting Started} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{Classes}
@@ -2972,10 +2903,12 @@ letter. Classes may not be redefined.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-next \href{cool-manual.html}{up} \href{node49.html}{previous}
-\href{node1.html}{contents} \\ \textbf{Up:} \href{cool-manual.html}{The
-Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
-\href{node49.html}{Acknowledgements} ~
+\includegraphics{next_g.png}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node49.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Up:}
+\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
+\textbf{Previous:} \href{node49.html}{Acknowledgements} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
 
 \section{About this document \ldots{}}
@@ -3000,9 +2933,11 @@ The translation was initiated by Bor-Yuh Evan Chang on 2004-03-03 \\
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node33.html}{next} \href{cool-manual.html}{up}
-\href{node31.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node49.html}{Acknowledgements} \textbf{Up:}
+\href{node33.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node31.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node49.html}{Acknowledgements} \textbf{Up:}
 \href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
 \textbf{Previous:} \href{node48.html}{Operational Rules} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
@@ -3364,6 +3299,8 @@ class Main {
 
 Might produce this control-flow graph:
 
+\includegraphics{cfg-example.png}
+
 While you do not have to match the reference compiler exactly,
 inspecting its control-flow graphs can help you debug your own code to
 create control-flow graphs.
@@ -3577,11 +3514,13 @@ optimization.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node6.html}{next} \href{node4.html}{up}
-\href{node4.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node6.html}{Inheritance} \textbf{Up:}
-\href{node4.html}{Classes} \textbf{Previous:} \href{node4.html}{Classes}
-~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node6.html}{\includegraphics{next.png}}
+\href{node4.html}{\includegraphics{up.png}}
+\href{node4.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node6.html}{Inheritance} \textbf{Up:} \href{node4.html}{Classes}
+\textbf{Previous:} \href{node4.html}{Classes} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Features}
 
@@ -3673,17 +3612,21 @@ further in Section~\href{node12.html\#sec-method}{6}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node6.html}{next} \href{node4.html}{up}
-\href{node4.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node6.html}{Inheritance} \textbf{Up:}
-\href{node4.html}{Classes} \textbf{Previous:} \href{node4.html}{Classes}
-~ \textbf{\href{node1.html}{Contents}}
+\href{node6.html}{\includegraphics{next.png}}
+\href{node4.html}{\includegraphics{up.png}}
+\href{node4.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node6.html}{Inheritance} \textbf{Up:} \href{node4.html}{Classes}
+\textbf{Previous:} \href{node4.html}{Classes} ~
+\textbf{\href{node1.html}{Contents}}
 
-\href{node7.html}{next} \href{node4.html}{up}
-\href{node5.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node7.html}{Types} \textbf{Up:}
-\href{node4.html}{Classes} \textbf{Previous:}
-\href{node5.html}{Features} ~ \textbf{\href{node1.html}{Contents}} \\ \\
+\href{node7.html}{\includegraphics{next.png}}
+\href{node4.html}{\includegraphics{up.png}}
+\href{node5.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node7.html}{Types} \textbf{Up:} \href{node4.html}{Classes}
+\textbf{Previous:} \href{node5.html}{Features} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{\\ Inheritance}
 
@@ -3726,18 +3669,22 @@ Section~\href{node26.html\#sec-basic}{8}.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node7.html}{next} \href{node4.html}{up}
-\href{node5.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node7.html}{Types} \textbf{Up:}
-\href{node4.html}{Classes} \textbf{Previous:}
-\href{node5.html}{Features} ~ \textbf{\href{node1.html}{Contents}}
+\href{node7.html}{\includegraphics{next.png}}
+\href{node4.html}{\includegraphics{up.png}}
+\href{node5.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node7.html}{Types} \textbf{Up:} \href{node4.html}{Classes}
+\textbf{Previous:} \href{node5.html}{Features} ~
+\textbf{\href{node1.html}{Contents}}
 
-\href{node8.html}{next} \href{cool-manual.html}{up}
-\href{node6.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node8.html}{SELF\_TYPE} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node6.html}{Inheritance} ~
-\textbf{\href{node1.html}{Contents}} \\ \\
+\href{node8.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node6.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node8.html}{SELF\_TYPE} \textbf{Up:} \href{cool-manual.html}{The
+Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node6.html}{Inheritance} ~ \textbf{\href{node1.html}{Contents}} \\
+\\
 
 \section{Types}
 
@@ -3793,17 +3740,20 @@ that $\tt A \leq Object$ for all types $\tt A$.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node8.html}{next} \href{cool-manual.html}{up}
-\href{node6.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node8.html}{SELF\_TYPE} \textbf{Up:}
-\href{cool-manual.html}{The Cool Reference Manual\textsuperscript{1}}
-\textbf{Previous:} \href{node6.html}{Inheritance} ~
-\textbf{\href{node1.html}{Contents}}
+\href{node8.html}{\includegraphics{next.png}}
+\href{cool-manual.html}{\includegraphics{up.png}}
+\href{node6.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node8.html}{SELF\_TYPE} \textbf{Up:} \href{cool-manual.html}{The
+Cool Reference Manual\textsuperscript{1}} \textbf{Previous:}
+\href{node6.html}{Inheritance} ~ \textbf{\href{node1.html}{Contents}}
 
-\href{node9.html}{next} \href{node7.html}{up}
-\href{node7.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node9.html}{Type Checking} \textbf{Up:}
-\href{node7.html}{Types} \textbf{Previous:} \href{node7.html}{Types} ~
+\href{node9.html}{\includegraphics{next.png}}
+\href{node7.html}{\includegraphics{up.png}}
+\href{node7.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node9.html}{Type Checking} \textbf{Up:} \href{node7.html}{Types}
+\textbf{Previous:} \href{node7.html}{Types} ~
 \textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{SELF\_TYPE}
@@ -3857,18 +3807,21 @@ attribute. No other uses of \texttt{SELF\_TYPE} are permitted.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node9.html}{next} \href{node7.html}{up}
-\href{node7.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node9.html}{Type Checking} \textbf{Up:}
-\href{node7.html}{Types} \textbf{Previous:} \href{node7.html}{Types} ~
+\href{node9.html}{\includegraphics{next.png}}
+\href{node7.html}{\includegraphics{up.png}}
+\href{node7.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node9.html}{Type Checking} \textbf{Up:} \href{node7.html}{Types}
+\textbf{Previous:} \href{node7.html}{Types} ~
 \textbf{\href{node1.html}{Contents}}
 
-\href{node10.html}{next} \href{node7.html}{up}
-\href{node8.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node10.html}{Attributes} \textbf{Up:}
-\href{node7.html}{Types} \textbf{Previous:}
-\href{node8.html}{SELF\_TYPE} ~ \textbf{\href{node1.html}{Contents}} \\
-\\
+\href{node10.html}{\includegraphics{next.png}}
+\href{node7.html}{\includegraphics{up.png}}
+\href{node8.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node10.html}{Attributes} \textbf{Up:} \href{node7.html}{Types}
+\textbf{Previous:} \href{node8.html}{SELF\_TYPE} ~
+\textbf{\href{node1.html}{Contents}} \\ \\
 
 \subsection{Type Checking}
 
@@ -3904,10 +3857,12 @@ without runtime errors.
 
 \begin{center}\rule{3in}{0.4pt}\end{center}
 
-\href{node10.html}{next} \href{node7.html}{up}
-\href{node8.html}{previous} \href{node1.html}{contents} \\
-\textbf{Next:} \href{node10.html}{Attributes} \textbf{Up:}
-\href{node7.html}{Types} \textbf{Previous:}
-\href{node8.html}{SELF\_TYPE} ~ \textbf{\href{node1.html}{Contents}}
+\href{node10.html}{\includegraphics{next.png}}
+\href{node7.html}{\includegraphics{up.png}}
+\href{node8.html}{\includegraphics{prev.png}}
+\href{node1.html}{\includegraphics{contents.png}} \\ \textbf{Next:}
+\href{node10.html}{Attributes} \textbf{Up:} \href{node7.html}{Types}
+\textbf{Previous:} \href{node8.html}{SELF\_TYPE} ~
+\textbf{\href{node1.html}{Contents}}
 
 \end{document}
